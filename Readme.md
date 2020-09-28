@@ -1,7 +1,7 @@
 # Личный проект «Что посмотреть» [![Build status][travis-image]][travis-url]
 
 * Студент: [Юрий Куренков](https://up.htmlacademy.ru/react/5/user/80269).
-* Наставник: `Неизвестно`.
+* Наставник: [Евгений Карагодин](https://htmlacademy.ru/profile/ekaragodin).
 
 ---
 
