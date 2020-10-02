@@ -2,6 +2,12 @@ import React from 'react';
 
 
 const Main = (props) => {
+  const {
+    movieName,
+    movieGenre,
+    movieYear,
+  } = props;
+
   return (
     <React.Fragment>
       <section className="movie-card">
@@ -34,10 +40,10 @@ const Main = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{movieName}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{movieGenre}</span>
+                <span className="movie-card__year">{movieYear}</span>
               </p>
 
               <div className="movie-card__buttons">

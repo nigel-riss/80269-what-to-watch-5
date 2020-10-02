@@ -3,8 +3,18 @@ import Main from '../main/main.jsx';
 
 
 const App = (props) => {
+  const {
+    movieName,
+    movieGenre,
+    movieYear,
+  } = props;
+
   return (
-    <Main/>
+    <Main
+      movieName={movieName}
+      movieGenre={movieGenre}
+      movieYear={movieYear}
+    />
   );
 };
 
