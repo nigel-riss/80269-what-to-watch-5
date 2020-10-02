@@ -1,5 +1,6 @@
 import React from 'react';
 import Main from '../main/main.jsx';
+import PropTypes from 'prop-types';
 
 
 const App = (props) => {
@@ -16,6 +17,13 @@ const App = (props) => {
       movieYear={movieYear}
     />
   );
+};
+
+
+App.propTypes = {
+  movieName: PropTypes.string.isRequired,
+  movieGenre: PropTypes.string.isRequired,
+  movieYear: PropTypes.number.isRequired,
 };
 
 

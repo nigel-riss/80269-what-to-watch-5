@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const Main = (props) => {
@@ -310,6 +311,13 @@ const Main = (props) => {
       </div>
     </React.Fragment>
   );
+};
+
+
+Main.propTypes = {
+  movieName: PropTypes.string.isRequired,
+  movieGenre: PropTypes.string.isRequired,
+  movieYear: PropTypes.number.isRequired,
 };
 
 
