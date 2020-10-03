@@ -6,6 +6,7 @@ import {
   Route,
 } from 'react-router-dom';
 import Main from '../main/main.jsx';
+import Login from '../login/login.jsx';
 
 
 const App = (props) => {
@@ -24,6 +25,9 @@ const App = (props) => {
             movieGenre={movieGenre}
             movieYear={movieYear}
           />
+        </Route>
+        <Route path="/login" exact>
+          <Login/>
         </Route>
       </Switch>
     </Router>
