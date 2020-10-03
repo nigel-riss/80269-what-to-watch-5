@@ -8,6 +8,7 @@ import {
 import Main from '../main/main.jsx';
 import Login from '../login/login.jsx';
 import MyList from '../mylist/mylist.jsx';
+import Film from '../film/film.jsx';
 
 
 const App = (props) => {
@@ -29,6 +30,12 @@ const App = (props) => {
         </Route>
         <Route path="/login" exact>
           <Login/>
+        </Route>
+        <Route path="/mylist" exact>
+          <MyList/>
+        </Route>
+        <Route path="/films/:id" exact>
+          <Film/>
         </Route>
       </Switch>
     </Router>
