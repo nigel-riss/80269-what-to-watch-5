@@ -10,6 +10,7 @@ import Login from '../login/login.jsx';
 import MyList from '../mylist/mylist.jsx';
 import Film from '../film/film.jsx';
 import Review from '../review/review.jsx';
+import Player from '../player/player.jsx';
 
 
 const App = (props) => {
@@ -40,6 +41,9 @@ const App = (props) => {
         </Route>
         <Route path="/films/:id/review" exact>
           <Review/>
+        </Route>
+        <Route path="/player/:id">
+          <Player/>
         </Route>
       </Switch>
     </Router>
