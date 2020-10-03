@@ -9,6 +9,7 @@ import Main from '../main/main.jsx';
 import Login from '../login/login.jsx';
 import MyList from '../mylist/mylist.jsx';
 import Film from '../film/film.jsx';
+import Review from '../review/review.jsx';
 
 
 const App = (props) => {
@@ -36,6 +37,9 @@ const App = (props) => {
         </Route>
         <Route path="/films/:id" exact>
           <Film/>
+        </Route>
+        <Route path="/films/:id/review" exact>
+          <Review/>
         </Route>
       </Switch>
     </Router>
