@@ -1,15 +1,26 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 import filmTypes from '../../types/film.js';
 
 
 const FilmCard = (props) => {
   const {
+    film,
+    onFilmCardHover,
+  } = props;
+
+  const {
     cover,
     name,
-  } = props.film;
+  } = film;
 
   return (
-    <article className="small-movie-card catalog__movies-card">
+    <article
+      className="small-movie-card catalog__movies-card"
+      onMouseOver={() => {
+        onFilmCardHover(film)
+      }}
+    >
       <div className="small-movie-card__image">
         <img
           src={cover}
@@ -26,7 +37,10 @@ const FilmCard = (props) => {
 };
 
 
-FilmCard.propTypes = filmTypes;
+FilmCard.propTypes = {
+  film: filmTypes,
+  onFilmCardHover: PropTypes.func.isRequired,
+};
 
 
 export default FilmCard;
