@@ -1,19 +1,30 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import filmTypes from '../../types/film.js';
 
 
 const Main = (props) => {
   const {
-    movieName,
-    movieGenre,
-    movieYear,
+    promoFilm,
+    films,
   } = props;
+
+  const {
+    cover: coverUrl,
+    poster: posterUrl,
+    name: filmName,
+    genre: filmGenre,
+    year: filmYear,
+  } = promoFilm;
 
   return (
     <React.Fragment>
       <section className="movie-card">
         <div className="movie-card__bg">
-          <img src="img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+          <img
+            src={coverUrl}
+            alt={filmName}
+          />
         </div>
 
         <h1 className="visually-hidden">WTW</h1>
@@ -37,14 +48,19 @@ const Main = (props) => {
         <div className="movie-card__wrap">
           <div className="movie-card__info">
             <div className="movie-card__poster">
-              <img src="img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img
+                src={posterUrl}
+                alt={filmName}
+                width="218"
+                height="327"
+              />
             </div>
 
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">{movieName}</h2>
+              <h2 className="movie-card__title">{filmName}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{movieGenre}</span>
-                <span className="movie-card__year">{movieYear}</span>
+                <span className="movie-card__genre">{filmGenre.join(`, `)}</span>
+                <span className="movie-card__year">{filmYear}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -315,9 +331,8 @@ const Main = (props) => {
 
 
 Main.propTypes = {
-  movieName: PropTypes.string.isRequired,
-  movieGenre: PropTypes.string.isRequired,
-  movieYear: PropTypes.number.isRequired,
+  promoFilm: filmTypes,
+  films: PropTypes.arrayOf(filmTypes),
 };
 
 

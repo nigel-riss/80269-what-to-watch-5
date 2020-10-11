@@ -11,13 +11,13 @@ import MyList from '../mylist/mylist.jsx';
 import Film from '../film/film.jsx';
 import Review from '../review/review.jsx';
 import Player from '../player/player.jsx';
+import filmTypes from '../../types/film.js';
 
 
 const App = (props) => {
   const {
-    movieName,
-    movieGenre,
-    movieYear,
+    promoFilm,
+    films,
   } = props;
 
   return (
@@ -25,9 +25,8 @@ const App = (props) => {
       <Switch>
         <Route path="/" exact>
           <Main
-            movieName={movieName}
-            movieGenre={movieGenre}
-            movieYear={movieYear}
+            promoFilm={promoFilm}
+            films={films}
           />
         </Route>
         <Route path="/login" exact>
@@ -52,9 +51,8 @@ const App = (props) => {
 
 
 App.propTypes = {
-  movieName: PropTypes.string.isRequired,
-  movieGenre: PropTypes.string.isRequired,
-  movieYear: PropTypes.number.isRequired,
+  promoFilm: filmTypes,
+  films: PropTypes.arrayOf(filmTypes),
 };
 
 
