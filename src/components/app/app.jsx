@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import filmTypes from '../../types/film.js';
 import {
   BrowserRouter as Router,
   Switch,
@@ -11,7 +12,6 @@ import MyList from '../mylist/mylist.jsx';
 import Film from '../film/film.jsx';
 import Review from '../review/review.jsx';
 import Player from '../player/player.jsx';
-import filmTypes from '../../types/film.js';
 
 
 const App = (props) => {
