@@ -45,7 +45,9 @@ const App = (props) => {
           />
         </Route>
         <Route path="/films/:id/review" exact>
-          <Review/>
+          <Review
+            film={films[4]}
+          />
         </Route>
         <Route path="/player/:id">
           <Player/>
