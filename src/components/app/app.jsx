@@ -33,10 +33,15 @@ const App = (props) => {
           <Login/>
         </Route>
         <Route path="/mylist" exact>
-          <MyList/>
+          <MyList
+            films={films.slice(4, 8)}
+          />
         </Route>
         <Route path="/films/:id" exact>
-          <Film/>
+          <Film
+            alikeFilms={films.slice(2, 6)}
+            film={films[3]}
+          />
         </Route>
         <Route path="/films/:id/review" exact>
           <Review/>

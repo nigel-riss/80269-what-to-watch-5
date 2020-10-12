@@ -18,7 +18,7 @@ const FilmCard = (props) => {
     <article
       className="small-movie-card catalog__movies-card"
       onMouseOver={() => {
-        onFilmCardHover(film)
+        onFilmCardHover(film);
       }}
     >
       <div className="small-movie-card__image">

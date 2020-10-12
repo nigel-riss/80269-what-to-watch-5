@@ -24,7 +24,6 @@ class FilmList extends PureComponent {
 
     return (
       <div className="catalog__movies-list">
-        <br></br>
         {films.map((film, i) => <FilmCard
           key={film.name + i}
           onFilmCardHover={this._handleFilmCardHover}
@@ -33,7 +32,7 @@ class FilmList extends PureComponent {
       </div>
     );
   }
-};
+}
 
 
 FilmList.propTypes = filmTypes;
