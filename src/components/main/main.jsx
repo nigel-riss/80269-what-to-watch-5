@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import {Link} from 'react-router-dom';
+import history from '../../history.js';
 import filmTypes from '../../types/film.js';
 import FilmList from '../film-list/film-list.jsx';
 import Footer from '../footer/footer.jsx';
@@ -67,7 +67,13 @@ const Main = (props) => {
               </p>
 
               <div className="movie-card__buttons">
-                <button className="btn btn--play movie-card__button" type="button">
+                <button
+                  className="btn btn--play movie-card__button"
+                  type="button"
+                  onClick={() => {
+                    history.push(`/player/1`);
+                  }}
+                >
                   <svg viewBox="0 0 19 19" width="19" height="19">
                     <use xlinkHref="#play-s"></use>
                   </svg>

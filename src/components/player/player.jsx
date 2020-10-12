@@ -1,4 +1,5 @@
 import React from 'react';
+import history from '../../history.js';
 
 
 const Player = () => {
@@ -6,7 +7,15 @@ const Player = () => {
     <div className="player">
       <video src="#" className="player__video" poster="/img/player-poster.jpg"></video>
 
-      <button type="button" className="player__exit">Exit</button>
+      <button
+        type="button"
+        className="player__exit"
+        onClick={() => {
+          history.push(`/films/1`);
+        }}
+      >
+        Exit
+      </button>
 
       <div className="player__controls">
         <div className="player__controls-row">

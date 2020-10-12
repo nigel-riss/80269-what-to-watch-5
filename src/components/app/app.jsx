@@ -2,10 +2,11 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import filmTypes from '../../types/film.js';
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route,
 } from 'react-router-dom';
+import history from '../../history.js';
 import Main from '../main/main.jsx';
 import Login from '../login/login.jsx';
 import MyList from '../mylist/mylist.jsx';
@@ -21,7 +22,7 @@ const App = (props) => {
   } = props;
 
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route path="/" exact>
           <Main

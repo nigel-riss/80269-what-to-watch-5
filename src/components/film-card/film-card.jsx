@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import filmTypes from '../../types/film.js';
+import history from '../../history.js';
 
 
 const FilmCard = (props) => {
@@ -19,6 +20,9 @@ const FilmCard = (props) => {
       className="small-movie-card catalog__movies-card"
       onMouseOver={() => {
         onFilmCardHover(film);
+      }}
+      onClick={() => {
+        history.push(`/films/1`);
       }}
     >
       <div className="small-movie-card__image">
