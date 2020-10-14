@@ -1,10 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import filmTypes from '../../types/film.js';
 import {
-  BrowserRouter as Router,
+  Router,
   Switch,
   Route,
 } from 'react-router-dom';
+import history from '../../history.js';
 import Main from '../main/main.jsx';
 import Login from '../login/login.jsx';
 import MyList from '../mylist/mylist.jsx';
@@ -15,32 +17,37 @@ import Player from '../player/player.jsx';
 
 const App = (props) => {
   const {
-    movieName,
-    movieGenre,
-    movieYear,
+    promoFilm,
+    films,
   } = props;
 
   return (
-    <Router>
+    <Router history={history}>
       <Switch>
         <Route path="/" exact>
           <Main
-            movieName={movieName}
-            movieGenre={movieGenre}
-            movieYear={movieYear}
+            promoFilm={promoFilm}
+            films={films}
           />
         </Route>
         <Route path="/login" exact>
           <Login/>
         </Route>
         <Route path="/mylist" exact>
-          <MyList/>
+          <MyList
+            films={films.slice(4, 8)}
+          />
         </Route>
         <Route path="/films/:id" exact>
-          <Film/>
+          <Film
+            alikeFilms={films.slice(2, 6)}
+            film={films[3]}
+          />
         </Route>
         <Route path="/films/:id/review" exact>
-          <Review/>
+          <Review
+            film={films[4]}
+          />
         </Route>
         <Route path="/player/:id">
           <Player/>
@@ -52,9 +59,8 @@ const App = (props) => {
 
 
 App.propTypes = {
-  movieName: PropTypes.string.isRequired,
-  movieGenre: PropTypes.string.isRequired,
-  movieYear: PropTypes.number.isRequired,
+  promoFilm: filmTypes,
+  films: PropTypes.arrayOf(filmTypes),
 };
 
 

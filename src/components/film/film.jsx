@@ -1,25 +1,41 @@
 import React from 'react';
+import {Link} from 'react-router-dom';
+import filmTypes from '../../types/film.js';
+import FilmList from '../film-list/film-list.jsx';
+import Footer from '../footer/footer.jsx';
+import Logo from '../logo/logo.jsx';
 
 
-const Film = () => {
+const Film = (props) => {
+  const {
+    alikeFilms,
+    film,
+  } = props;
+
+  const {
+    cover,
+    name,
+    genre,
+    year,
+    poster,
+    details
+  } = film;
+
   return (
     <React.Fragment>
       <section className="movie-card movie-card--full">
         <div className="movie-card__hero">
           <div className="movie-card__bg">
-            <img src="/img/bg-the-grand-budapest-hotel.jpg" alt="The Grand Budapest Hotel" />
+            <img
+              src={cover}
+              alt={name}
+            />
           </div>
 
           <h1 className="visually-hidden">WTW</h1>
 
           <header className="page-header movie-card__head">
-            <div className="logo">
-              <a href="main.html" className="logo__link">
-                <span className="logo__letter logo__letter--1">W</span>
-                <span className="logo__letter logo__letter--2">T</span>
-                <span className="logo__letter logo__letter--3">W</span>
-              </a>
-            </div>
+            <Logo/>
 
             <div className="user-block">
               <div className="user-block__avatar">
@@ -30,10 +46,10 @@ const Film = () => {
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
-              <h2 className="movie-card__title">The Grand Budapest Hotel</h2>
+              <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">Drama</span>
-                <span className="movie-card__year">2014</span>
+                <span className="movie-card__genre">{genre.join(`, `)}</span>
+                <span className="movie-card__year">{year}</span>
               </p>
 
               <div className="movie-card__buttons">
@@ -49,7 +65,12 @@ const Film = () => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <a href="add-review.html" className="btn movie-card__button">Add review</a>
+                <Link
+                  to="/films/1/review"
+                  className="btn movie-card__button"
+                >
+                  Add review
+                </Link>
               </div>
             </div>
           </div>
@@ -58,7 +79,12 @@ const Film = () => {
         <div className="movie-card__wrap movie-card__translate-top">
           <div className="movie-card__info">
             <div className="movie-card__poster movie-card__poster--big">
-              <img src="/img/the-grand-budapest-hotel-poster.jpg" alt="The Grand Budapest Hotel poster" width="218" height="327" />
+              <img
+                src={poster}
+                alt={name}
+                width="218"
+                height="327"
+              />
             </div>
 
             <div className="movie-card__desc">
@@ -79,24 +105,23 @@ const Film = () => {
               <div className="movie-card__text movie-card__row">
                 <div className="movie-card__text-col">
                   <p className="movie-card__details-item">
-                    <strong className="movie-card__details-name">Director</strong>
-                    <span className="movie-card__details-value">Wes Andreson</span>
+                    <strong className="movie-card__details-name">
+                      Director
+                    </strong>
+                    <span className="movie-card__details-value">
+                      {details.director}
+                    </span>
                   </p>
                   <p className="movie-card__details-item">
-                    <strong className="movie-card__details-name">Starring</strong>
+                    <strong className="movie-card__details-name">
+                      Starring
+                    </strong>
                     <span className="movie-card__details-value">
-                      Bill Murray, <br/>
-                      Edward Norton, <br/>
-                      Jude Law, <br/>
-                      Willem Dafoe, <br/>
-                      Saoirse Ronan, <br/>
-                      Tony Revoloru, <br/>
-                      Tilda Swinton, <br/>
-                      Tom Wilkinson, <br/>
-                      Owen Wilkinson, <br/>
-                      Adrien Brody, <br/>
-                      Ralph Fiennes, <br/>
-                      Jeff Goldblum
+                      {details.actors.map((actor, i, actors) => {
+                        return <React.Fragment key={actor + i}>
+                          {actor}{i + 1 !== actors.length && `, `}<br/>
+                        </React.Fragment>;
+                      })}
                     </span>
                   </p>
                 </div>
@@ -104,15 +129,23 @@ const Film = () => {
                 <div className="movie-card__text-col">
                   <p className="movie-card__details-item">
                     <strong className="movie-card__details-name">Run Time</strong>
-                    <span className="movie-card__details-value">1h 39m</span>
+                    <span className="movie-card__details-value">
+                      {details.length.hours}h {details.length.minutes}m
+                    </span>
                   </p>
                   <p className="movie-card__details-item">
                     <strong className="movie-card__details-name">Genre</strong>
-                    <span className="movie-card__details-value">Comedy</span>
+                    <span className="movie-card__details-value">
+                      {genre.map((it, i, genres) => {
+                        return <React.Fragment key={it + i}>
+                          {it}{i + 1 !== genres.length && `, `}<br/>
+                        </React.Fragment>;
+                      })}
+                    </span>
                   </p>
                   <p className="movie-card__details-item">
                     <strong className="movie-card__details-name">Released</strong>
-                    <span className="movie-card__details-value">2014</span>
+                    <span className="movie-card__details-value">{year}</span>
                   </p>
                 </div>
               </div>
@@ -125,62 +158,19 @@ const Film = () => {
         <section className="catalog catalog--like-this">
           <h2 className="catalog__title">More like this</h2>
 
-          <div className="catalog__movies-list">
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="/img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt="Fantastic Beasts: The Crimes of Grindelwald" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Fantastic Beasts: The Crimes of Grindelwald</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="/img/bohemian-rhapsody.jpg" alt="Bohemian Rhapsody" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Bohemian Rhapsody</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="/img/macbeth.jpg" alt="Macbeth" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Macbeth</a>
-              </h3>
-            </article>
-
-            <article className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="/img/aviator.jpg" alt="Aviator" width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">Aviator</a>
-              </h3>
-            </article>
-          </div>
+          <FilmList
+            films={alikeFilms}
+          />
         </section>
 
-        <footer className="page-footer">
-          <div className="logo">
-            <a href="main.html" className="logo__link logo__link--light">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
-
-          <div className="copyright">
-            <p>© 2019 What to watch Ltd.</p>
-          </div>
-        </footer>
+        <Footer/>
       </div>
     </React.Fragment>
   );
 };
+
+
+Film.propTypes = filmTypes;
 
 
 export default Film;
