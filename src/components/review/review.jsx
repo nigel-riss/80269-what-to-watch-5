@@ -1,6 +1,6 @@
 import React, {PureComponent} from 'react';
 import {Link} from 'react-router-dom';
-import filmTypes from '../../types/film.js';
+import filmType from '../../types/film.js';
 import Logo from '../logo/logo.jsx';
 
 
@@ -142,7 +142,7 @@ class Review extends PureComponent {
 }
 
 
-Review.propTypes = filmTypes;
+Review.propTypes = filmType;
 
 
 export default Review;

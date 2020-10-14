@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import filmTypes from '../../types/film.js';
+import filmType from '../../types/film.js';
 import {
   Router,
   Switch,
@@ -59,8 +59,8 @@ const App = (props) => {
 
 
 App.propTypes = {
-  promoFilm: filmTypes,
-  films: PropTypes.arrayOf(filmTypes),
+  promoFilm: filmType,
+  films: PropTypes.arrayOf(filmType),
 };
 
 

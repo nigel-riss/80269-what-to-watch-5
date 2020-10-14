@@ -1,6 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
-import filmTypes from '../../types/film.js';
+import filmType from '../../types/film.js';
 import FilmList from '../film-list/film-list.jsx';
 import Footer from '../footer/footer.jsx';
 import Logo from '../logo/logo.jsx';
@@ -170,7 +170,7 @@ const Film = (props) => {
 };
 
 
-Film.propTypes = filmTypes;
+Film.propTypes = filmType;
 
 
 export default Film;

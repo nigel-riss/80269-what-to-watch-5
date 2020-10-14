@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import filmTypes from '../../types/film.js';
+import filmType from '../../types/film.js';
 import history from '../../history.js';
 
 
@@ -42,7 +42,7 @@ const FilmCard = (props) => {
 
 
 FilmCard.propTypes = {
-  film: filmTypes,
+  film: filmType,
   onFilmCardHover: PropTypes.func.isRequired,
 };
 

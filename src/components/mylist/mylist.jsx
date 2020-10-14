@@ -1,6 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import filmTypes from '../../types/film.js';
+import filmType from '../../types/film.js';
 import FilmList from '../film-list/film-list.jsx';
 import Footer from '../footer/footer.jsx';
 import Logo from '../logo/logo.jsx';
@@ -40,7 +40,7 @@ const MyList = (props) => {
 
 
 MyList.propTypes = {
-  films: PropTypes.arrayOf(filmTypes),
+  films: PropTypes.arrayOf(filmType),
 };
 
 

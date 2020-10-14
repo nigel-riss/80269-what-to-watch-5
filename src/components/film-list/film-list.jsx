@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import filmTypes from '../../types/film.js';
+import filmType from '../../types/film.js';
 import FilmCard from '../film-card/film-card.jsx';
 
 
@@ -35,7 +35,7 @@ class FilmList extends PureComponent {
 }
 
 
-FilmList.propTypes = filmTypes;
+FilmList.propTypes = filmType;
 
 
 export default FilmList;
