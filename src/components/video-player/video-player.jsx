@@ -32,6 +32,7 @@ class VideoPlayer extends PureComponent {
   }
 
   render() {
+    const {isLoading} = this.state;
     const {
       poster,
       width,
@@ -40,6 +41,7 @@ class VideoPlayer extends PureComponent {
 
     return (
       <video
+        disabled={isLoading}
         poster={poster}
         ref={this._videoRef}
         width={width}

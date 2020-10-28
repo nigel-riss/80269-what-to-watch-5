@@ -2,16 +2,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import filmType from '../../types/film.js';
 import history from '../../history.js';
-import VideoPlayer from '../video-player/video-player.jsx';
-
-
-const HOVER_PLAY_DELAY = 1000;
 
 
 const FilmCard = (props) => {
   const {
     film,
     onFilmCardHover,
+    renderPlayer,
+    onMouseEnter,
+    onMouseOut,
   } = props;
 
   const {
@@ -23,20 +22,42 @@ const FilmCard = (props) => {
   return (
     <article
       className="small-movie-card catalog__movies-card"
+
+      onMouseEnter={() => {
+        if (onMouseEnter) {
+          onMouseEnter();
+        }
+      }}
+
+      onMouseOut={() => {
+        if (onMouseOut) {
+          onMouseOut();
+        }
+      }}
+
       onMouseOver={() => {
         onFilmCardHover(film);
       }}
+
       onClick={() => {
         history.push(`/films/1`);
       }}
     >
       <div className="small-movie-card__image">
-        <VideoPlayer
-          poster={cover}
-          src={preview}
-          width={280}
-          height={175}
-        />
+        {renderPlayer
+          ? renderPlayer({
+            poster: cover,
+            src: preview,
+            width: 280,
+            height: 175,
+          })
+          : (<img
+            src={cover}
+            alt={name}
+            width="280"
+            height="175"
+          />)
+        }
       </div>
       <h3 className="small-movie-card__title">
         <a className="small-movie-card__link" href="movie-page.html">{name}</a>
@@ -49,6 +70,9 @@ const FilmCard = (props) => {
 FilmCard.propTypes = {
   film: filmType,
   onFilmCardHover: PropTypes.func.isRequired,
+  renderPlayer: PropTypes.func,
+  onMouseEnter: PropTypes.func,
+  onMouseOut: PropTypes.func,
 };
 
 

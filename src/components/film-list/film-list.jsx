@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import filmType from '../../types/film.js';
 import FilmCard from '../film-card/film-card.jsx';
+import withVideoPlayer from '../../hocs/with-video-player/with-video-player.jsx';
 
 
 class FilmList extends PureComponent {
@@ -24,11 +25,14 @@ class FilmList extends PureComponent {
 
     return (
       <div className="catalog__movies-list">
-        {films.map((film, i) => <FilmCard
-          key={film.name + i}
-          onFilmCardHover={this._handleFilmCardHover}
-          film={film}
-        />)}
+        {films.map((film, i) => {
+          const FilmCardWraped = withVideoPlayer(FilmCard);
+          return <FilmCardWraped
+            key={film.name + i}
+            onFilmCardHover={this._handleFilmCardHover}
+            film={film}
+          />;
+        })}
       </div>
     );
   }
