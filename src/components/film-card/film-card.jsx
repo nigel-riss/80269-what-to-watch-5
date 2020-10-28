@@ -46,7 +46,7 @@ class FilmCard extends PureComponent {
           }, HOVER_PLAY_DELAY);
         }}
 
-        onMouseOut={() => {
+        onMouseLeave={() => {
           window.clearTimeout(this._hoverTimeoutId);
           this.setState({
             isHovered: false,
@@ -75,7 +75,7 @@ class FilmCard extends PureComponent {
           }
         </div>
         <h3 className="small-movie-card__title">
-          <a className="small-movie-card__link" href="movie-page.html">{name}</a>
+          <a className="small-movie-card__link">{name}</a>
         </h3>
       </article>
     );

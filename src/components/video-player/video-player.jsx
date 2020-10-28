@@ -19,16 +19,16 @@ class VideoPlayer extends PureComponent {
 
     video.src = src;
 
-    video.addEventListener(`canplaythrough`, () => {
+    video.oncanplay = () => {
       this.setState({
         isLoading: false,
       });
-    });
+    };
   }
 
   componentWillUnmount() {
     const video = this._videoRef.current;
-    video.oncanplaythrough = null;
+    video.oncanplay = null;
   }
 
   render() {
