@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import filmType from '../../types/film.js';
 import history from '../../history.js';
+import VideoPlayer from '../video-player/video-player.jsx';
+
+
+const HOVER_PLAY_DELAY = 1000;
 
 
 const FilmCard = (props) => {
@@ -13,6 +17,7 @@ const FilmCard = (props) => {
   const {
     cover,
     name,
+    preview,
   } = film;
 
   return (
@@ -26,11 +31,11 @@ const FilmCard = (props) => {
       }}
     >
       <div className="small-movie-card__image">
-        <img
-          src={cover}
-          alt={name}
-          width="280"
-          height="175"
+        <VideoPlayer
+          poster={cover}
+          src={preview}
+          width={280}
+          height={175}
         />
       </div>
       <h3 className="small-movie-card__title">
