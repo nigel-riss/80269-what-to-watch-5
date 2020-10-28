@@ -1,78 +1,92 @@
-import React from 'react';
+import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import filmType from '../../types/film.js';
 import history from '../../history.js';
+import VideoPlayer from '../video-player/video-player.jsx';
 
 
-const FilmCard = (props) => {
-  const {
-    film,
-    onFilmCardHover,
-    renderPlayer,
-    onMouseEnter,
-    onMouseOut,
-  } = props;
+const HOVER_PLAY_DELAY = 1000;
 
-  const {
-    cover,
-    name,
-    preview,
-  } = film;
 
-  return (
-    <article
-      className="small-movie-card catalog__movies-card"
+class FilmCard extends PureComponent {
+  constructor(props) {
+    super(props);
 
-      onMouseEnter={() => {
-        if (onMouseEnter) {
-          onMouseEnter();
-        }
-      }}
+    this._hoverTimeoutId = null;
 
-      onMouseOut={() => {
-        if (onMouseOut) {
-          onMouseOut();
-        }
-      }}
+    this.state = {
+      isHovered: false,
+    };
+  }
 
-      onMouseOver={() => {
-        onFilmCardHover(film);
-      }}
+  render() {
+    const {isHovered} = this.state;
 
-      onClick={() => {
-        history.push(`/films/1`);
-      }}
-    >
-      <div className="small-movie-card__image">
-        {renderPlayer
-          ? renderPlayer({
-            poster: cover,
-            src: preview,
-            width: 280,
-            height: 175,
-          })
-          : (<img
-            src={cover}
-            alt={name}
-            width="280"
-            height="175"
-          />)
-        }
-      </div>
-      <h3 className="small-movie-card__title">
-        <a className="small-movie-card__link" href="movie-page.html">{name}</a>
-      </h3>
-    </article>
-  );
-};
+    const {
+      film,
+      onFilmCardHover,
+    } = this.props;
+
+    const {
+      cover,
+      name,
+      preview,
+    } = film;
+
+    return (
+      <article
+        className="small-movie-card catalog__movies-card"
+
+        onMouseEnter={() => {
+          onFilmCardHover(film);
+          this._hoverTimeoutId = window.setTimeout(() => {
+            this.setState({
+              isHovered: true,
+            });
+          }, HOVER_PLAY_DELAY);
+        }}
+
+        onMouseOut={() => {
+          window.clearTimeout(this._hoverTimeoutId);
+          this.setState({
+            isHovered: false,
+          });
+        }}
+
+        onClick={() => {
+          history.push(`/films/1`);
+        }}
+      >
+        <div className="small-movie-card__image">
+          {isHovered
+            ? (<VideoPlayer
+              poster={cover}
+              src={preview}
+              width={280}
+              height={175}
+              isPlaying={isHovered}
+            />)
+            : (<img
+              src={cover}
+              alt={name}
+              width="280"
+              height="175"
+            />)
+          }
+        </div>
+        <h3 className="small-movie-card__title">
+          <a className="small-movie-card__link" href="movie-page.html">{name}</a>
+        </h3>
+      </article>
+    );
+  }
+}
 
 
 FilmCard.propTypes = {
   film: filmType,
   onFilmCardHover: PropTypes.func.isRequired,
   renderPlayer: PropTypes.func,
-  onMouseEnter: PropTypes.func,
-  onMouseOut: PropTypes.func,
 };
 
 
