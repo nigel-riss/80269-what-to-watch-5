@@ -36,7 +36,7 @@ class FilmCard extends PureComponent {
     return (
       <article
         className="small-movie-card catalog__movies-card"
-
+        style={{backgroundColor: `black`}}
         onMouseEnter={() => {
           onFilmCardHover(film);
           this._hoverTimeoutId = window.setTimeout(() => {
@@ -58,21 +58,13 @@ class FilmCard extends PureComponent {
         }}
       >
         <div className="small-movie-card__image">
-          {isHovered
-            ? (<VideoPlayer
-              poster={cover}
-              src={preview}
-              width={280}
-              height={175}
-              isPlaying={isHovered}
-            />)
-            : (<img
-              src={cover}
-              alt={name}
-              width="280"
-              height="175"
-            />)
-          }
+          <VideoPlayer
+            poster={cover}
+            src={preview}
+            width={280}
+            height={175}
+            isPlaying={isHovered}
+          />
         </div>
         <h3 className="small-movie-card__title">
           <a className="small-movie-card__link">{name}</a>

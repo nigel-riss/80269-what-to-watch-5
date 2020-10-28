@@ -57,9 +57,12 @@ class VideoPlayer extends PureComponent {
     if (video) {
       if (this.props.isPlaying && !this.state.isLoading) {
         video.play();
-      } else {
-        video.pause();
         video.currentTime = 0;
+      } else {
+        this.setState({
+          isLoading: true,
+        });
+        video.load();
       }
     }
   }
