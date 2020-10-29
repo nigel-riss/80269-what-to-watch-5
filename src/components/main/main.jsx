@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import history from '../../history.js';
-import filmTypes from '../../types/film.js';
+import filmType from '../../types/film.js';
 import FilmList from '../film-list/film-list.jsx';
 import Footer from '../footer/footer.jsx';
 
@@ -145,8 +145,8 @@ const Main = (props) => {
 
 
 Main.propTypes = {
-  promoFilm: filmTypes,
-  films: PropTypes.arrayOf(filmTypes),
+  promoFilm: filmType,
+  films: PropTypes.arrayOf(filmType),
 };
 
 
