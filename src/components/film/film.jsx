@@ -4,6 +4,7 @@ import filmType from '../../types/film.js';
 import FilmList from '../film-list/film-list.jsx';
 import Footer from '../footer/footer.jsx';
 import Logo from '../logo/logo.jsx';
+import FilmNav from '../film-nav/film-nav.jsx';
 
 
 const Film = (props) => {
@@ -88,19 +89,9 @@ const Film = (props) => {
             </div>
 
             <div className="movie-card__desc">
-              <nav className="movie-nav movie-card__nav">
-                <ul className="movie-nav__list">
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Overview</a>
-                  </li>
-                  <li className="movie-nav__item movie-nav__item--active">
-                    <a href="#" className="movie-nav__link">Details</a>
-                  </li>
-                  <li className="movie-nav__item">
-                    <a href="#" className="movie-nav__link">Reviews</a>
-                  </li>
-                </ul>
-              </nav>
+              <FilmNav
+
+              />
 
               <div className="movie-card__text movie-card__row">
                 <div className="movie-card__text-col">
