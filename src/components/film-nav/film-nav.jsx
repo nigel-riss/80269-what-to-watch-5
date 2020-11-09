@@ -1,22 +1,50 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 
 const FilmNav = (props) => {
+  const {
+    currentTab,
+    onTabClick,
+    tabNames,
+  } = props;
+
   return (
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
-        <li className="movie-nav__item">
-          <a href="#" className="movie-nav__link">Overview</a>
-        </li>
-        <li className="movie-nav__item">
-          <a href="#" className="movie-nav__link">Details</a>
-        </li>
-        <li className="movie-nav__item movie-nav__item--active">
-          <a href="#" className="movie-nav__link">Reviews</a>
-        </li>
+        {tabNames.map((tabName, i) => {
+          console.log(tabName);
+          return (
+            <li
+              className={`movie-nav__item ${tabName === currentTab
+                ? `movie-nav__item--active`
+                : ``
+              }`}
+              key={`${tabName}-${i}`}
+              onClick={(e) => {
+                e.preventDefault();
+                onTabClick(tabName);
+              }}
+            >
+              <a
+                href="#"
+                className="movie-nav__link"
+              >
+                {tabName}
+              </a>
+            </li>
+          );
+        })}
       </ul>
     </nav>
   );
+};
+
+
+FilmNav.propTypes = {
+  currentTab: PropTypes.string.isRequired,
+  onTabClick: PropTypes.func.isRequired,
+  tabNames: PropTypes.arrayOf(PropTypes.string).isRequired,
 };
 
 
