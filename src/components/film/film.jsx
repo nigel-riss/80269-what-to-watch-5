@@ -9,6 +9,7 @@ import FilmNav from '../film-nav/film-nav.jsx';
 import OverviewTab from '../overview-tab/overview-tab.jsx';
 import DetailsTab from '../details-tab/details-tab.jsx';
 import ReviewsTab from '../reviews-tab/reviews-tab.jsx';
+import reviews from '../../mocks/reviews.js';
 
 class Film extends PureComponent {
   constructor(props) {
@@ -33,6 +34,7 @@ class Film extends PureComponent {
         />;
       case FilmTab.REVIEWS:
         return <ReviewsTab
+          reviews={reviews}
         />;
       default:
         return null;
