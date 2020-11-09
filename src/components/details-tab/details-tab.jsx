@@ -15,8 +15,6 @@ const DetailsTab = (props) => {
     length,
   } = details;
 
-  console.log(genre);
-
   return (
     <div className="movie-card__text movie-card__row">
       <div className="movie-card__text-col">
