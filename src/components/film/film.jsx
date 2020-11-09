@@ -6,7 +6,9 @@ import FilmList from '../film-list/film-list.jsx';
 import Footer from '../footer/footer.jsx';
 import Logo from '../logo/logo.jsx';
 import FilmNav from '../film-nav/film-nav.jsx';
-// import OverviewTab
+import OverviewTab from '../overview-tab/overview-tab.jsx';
+import DetailsTab from '../details-tab/details-tab.jsx';
+import ReviewsTab from '../reviews-tab/reviews-tab.jsx';
 
 class Film extends PureComponent {
   constructor(props) {
@@ -17,16 +19,25 @@ class Film extends PureComponent {
     };
   }
 
-  // _renderTab(tabName) {
-  //   const {film} = this.props;
+  _renderTab(tabName) {
+    const {film} = this.props;
 
-  //   switch (tabName) {
-  //     case FilmTab.OVERVIEW:
-  //       return <OverviewTab
-  //         film={film}
-  //       />;
-  //   }
-  // }
+    switch (tabName) {
+      case FilmTab.OVERVIEW:
+        return <OverviewTab
+          film={film}
+        />;
+      case FilmTab.DETAILS:
+        return <DetailsTab
+          film={film}
+        />;
+      case FilmTab.REVIEWS:
+        return <ReviewsTab
+        />;
+      default:
+        return null;
+    }
+  }
 
   render() {
     const {
@@ -115,14 +126,13 @@ class Film extends PureComponent {
                   tabNames={Object.values(FilmTab)}
                   currentTab={currentTab}
                   onTabClick={(tabName) => {
-                    console.log(tabName);
                     this.setState({
                       currentTab: tabName,
                     });
                   }}
                 />
 
-                {/* {this._renderTab()} */}
+                {this._renderTab(currentTab)}
               </div>
             </div>
           </div>

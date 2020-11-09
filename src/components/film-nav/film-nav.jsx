@@ -13,7 +13,6 @@ const FilmNav = (props) => {
     <nav className="movie-nav movie-card__nav">
       <ul className="movie-nav__list">
         {tabNames.map((tabName, i) => {
-          console.log(tabName);
           return (
             <li
               className={`movie-nav__item ${tabName === currentTab
