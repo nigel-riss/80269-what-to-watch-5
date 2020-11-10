@@ -50,7 +50,9 @@ const OverviewTab = (props) => {
 };
 
 
-OverviewTab.propTypes = filmType;
+OverviewTab.propTypes = {
+  film: filmType,
+};
 
 
 export default OverviewTab;

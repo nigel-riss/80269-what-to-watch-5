@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {FilmTab} from '../../const.js';
 import filmType from '../../types/film.js';
@@ -157,7 +158,10 @@ class Film extends PureComponent {
 }
 
 
-Film.propTypes = filmType;
+Film.propTypes = {
+  alikeFilms: PropTypes.arrayOf(filmType),
+  film: filmType,
+};
 
 
 export default Film;

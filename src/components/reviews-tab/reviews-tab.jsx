@@ -52,7 +52,9 @@ const ReviewsTab = (props) => {
 };
 
 
-ReviewsTab.propTypes = PropTypes.arrayOf(reviewType).isRequired;
+ReviewsTab.propTypes = {
+  reviews: PropTypes.arrayOf(reviewType).isRequired,
+};
 
 
 export default ReviewsTab;
