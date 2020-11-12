@@ -10,6 +10,7 @@ import Logo from '../logo/logo.jsx';
 
 const Main = (props) => {
   const {
+    activeGenre,
     films,
     genres,
     onGenreSelect,
@@ -94,6 +95,7 @@ const Main = (props) => {
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
           <GenreList
+            activeGenre={activeGenre}
             genres={genres}
             onGenreItemClick={(genre) => {
               onGenreSelect(genre);
@@ -117,6 +119,7 @@ const Main = (props) => {
 
 
 Main.propTypes = {
+  activeGenre: PropTypes.string.isRequired,
   films: PropTypes.arrayOf(filmType),
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   onGenreSelect: PropTypes.func.isRequired,

@@ -21,6 +21,7 @@ import Player from '../player/player.jsx';
 const App = (props) => {
   const {
     activeFilms,
+    activeGenre,
     films,
     onGenreSelect,
   } = props;
@@ -30,6 +31,7 @@ const App = (props) => {
       <Switch>
         <Route path="/" exact>
           <Main
+            activeGenre={activeGenre}
             films={activeFilms}
             genres={getGenreList(films)}
             promoFilm={films[0]}
@@ -65,6 +67,7 @@ const App = (props) => {
 
 
 App.propTypes = {
+  activeGenre: PropTypes.string.isRequired,
   activeFilms: PropTypes.arrayOf(filmType),
   onGenreSelect: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(filmType),
@@ -73,6 +76,7 @@ App.propTypes = {
 
 const mapStateToProps = (state) => ({
   activeFilms: state.activeFilms,
+  activeGenre: state.genre,
   films: state.films,
 });
 
