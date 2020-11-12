@@ -3,6 +3,7 @@ import {RatingLimits} from './const.js';
 
 const isLessThen = (number) => (value) => number < value;
 
+
 const convertRatingToText = (rating) => {
   const isLessThanRating = isLessThen(rating);
 
@@ -21,6 +22,16 @@ const convertRatingToText = (rating) => {
 };
 
 
+const filterFilmsByGenre = (films, genre) => {
+  return films.filter((film) => {
+    return film.genre.some((filmGenre) => {
+      return filmGenre === genre;
+    });
+  });
+};
+
+
 export {
   convertRatingToText,
+  filterFilmsByGenre,
 };
