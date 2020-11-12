@@ -10,8 +10,9 @@ import Logo from '../logo/logo.jsx';
 
 const Main = (props) => {
   const {
-    promoFilm,
     films,
+    genres,
+    promoFilm,
   } = props;
 
   const {
@@ -91,7 +92,9 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <GenreList/>
+          <GenreList
+            genres={genres}
+          />
 
           <FilmList
             films={films}
@@ -110,8 +113,9 @@ const Main = (props) => {
 
 
 Main.propTypes = {
-  promoFilm: filmType,
   films: PropTypes.arrayOf(filmType),
+  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  promoFilm: filmType,
 };
 
 

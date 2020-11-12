@@ -8,6 +8,7 @@ import {
   Route,
 } from 'react-router-dom';
 import history from '../../history.js';
+import {getGenreList} from '../../utils.js';
 import Main from '../main/main.jsx';
 import Login from '../login/login.jsx';
 import MyList from '../mylist/mylist.jsx';
@@ -27,8 +28,9 @@ const App = (props) => {
       <Switch>
         <Route path="/" exact>
           <Main
-            promoFilm={films[0]}
             films={activeFilms}
+            genres={getGenreList(films)}
+            promoFilm={films[0]}
           />
         </Route>
         <Route path="/login" exact>

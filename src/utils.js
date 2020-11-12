@@ -31,7 +31,23 @@ const filterFilmsByGenre = (films, genre) => {
 };
 
 
+const getGenreList = (films) => {
+  return films
+    .reduce((acc, film) => {
+      film.genre.forEach((genre) => {
+        if (acc.indexOf(genre) < 0) {
+          acc.push(genre);
+        }
+      });
+
+      return acc;
+    }, [])
+    .sort();
+};
+
+
 export {
   convertRatingToText,
   filterFilmsByGenre,
+  getGenreList,
 };
