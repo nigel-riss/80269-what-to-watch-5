@@ -46,8 +46,14 @@ const getGenreList = (films) => {
 };
 
 
+const extend = (a, b) => {
+  return Object.assign({}, a, b);
+};
+
+
 export {
   convertRatingToText,
+  extend,
   filterFilmsByGenre,
   getGenreList,
 };

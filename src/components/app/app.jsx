@@ -9,6 +9,7 @@ import {
 } from 'react-router-dom';
 import history from '../../history.js';
 import {getGenreList} from '../../utils.js';
+import {ActionCreator} from '../../store/action.js';
 import Main from '../main/main.jsx';
 import Login from '../login/login.jsx';
 import MyList from '../mylist/mylist.jsx';
@@ -21,6 +22,7 @@ const App = (props) => {
   const {
     activeFilms,
     films,
+    onGenreSelect,
   } = props;
 
   return (
@@ -31,6 +33,7 @@ const App = (props) => {
             films={activeFilms}
             genres={getGenreList(films)}
             promoFilm={films[0]}
+            onGenreSelect={onGenreSelect}
           />
         </Route>
         <Route path="/login" exact>
@@ -63,6 +66,7 @@ const App = (props) => {
 
 App.propTypes = {
   activeFilms: PropTypes.arrayOf(filmType),
+  onGenreSelect: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(filmType),
 };
 
@@ -73,7 +77,10 @@ const mapStateToProps = (state) => ({
 });
 
 const mapDispatchToProps = (dispatch) => ({
-
+  onGenreSelect(genre) {
+    dispatch(ActionCreator.selectGenre(genre));
+    dispatch(ActionCreator.selectFilms(genre));
+  }
 });
 
 

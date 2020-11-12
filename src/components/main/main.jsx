@@ -12,6 +12,7 @@ const Main = (props) => {
   const {
     films,
     genres,
+    onGenreSelect,
     promoFilm,
   } = props;
 
@@ -94,6 +95,9 @@ const Main = (props) => {
 
           <GenreList
             genres={genres}
+            onGenreItemClick={(genre) => {
+              onGenreSelect(genre);
+            }}
           />
 
           <FilmList
@@ -115,6 +119,7 @@ const Main = (props) => {
 Main.propTypes = {
   films: PropTypes.arrayOf(filmType),
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
+  onGenreSelect: PropTypes.func.isRequired,
   promoFilm: filmType,
 };
 
