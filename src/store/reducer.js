@@ -3,8 +3,9 @@ import {ActionType} from '../store/action.js';
 
 
 const initialState = {
-  genre: null,
+  activeFilms: allFilms.slice(),
   films: allFilms.slice(),
+  genre: null,
 };
 
 

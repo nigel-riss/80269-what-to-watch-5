@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import filmType from '../../types/film.js';
 import {
   Router,
@@ -17,7 +18,7 @@ import Player from '../player/player.jsx';
 
 const App = (props) => {
   const {
-    promoFilm,
+    activeFilms,
     films,
   } = props;
 
@@ -26,8 +27,8 @@ const App = (props) => {
       <Switch>
         <Route path="/" exact>
           <Main
-            promoFilm={promoFilm}
-            films={films}
+            promoFilm={films[0]}
+            films={activeFilms}
           />
         </Route>
         <Route path="/login" exact>
@@ -59,9 +60,20 @@ const App = (props) => {
 
 
 App.propTypes = {
-  promoFilm: filmType,
+  activeFilms: PropTypes.arrayOf(filmType),
   films: PropTypes.arrayOf(filmType),
 };
 
 
-export default App;
+const mapStateToProps = (state) => ({
+  activeFilms: state.activeFilms,
+  films: state.films,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+
+});
+
+
+export {App};
+export default connect(mapStateToProps, mapDispatchToProps)(App);
