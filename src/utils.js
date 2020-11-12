@@ -23,6 +23,10 @@ const convertRatingToText = (rating) => {
 
 
 const filterFilmsByGenre = (films, genre) => {
+  if (!genre) {
+    return films;
+  }
+
   return films.filter((film) => {
     return film.genre.some((filmGenre) => {
       return filmGenre === genre;

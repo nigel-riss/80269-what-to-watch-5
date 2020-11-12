@@ -1,6 +1,9 @@
 import allFilms from '../mocks/films.js';
 import {ActionType} from '../store/action.js';
-import { extend } from '../utils.js';
+import {
+  extend,
+  filterFilmsByGenre,
+} from '../utils.js';
 
 
 const initialState = {
@@ -14,7 +17,7 @@ const reducer = (state = initialState, action) => {
   switch (action.type) {
     case ActionType.SELECT_FILMS:
       return extend(state, {
-        // activeFilms: action.payload,
+        activeFilms: filterFilmsByGenre(allFilms, action.payload),
       });
     case ActionType.SELECT_GENRE:
       return extend(state, {
