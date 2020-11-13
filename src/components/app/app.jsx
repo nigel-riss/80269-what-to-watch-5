@@ -8,8 +8,6 @@ import {
   Route,
 } from 'react-router-dom';
 import history from '../../history.js';
-import {getGenreList} from '../../utils.js';
-import {ActionCreator} from '../../store/action.js';
 import Main from '../main/main.jsx';
 import Login from '../login/login.jsx';
 import MyList from '../mylist/mylist.jsx';
@@ -20,10 +18,7 @@ import Player from '../player/player.jsx';
 
 const App = (props) => {
   const {
-    activeFilms,
-    activeGenre,
     films,
-    onGenreSelect,
   } = props;
 
   return (
@@ -31,11 +26,8 @@ const App = (props) => {
       <Switch>
         <Route path="/" exact>
           <Main
-            activeGenre={activeGenre}
-            films={activeFilms}
-            genres={getGenreList(films)}
+            films={films}
             promoFilm={films[0]}
-            onGenreSelect={onGenreSelect}
           />
         </Route>
         <Route path="/login" exact>
@@ -67,26 +59,14 @@ const App = (props) => {
 
 
 App.propTypes = {
-  activeGenre: PropTypes.string.isRequired,
-  activeFilms: PropTypes.arrayOf(filmType),
-  onGenreSelect: PropTypes.func.isRequired,
   films: PropTypes.arrayOf(filmType),
 };
 
 
 const mapStateToProps = (state) => ({
-  activeFilms: state.activeFilms,
-  activeGenre: state.genre,
   films: state.films,
-});
-
-const mapDispatchToProps = (dispatch) => ({
-  onGenreSelect(genre) {
-    dispatch(ActionCreator.selectGenre(genre));
-    dispatch(ActionCreator.selectFilms(genre));
-  }
 });
 
 
 export {App};
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default connect(mapStateToProps, null)(App);

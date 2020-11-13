@@ -1,5 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {
+  getGenreList,
+  filterFilmsByGenre,
+} from '../../utils.js';
+import {ActionCreator} from '../../store/action.js';
 import history from '../../history.js';
 import filmType from '../../types/film.js';
 import FilmList from '../film-list/film-list.jsx';
@@ -12,7 +18,6 @@ const Main = (props) => {
   const {
     activeGenre,
     films,
-    genres,
     onGenreSelect,
     promoFilm,
   } = props;
@@ -96,14 +101,14 @@ const Main = (props) => {
 
           <GenreList
             activeGenre={activeGenre}
-            genres={genres}
+            genres={getGenreList(films)}
             onGenreItemClick={(genre) => {
               onGenreSelect(genre);
             }}
           />
 
           <FilmList
-            films={films}
+            films={filterFilmsByGenre(films, activeGenre)}
           />
 
           <div className="catalog__more">
@@ -119,12 +124,23 @@ const Main = (props) => {
 
 
 Main.propTypes = {
-  activeGenre: PropTypes.string.isRequired,
+  activeGenre: PropTypes.string,
   films: PropTypes.arrayOf(filmType),
-  genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   onGenreSelect: PropTypes.func.isRequired,
   promoFilm: filmType,
 };
 
 
-export default Main;
+const mapStateToProps = (state) => ({
+  activeGenre: state.genre,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreSelect(genre) {
+    dispatch(ActionCreator.selectGenre(genre));
+  }
+});
+
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

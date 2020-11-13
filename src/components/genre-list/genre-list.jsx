@@ -57,7 +57,7 @@ const GenreList = (props) => {
 
 
 GenreList.propTypes = {
-  activeGenre: PropTypes.string.isRequired,
+  activeGenre: PropTypes.string,
   genres: PropTypes.arrayOf(PropTypes.string).isRequired,
   onGenreItemClick: PropTypes.func.isRequired,
 };
