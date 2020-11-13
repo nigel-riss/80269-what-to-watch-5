@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="page-footer">
       <Logo
-        extraLinkClass="logo__link--light"
+        isLight={true}
       />
 
       <div className="copyright">
