@@ -1,15 +1,25 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {
+  getGenreList,
+  filterFilmsByGenre,
+} from '../../utils.js';
+import {ActionCreator} from '../../store/action.js';
 import history from '../../history.js';
 import filmType from '../../types/film.js';
 import FilmList from '../film-list/film-list.jsx';
 import Footer from '../footer/footer.jsx';
+import GenreList from '../genre-list/genre-list.jsx';
+import Logo from '../logo/logo.jsx';
 
 
 const Main = (props) => {
   const {
-    promoFilm,
+    activeGenre,
     films,
+    onGenreSelect,
+    promoFilm,
   } = props;
 
   const {
@@ -33,13 +43,7 @@ const Main = (props) => {
         <h1 className="visually-hidden">WTW</h1>
 
         <header className="page-header movie-card__head">
-          <div className="logo">
-            <a className="logo__link">
-              <span className="logo__letter logo__letter--1">W</span>
-              <span className="logo__letter logo__letter--2">T</span>
-              <span className="logo__letter logo__letter--3">W</span>
-            </a>
-          </div>
+          <Logo/>
 
           <div className="user-block">
             <div className="user-block__avatar">
@@ -95,41 +99,16 @@ const Main = (props) => {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
 
-          <ul className="catalog__genres-list">
-            <li className="catalog__genres-item catalog__genres-item--active">
-              <a href="#" className="catalog__genres-link">All genres</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Comedies</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Crime</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Documentary</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Dramas</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Horror</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Kids & Family</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Romance</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Sci-Fi</a>
-            </li>
-            <li className="catalog__genres-item">
-              <a href="#" className="catalog__genres-link">Thrillers</a>
-            </li>
-          </ul>
+          <GenreList
+            activeGenre={activeGenre}
+            genres={getGenreList(films)}
+            onGenreItemClick={(genre) => {
+              onGenreSelect(genre);
+            }}
+          />
 
           <FilmList
-            films={films}
+            films={filterFilmsByGenre(films, activeGenre)}
           />
 
           <div className="catalog__more">
@@ -145,9 +124,23 @@ const Main = (props) => {
 
 
 Main.propTypes = {
-  promoFilm: filmType,
+  activeGenre: PropTypes.string,
   films: PropTypes.arrayOf(filmType),
+  onGenreSelect: PropTypes.func.isRequired,
+  promoFilm: filmType,
 };
 
 
-export default Main;
+const mapStateToProps = (state) => ({
+  activeGenre: state.genre,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  onGenreSelect(genre) {
+    dispatch(ActionCreator.selectGenre(genre));
+  }
+});
+
+
+export {Main};
+export default connect(mapStateToProps, mapDispatchToProps)(Main);

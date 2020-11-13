@@ -1,0 +1,25 @@
+import allFilms from '../mocks/films.js';
+import {ActionType} from '../store/action.js';
+import {
+  extend,
+} from '../utils.js';
+
+
+const initialState = {
+  films: allFilms.slice(),
+  genre: null,
+};
+
+
+const reducer = (state = initialState, action) => {
+  switch (action.type) {
+    case ActionType.SELECT_GENRE:
+      return extend(state, {
+        genre: action.payload,
+      });
+  }
+
+  return state;
+};
+
+export {reducer};
