@@ -1,11 +1,13 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import classNames from 'classnames';
 
 
-const getExtraClass = (genre, activeGenre) => {
-  return (genre === activeGenre)
-    ? `catalog__genres-item--active`
-    : ``;
+const getGenresItemClass = (genre, activeGenre) => {
+  return classNames({
+    'catalog__genres-item': true,
+    'catalog__genres-item--active': (genre === activeGenre),
+  });
 };
 
 
@@ -18,7 +20,7 @@ const GenreList = (props) => {
 
   return (
     <ul className="catalog__genres-list">
-      <li className={`catalog__genres-item ${getExtraClass(null, activeGenre)}`}>
+      <li className={getGenresItemClass(null, activeGenre)}>
         <a
           href="#"
           className="catalog__genres-link"
@@ -33,7 +35,7 @@ const GenreList = (props) => {
       {genres.map((genre, i) => {
         return (
           <li
-            className={`catalog__genres-item ${getExtraClass(genre, activeGenre)}`}
+            className={getGenresItemClass(genre, activeGenre)}
             key={`${genre}-${i}`}
           >
             <a
