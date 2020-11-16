@@ -12,6 +12,7 @@ import FilmList from '../film-list/film-list.jsx';
 import Footer from '../footer/footer.jsx';
 import GenreList from '../genre-list/genre-list.jsx';
 import Logo from '../logo/logo.jsx';
+import MoreButton from '../more-button/more-button.jsx';
 
 
 const Main = (props) => {
@@ -111,9 +112,7 @@ const Main = (props) => {
             films={filterFilmsByGenre(films, activeGenre)}
           />
 
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
+          <MoreButton/>
         </section>
 
         <Footer/>
