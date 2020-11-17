@@ -1,6 +1,7 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import filmType from '../../types/film.js';
+import {filterFilmsByGenre} from '../../utils.js';
 import MoreButton from '../../components/more-button/more-button.jsx';
 
 
@@ -14,6 +15,7 @@ const withShowMore = (Component) => {
 
       this.state = {
         itemsShownCount: FILMS_SHOWN_PER_CLICK,
+        genre: props.genre,
       };
 
       this._handleButtonClick = this._handleButtonClick.bind(this);
@@ -25,9 +27,22 @@ const withShowMore = (Component) => {
       }));
     }
 
+    componentWillUpdate() {
+      const {genre: newGenre} = this.props;
+
+      if (newGenre !== this.state.genre) {
+        this.setState({
+          itemsShownCount: FILMS_SHOWN_PER_CLICK,
+        });
+      }
+    }
+
     render() {
       const {itemsShownCount} = this.state;
-      const {films} = this.props;
+      const {
+        films,
+        genre,
+      } = this.props;
 
       return (
         <React.Fragment>
@@ -36,9 +51,10 @@ const withShowMore = (Component) => {
             films={films.slice(0, itemsShownCount)}
           />
 
-          {(films.length > itemsShownCount) && <MoreButton
-            onButtonClick={this._handleButtonClick}
-          />}
+          {(filterFilmsByGenre(films, genre).length > itemsShownCount)
+            && <MoreButton
+              onButtonClick={this._handleButtonClick}
+            />}
         </React.Fragment>
       );
     }
@@ -47,6 +63,7 @@ const withShowMore = (Component) => {
 
   WithShowMore.propTypes = {
     films: PropTypes.arrayOf(filmType),
+    genre: PropTypes.string,
   };
 
   return WithShowMore;
