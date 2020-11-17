@@ -13,6 +13,10 @@ import Footer from '../footer/footer.jsx';
 import GenreList from '../genre-list/genre-list.jsx';
 import Logo from '../logo/logo.jsx';
 import MoreButton from '../more-button/more-button.jsx';
+import withShowMore from '../../hocs/with-show-more/with-show-more.jsx';
+
+
+const FilmListWrapped = withShowMore(FilmList);
 
 
 const Main = (props) => {
@@ -108,11 +112,15 @@ const Main = (props) => {
             }}
           />
 
-          <FilmList
+          {/* <FilmList
             films={filterFilmsByGenre(films, activeGenre)}
           />
 
-          <MoreButton/>
+          <MoreButton/> */}
+
+          <FilmListWrapped
+            films={filterFilmsByGenre(films, activeGenre)}
+          />
         </section>
 
         <Footer/>
