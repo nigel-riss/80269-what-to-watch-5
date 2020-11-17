@@ -1,4 +1,5 @@
 import React, {PureComponent} from 'react';
+import {filterFilmsByGenre} from '../../utils.js';
 import filmType from '../../types/film.js';
 import FilmCard from '../film-card/film-card.jsx';
 
@@ -19,11 +20,12 @@ class FilmList extends PureComponent {
   render() {
     const {
       films,
+      genre,
     } = this.props;
 
     return (
       <div className="catalog__movies-list">
-        {films.map((film, i) => {
+        {filterFilmsByGenre(films, genre).map((film, i) => {
           return <FilmCard
             key={film.name + i}
             onFilmCardHover={this._handleFilmCardHover}
