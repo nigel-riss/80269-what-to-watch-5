@@ -1,10 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {
-  getGenreList,
-  filterFilmsByGenre,
-} from '../../utils.js';
+import {getGenreList} from '../../utils.js';
 import {ActionCreator} from '../../store/action.js';
 import history from '../../history.js';
 import filmType from '../../types/film.js';
@@ -12,6 +9,10 @@ import FilmList from '../film-list/film-list.jsx';
 import Footer from '../footer/footer.jsx';
 import GenreList from '../genre-list/genre-list.jsx';
 import Logo from '../logo/logo.jsx';
+import withShowMore from '../../hocs/with-show-more/with-show-more.jsx';
+
+
+const FilmListWrapped = withShowMore(FilmList);
 
 
 const Main = (props) => {
@@ -107,13 +108,10 @@ const Main = (props) => {
             }}
           />
 
-          <FilmList
-            films={filterFilmsByGenre(films, activeGenre)}
+          <FilmListWrapped
+            films={films}
+            genre={activeGenre}
           />
-
-          <div className="catalog__more">
-            <button className="catalog__button" type="button">Show more</button>
-          </div>
         </section>
 
         <Footer/>
