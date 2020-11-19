@@ -42,7 +42,7 @@ const withDelayedHover = (Component) => {
           {...this.props}
           isHovered={isHovered}
           onMouseEnter={this._handleMouseEnter}
-          onMouseLeave={}
+          onMouseLeave={this._handleMouseLeave}
         />
       );
     }
