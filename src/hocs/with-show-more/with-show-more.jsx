@@ -50,6 +50,7 @@ const withShowMore = (Component) => {
     films: PropTypes.arrayOf(filmType),
   };
 
+
   return WithShowMore;
 };
 

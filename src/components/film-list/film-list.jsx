@@ -1,7 +1,12 @@
 import React, {PureComponent} from 'react';
 import PropTypes from 'prop-types';
 import filmType from '../../types/film.js';
+import {HOVER_PLAY_DELAY} from '../../const.js';
 import FilmCard from '../film-card/film-card.jsx';
+import withDelayedHover from '../../hocs/with-delayed-hover/with-delayed-hover.jsx';
+
+
+const WrapedFilmCard = withDelayedHover(FilmCard);
 
 class FilmList extends PureComponent {
   constructor(props) {
@@ -25,10 +30,11 @@ class FilmList extends PureComponent {
     return (
       <div className="catalog__movies-list">
         {films.map((film, i) => {
-          return <FilmCard
+          return <WrapedFilmCard
             key={film.name + i}
             onFilmCardHover={this._handleFilmCardHover}
             film={film}
+            hoverDelay={HOVER_PLAY_DELAY}
           />;
         })}
       </div>

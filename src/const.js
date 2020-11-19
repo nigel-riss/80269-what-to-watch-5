@@ -12,7 +12,11 @@ const RatingLimits = {
 };
 
 
+const HOVER_PLAY_DELAY = 1000;
+
+
 export {
   FilmTab,
+  HOVER_PLAY_DELAY,
   RatingLimits,
 };
