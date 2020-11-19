@@ -5,7 +5,7 @@ import FilmNavItem from '../film-nav-item/film-nav-item.jsx';
 
 const FilmNav = (props) => {
   const {
-    currentTab,
+    activeTab,
     onTabClick,
     tabNames,
   } = props;
@@ -17,7 +17,7 @@ const FilmNav = (props) => {
           return (
             <FilmNavItem
               key={`${tabName}-${i}`}
-              isActive={currentTab === tabName}
+              isActive={activeTab === tabName}
               name={tabName}
               onClick={() => {
                 onTabClick(tabName);
@@ -32,7 +32,7 @@ const FilmNav = (props) => {
 
 
 FilmNav.propTypes = {
-  currentTab: PropTypes.string.isRequired,
+  activeTab: PropTypes.string.isRequired,
   onTabClick: PropTypes.func.isRequired,
   tabNames: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

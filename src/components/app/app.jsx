@@ -8,12 +8,17 @@ import {
   Route,
 } from 'react-router-dom';
 import history from '../../history.js';
+import {FilmTab} from '../../const.js';
 import Main from '../main/main.jsx';
 import Login from '../login/login.jsx';
 import MyList from '../mylist/mylist.jsx';
 import Film from '../film/film.jsx';
 import Review from '../review/review.jsx';
 import Player from '../player/player.jsx';
+import withActiveTab from '../../hocs/with-active-tab/with-active-tab.jsx';
+
+
+const WrappedFilm = withActiveTab(Film);
 
 
 const App = (props) => {
@@ -39,8 +44,9 @@ const App = (props) => {
           />
         </Route>
         <Route path="/films/:id" exact>
-          <Film
+          <WrappedFilm
             alikeFilms={films.slice(2, 6)}
+            defaultTab={FilmTab.OVERVIEW}
             film={films[3]}
           />
         </Route>
