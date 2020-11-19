@@ -8,6 +8,7 @@ import {HOVER_PLAY_DELAY} from '../../const.js';
 
 const WrapedFilmCard = withDelayedHover(FilmCard);
 
+
 const FilmList = (props) => {
   const {films} = props;
 

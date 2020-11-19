@@ -16,7 +16,7 @@ import reviews from '../../mocks/reviews.js';
 const _renderTab = (tabName, options) => {
   const {
     film,
-    revs,
+    userReviews,
   } = options;
 
   switch (tabName) {
@@ -30,7 +30,7 @@ const _renderTab = (tabName, options) => {
       />;
     case FilmTab.REVIEWS:
       return <ReviewsTab
-        reviews={revs}
+        reviews={userReviews}
       />;
     default:
       return null;
@@ -127,7 +127,7 @@ const Film = (props) => {
                 tabNames={Object.values(FilmTab)}
               />
 
-              {_renderTab(activeTab, {film, revs: reviews})}
+              {_renderTab(activeTab, {film, userReviews: reviews})}
             </div>
           </div>
         </div>

@@ -12,31 +12,37 @@ const withDelayedHover = (Component) => {
       this.state = {
         isHovered: false,
       };
+
+      this._handleMouseEnter = this._handleMouseEnter.bind(this);
+      this._handleMouseLeave = this._handleMouseLeave.bind(this);
+    }
+
+    _handleMouseEnter() {
+      const {hoverDelay} = this.props;
+
+      this._hoverTimeoutId = window.setTimeout(() => {
+        this.setState({
+          isHovered: true,
+        });
+      }, hoverDelay);
+    }
+
+    _handleMouseLeave() {
+      window.clearTimeout(this._hoverTimeoutId);
+      this.setState({
+        isHovered: false,
+      });
     }
 
     render() {
-      const {hoverDelay} = this.props;
       const {isHovered} = this.state;
 
       return (
         <Component
           {...this.props}
           isHovered={isHovered}
-
-          onMouseEnter={() => {
-            this._hoverTimeoutId = window.setTimeout(() => {
-              this.setState({
-                isHovered: true,
-              });
-            }, hoverDelay);
-          }}
-
-          onMouseLeave={() => {
-            window.clearTimeout(this._hoverTimeoutId);
-            this.setState({
-              isHovered: false,
-            });
-          }}
+          onMouseEnter={this._handleMouseEnter}
+          onMouseLeave={}
         />
       );
     }
