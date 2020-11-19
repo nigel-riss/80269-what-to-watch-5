@@ -6,6 +6,8 @@ import Logo from '../logo/logo.jsx';
 
 const DEFAULT_RATING = 3;
 
+
+// TODO: Нужен ли для этого компонента HOC ведь это форма?
 class Review extends PureComponent {
   constructor(props) {
     super(props);
