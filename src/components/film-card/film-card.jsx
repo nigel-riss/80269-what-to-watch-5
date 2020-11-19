@@ -8,7 +8,6 @@ import VideoPlayer from '../video-player/video-player.jsx';
 const FilmCard = (props) => {
   const {
     film,
-    onFilmCardHover,
     onMouseEnter,
     onMouseLeave,
     isHovered,
@@ -26,7 +25,6 @@ const FilmCard = (props) => {
       style={{backgroundColor: `black`}}
       onMouseEnter={() => {
         onMouseEnter();
-        onFilmCardHover(film);
       }}
 
       onMouseLeave={onMouseLeave}
@@ -55,7 +53,6 @@ const FilmCard = (props) => {
 FilmCard.propTypes = {
   film: filmType,
   isHovered: PropTypes.bool.isRequired,
-  onFilmCardHover: PropTypes.func.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
   // renderPlayer: PropTypes.func,
