@@ -3,10 +3,11 @@ import PropTypes from 'prop-types';
 import filmType from '../../types/film.js';
 import FilmCard from '../film-card/film-card.jsx';
 import withDelayedHover from '../../hocs/with-delayed-hover/with-delayed-hover.jsx';
+import withVideo from '../../hocs/with-video/with-video.jsx';
 import {HOVER_PLAY_DELAY} from '../../const.js';
 
 
-const WrappedFilmCard = withDelayedHover(FilmCard);
+const WrappedFilmCard = withDelayedHover(withVideo(FilmCard));
 
 
 const FilmList = (props) => {

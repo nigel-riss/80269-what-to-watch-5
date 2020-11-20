@@ -2,15 +2,18 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import filmType from '../../types/film.js';
 import history from '../../history.js';
-import VideoPlayer from '../video-player/video-player.jsx';
-
+import {
+  FILM_CARD_HEIGHT,
+  FILM_CARD_WIDTH,
+} from '../../const.js';
 
 const FilmCard = (props) => {
   const {
     film,
+    isHovered,
     onMouseEnter,
     onMouseLeave,
-    isHovered,
+    renderVideo,
   } = props;
 
   const {
@@ -18,6 +21,7 @@ const FilmCard = (props) => {
     name,
     preview,
   } = film;
+
 
   return (
     <article
@@ -34,13 +38,13 @@ const FilmCard = (props) => {
       }}
     >
       <div className="small-movie-card__image">
-        <VideoPlayer
-          poster={cover}
-          src={preview}
-          width={280}
-          height={175}
-          isPlaying={isHovered}
-        />
+        {renderVideo({
+          src: preview,
+          poster: cover,
+          height: FILM_CARD_HEIGHT,
+          width: FILM_CARD_WIDTH,
+          isPlaying: isHovered,
+        })}
       </div>
       <h3 className="small-movie-card__title">
         <a className="small-movie-card__link">{name}</a>
@@ -55,7 +59,7 @@ FilmCard.propTypes = {
   isHovered: PropTypes.bool.isRequired,
   onMouseEnter: PropTypes.func.isRequired,
   onMouseLeave: PropTypes.func.isRequired,
-  // renderPlayer: PropTypes.func,
+  renderVideo: PropTypes.func.isRequired,
 };
 
 
