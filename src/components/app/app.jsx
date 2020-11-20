@@ -16,9 +16,11 @@ import Film from '../film/film.jsx';
 import Review from '../review/review.jsx';
 import Player from '../player/player.jsx';
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab.jsx';
+import withReviewForm from '../../hocs/with-review-form/with-review-form.jsx';
 
 
 const WrappedFilm = withActiveTab(Film);
+const WrappedReview = withReviewForm(Review);
 
 
 const App = (props) => {
@@ -51,7 +53,7 @@ const App = (props) => {
           />
         </Route>
         <Route path="/films/:id/review" exact>
-          <Review
+          <WrappedReview
             film={films[4]}
           />
         </Route>

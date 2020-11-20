@@ -6,7 +6,7 @@ import withDelayedHover from '../../hocs/with-delayed-hover/with-delayed-hover.j
 import {HOVER_PLAY_DELAY} from '../../const.js';
 
 
-const WrapedFilmCard = withDelayedHover(FilmCard);
+const WrappedFilmCard = withDelayedHover(FilmCard);
 
 
 const FilmList = (props) => {
@@ -15,7 +15,7 @@ const FilmList = (props) => {
   return (
     <div className="catalog__movies-list">
       {films.map((film, i) => {
-        return <WrapedFilmCard
+        return <WrappedFilmCard
           key={film.name + i}
           film={film}
           hoverDelay={HOVER_PLAY_DELAY}
