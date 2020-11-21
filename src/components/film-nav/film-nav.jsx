@@ -1,10 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import FilmNavItem from '../film-nav-item/film-nav-item.jsx';
 
 
 const FilmNav = (props) => {
   const {
-    currentTab,
+    activeTab,
     onTabClick,
     tabNames,
   } = props;
@@ -14,24 +15,14 @@ const FilmNav = (props) => {
       <ul className="movie-nav__list">
         {tabNames.map((tabName, i) => {
           return (
-            <li
-              className={`movie-nav__item ${tabName === currentTab
-                ? `movie-nav__item--active`
-                : ``
-              }`}
+            <FilmNavItem
               key={`${tabName}-${i}`}
-              onClick={(e) => {
-                e.preventDefault();
+              isActive={activeTab === tabName}
+              name={tabName}
+              onClick={() => {
                 onTabClick(tabName);
               }}
-            >
-              <a
-                href="#"
-                className="movie-nav__link"
-              >
-                {tabName}
-              </a>
-            </li>
+            />
           );
         })}
       </ul>
@@ -41,7 +32,7 @@ const FilmNav = (props) => {
 
 
 FilmNav.propTypes = {
-  currentTab: PropTypes.string.isRequired,
+  activeTab: PropTypes.string.isRequired,
   onTabClick: PropTypes.func.isRequired,
   tabNames: PropTypes.arrayOf(PropTypes.string).isRequired,
 };

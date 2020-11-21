@@ -31,6 +31,22 @@ class VideoPlayer extends PureComponent {
     video.oncanplay = null;
   }
 
+  componentDidUpdate() {
+    const video = this._videoRef.current;
+
+    if (video) {
+      if (this.props.isPlaying && !this.state.isLoading) {
+        video.play();
+        video.currentTime = 0;
+      } else {
+        this.setState({
+          isLoading: true,
+        });
+        video.load();
+      }
+    }
+  }
+
   render() {
     const {isLoading} = this.state;
     const {
@@ -49,22 +65,6 @@ class VideoPlayer extends PureComponent {
         muted
       />
     );
-  }
-
-  componentDidUpdate() {
-    const video = this._videoRef.current;
-
-    if (video) {
-      if (this.props.isPlaying && !this.state.isLoading) {
-        video.play();
-        video.currentTime = 0;
-      } else {
-        this.setState({
-          isLoading: true,
-        });
-        video.load();
-      }
-    }
   }
 }
 

@@ -1,7 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {getGenreList} from '../../utils.js';
+import {
+  getGenreList,
+  filterFilmsByGenre,
+} from '../../utils.js';
 import {ActionCreator} from '../../store/action.js';
 import history from '../../history.js';
 import filmType from '../../types/film.js';
@@ -109,8 +112,7 @@ const Main = (props) => {
           />
 
           <FilmListWrapped
-            films={films}
-            genre={activeGenre}
+            films={filterFilmsByGenre(films, activeGenre)}
           />
         </section>
 
