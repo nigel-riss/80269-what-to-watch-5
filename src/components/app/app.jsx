@@ -71,8 +71,8 @@ App.propTypes = {
 };
 
 
-const mapStateToProps = (state) => ({
-  films: state.films,
+const mapStateToProps = ({DATA}) => ({
+  films: DATA.films,
 });
 
 

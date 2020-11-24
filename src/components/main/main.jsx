@@ -131,8 +131,8 @@ Main.propTypes = {
 };
 
 
-const mapStateToProps = (state) => ({
-  activeGenre: state.genre,
+const mapStateToProps = ({APP}) => ({
+  activeGenre: APP.genre,
 });
 
 const mapDispatchToProps = (dispatch) => ({
