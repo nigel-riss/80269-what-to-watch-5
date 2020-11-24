@@ -4,6 +4,7 @@ import {extend} from '../../../utils/common.js';
 
 const initialState = {
   films: [],
+  promoFilm: null,
 };
 
 
@@ -12,6 +13,11 @@ const data = (state = initialState, action) => {
     case ActionType.LOAD_FILMS:
       return extend(state, {
         films: action.payload,
+      });
+
+    case ActionType.LOAD_PROMO:
+      return extend(state, {
+        promoFilm: action.payload,
       });
   }
 

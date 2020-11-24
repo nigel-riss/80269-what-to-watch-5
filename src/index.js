@@ -12,6 +12,7 @@ import App from './components/app/app.jsx';
 import rootReducer from './store/reducers/root-reducer.js';
 import {
   fetchFilms,
+  fetchPromo,
 } from './store/api-actions.js';
 
 
@@ -27,6 +28,7 @@ const store = createStore(
 
 Promise.all([
   store.dispatch(fetchFilms()),
+  store.dispatch(fetchPromo()),
 ])
 .then(() => {
   ReactDOM.render(

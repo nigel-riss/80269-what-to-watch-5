@@ -26,9 +26,8 @@ const WrappedReview = withReviewForm(Review);
 const App = (props) => {
   const {
     films,
+    promoFilm,
   } = props;
-
-  console.log(films);
 
   return (
     <Router history={history}>
@@ -36,7 +35,7 @@ const App = (props) => {
         <Route path="/" exact>
           <Main
             films={films}
-            promoFilm={films.slice(1, 2)}
+            promoFilm={promoFilm}
           />
         </Route>
         <Route path="/login" exact>
@@ -70,11 +69,13 @@ const App = (props) => {
 
 App.propTypes = {
   films: PropTypes.arrayOf(filmType),
+  promoFilm: filmType,
 };
 
 
 const mapStateToProps = ({DATA}) => ({
   films: DATA.films,
+  promoFilm: DATA.promoFilm,
 });
 
 

@@ -28,5 +28,6 @@ const parseFilms = (films) => films.map(parseFilm);
 
 
 export {
+  parseFilm,
   parseFilms,
 };
