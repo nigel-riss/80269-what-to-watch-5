@@ -4,17 +4,18 @@ import {connect} from 'react-redux';
 import {
   getGenreList,
 } from '../../utils/common.js';
-import {setGenre} from '../../store/action.js';
+import {
+  incrementItemsShownCount,
+  resetItemsShownCount,
+  setGenre,
+} from '../../store/action.js';
 import {selectFilmsByGenre} from '../../store/selector.js';
 import filmType from '../../types/film.js';
 import FilmList from '../film-list/film-list.jsx';
 import Footer from '../footer/footer.jsx';
 import GenreList from '../genre-list/genre-list.jsx';
+import MoreButton from '../more-button/more-button.jsx';
 import PromoFilm from '../promo-film/promo-film';
-import withShowMore from '../../hocs/with-show-more/with-show-more.jsx';
-
-
-const FilmListWrapped = withShowMore(FilmList);
 
 
 const Main = (props) => {
@@ -22,7 +23,9 @@ const Main = (props) => {
     activeGenre,
     films,
     filmsByGenre,
+    itemsShownCount,
     onGenreSelect,
+    onMoreButtonClick,
     promoFilm,
   } = props;
 
@@ -44,9 +47,13 @@ const Main = (props) => {
             }}
           />
 
-          <FilmListWrapped
-            films={filmsByGenre}
+          <FilmList
+            films={filmsByGenre.slice(0, itemsShownCount)}
           />
+
+          {(filmsByGenre.length > itemsShownCount) && <MoreButton
+            onClick={onMoreButtonClick}
+          />}
         </section>
 
         <Footer/>
@@ -60,7 +67,9 @@ Main.propTypes = {
   activeGenre: PropTypes.string,
   films: PropTypes.arrayOf(filmType),
   filmsByGenre: PropTypes.arrayOf(filmType),
+  itemsShownCount: PropTypes.number.isRequired,
   onGenreSelect: PropTypes.func.isRequired,
+  onMoreButtonClick: PropTypes.func.isRequired,
   promoFilm: filmType,
 };
 
@@ -68,12 +77,18 @@ Main.propTypes = {
 const mapStateToProps = ({APP, DATA}) => ({
   activeGenre: APP.genre,
   filmsByGenre: selectFilmsByGenre({APP, DATA}),
+  itemsShownCount: APP.itemsShownCount,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreSelect(genre) {
     dispatch(setGenre(genre));
-  }
+    dispatch(resetItemsShownCount());
+  },
+
+  onMoreButtonClick() {
+    dispatch(incrementItemsShownCount());
+  },
 });
 
 

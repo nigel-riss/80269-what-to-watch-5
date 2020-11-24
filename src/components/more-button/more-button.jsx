@@ -3,14 +3,14 @@ import PropTypes from 'prop-types';
 
 
 const MoreButton = (props) => {
-  const {onButtonClick} = props;
+  const {onClick} = props;
 
   return (
     <div className="catalog__more">
       <button
         className="catalog__button"
         type="button"
-        onClick={onButtonClick}
+        onClick={onClick}
       >
         Show more
       </button>
@@ -20,7 +20,7 @@ const MoreButton = (props) => {
 
 
 MoreButton.propTypes = {
-  onButtonClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 export default MoreButton;
