@@ -28,7 +28,7 @@ const createApi = (onUnauthorized) => {
     throw err;
   };
 
-  api.interceptors.response(onSuccess, onFail);
+  api.interceptors.response.use(onSuccess, onFail);
 
   return api;
 };

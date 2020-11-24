@@ -1,10 +1,9 @@
-import allFilms from '../../../mocks/films.js';
 import {ActionType} from '../../action.js';
 import {extend} from '../../../utils.js';
 
 
 const initialState = {
-  films: allFilms.slice(),
+  films: [],
 };
 
 
