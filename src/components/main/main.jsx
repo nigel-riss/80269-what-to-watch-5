@@ -3,9 +3,9 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {
   getGenreList,
-  filterFilmsByGenre,
 } from '../../utils/common.js';
 import {selectGenre} from '../../store/action.js';
+import {selectFilmsByGenre} from '../../store/selector.js';
 import filmType from '../../types/film.js';
 import FilmList from '../film-list/film-list.jsx';
 import Footer from '../footer/footer.jsx';
@@ -21,6 +21,7 @@ const Main = (props) => {
   const {
     activeGenre,
     films,
+    filmsByGenre,
     onGenreSelect,
     promoFilm,
   } = props;
@@ -44,7 +45,7 @@ const Main = (props) => {
           />
 
           <FilmListWrapped
-            films={filterFilmsByGenre(films, activeGenre)}
+            films={filmsByGenre}
           />
         </section>
 
@@ -58,13 +59,15 @@ const Main = (props) => {
 Main.propTypes = {
   activeGenre: PropTypes.string,
   films: PropTypes.arrayOf(filmType),
+  filmsByGenre: PropTypes.arrayOf(filmType),
   onGenreSelect: PropTypes.func.isRequired,
   promoFilm: filmType,
 };
 
 
-const mapStateToProps = ({APP}) => ({
+const mapStateToProps = ({APP, DATA}) => ({
   activeGenre: APP.genre,
+  filmsByGenre: selectFilmsByGenre({APP, DATA}),
 });
 
 const mapDispatchToProps = (dispatch) => ({
