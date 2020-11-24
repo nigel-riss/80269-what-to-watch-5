@@ -6,7 +6,7 @@ const ActionType = {
 const loadFilms = (films) => ({
   type: ActionType.LOAD_FILMS,
   payload: films,
-})
+});
 
 const selectGenre = (genre) => ({
   type: ActionType.SELECT_GENRE,
