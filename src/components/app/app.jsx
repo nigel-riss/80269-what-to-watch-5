@@ -28,13 +28,15 @@ const App = (props) => {
     films,
   } = props;
 
+  console.log(films);
+
   return (
     <Router history={history}>
       <Switch>
         <Route path="/" exact>
           <Main
             films={films}
-            promoFilm={films[0]}
+            promoFilm={films.slice(1, 2)}
           />
         </Route>
         <Route path="/login" exact>

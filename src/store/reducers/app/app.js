@@ -1,5 +1,5 @@
 import {ActionType} from '../../action.js';
-import {extend} from '../../../utils.js';
+import {extend} from '../../../utils/common.js';
 
 
 const initialState = {

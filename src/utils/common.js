@@ -1,4 +1,4 @@
-import {RatingLimits} from './const.js';
+import {RatingLimits} from '../const.js';
 
 
 const isLessThen = (number) => (value) => number < value;

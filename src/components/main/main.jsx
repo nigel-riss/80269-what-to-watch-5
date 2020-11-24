@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {
   getGenreList,
   filterFilmsByGenre,
-} from '../../utils.js';
+} from '../../utils/common.js';
 import {selectGenre} from '../../store/action.js';
 import history from '../../history.js';
 import filmType from '../../types/film.js';
@@ -32,7 +32,7 @@ const Main = (props) => {
     name: filmName,
     genre: filmGenre,
     year: filmYear,
-  } = promoFilm;
+  } = promoFilm[0];
 
   return (
     <React.Fragment>
