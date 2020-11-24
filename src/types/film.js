@@ -19,4 +19,4 @@ export default PropTypes.shape({
       minutes: PropTypes.number.isRequired,
     }).isRequired,
   }).isRequired,
-}).isRequired;
+});
