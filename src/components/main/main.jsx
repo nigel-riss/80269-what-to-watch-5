@@ -5,7 +5,7 @@ import {
   getGenreList,
   filterFilmsByGenre,
 } from '../../utils.js';
-import {ActionCreator} from '../../store/action.js';
+import {selectGenre} from '../../store/action.js';
 import history from '../../history.js';
 import filmType from '../../types/film.js';
 import FilmList from '../film-list/film-list.jsx';
@@ -137,7 +137,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreSelect(genre) {
-    dispatch(ActionCreator.selectGenre(genre));
+    dispatch(selectGenre(genre));
   }
 });
 

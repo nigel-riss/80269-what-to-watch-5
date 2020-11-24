@@ -3,15 +3,13 @@ const ActionType = {
 };
 
 
-const ActionCreator = {
-  selectGenre: (genre) => ({
-    type: ActionType.SELECT_GENRE,
-    payload: genre,
-  }),
-};
+const selectGenre = (genre) => ({
+  type: ActionType.SELECT_GENRE,
+  payload: genre,
+});
 
 
 export {
-  ActionCreator,
   ActionType,
+  selectGenre,
 };
