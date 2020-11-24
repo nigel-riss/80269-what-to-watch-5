@@ -9,7 +9,7 @@ const initialState = {
 
 const app = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.SELECT_GENRE:
+    case ActionType.SET_GENRE:
       return extend(state, {
         genre: action.payload,
       });

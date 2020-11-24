@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import {
   getGenreList,
 } from '../../utils/common.js';
-import {selectGenre} from '../../store/action.js';
+import {setGenre} from '../../store/action.js';
 import {selectFilmsByGenre} from '../../store/selector.js';
 import filmType from '../../types/film.js';
 import FilmList from '../film-list/film-list.jsx';
@@ -72,7 +72,7 @@ const mapStateToProps = ({APP, DATA}) => ({
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreSelect(genre) {
-    dispatch(selectGenre(genre));
+    dispatch(setGenre(genre));
   }
 });
 

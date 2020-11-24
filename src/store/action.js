@@ -1,7 +1,7 @@
 const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
-  SELECT_GENRE: `SELECT_GENRE`,
+  SET_GENRE: `SET_GENRE`,
 };
 
 const loadFilms = (films) => ({
@@ -14,8 +14,8 @@ const loadPromo = (promoFilm) => ({
   payload: promoFilm,
 });
 
-const selectGenre = (genre) => ({
-  type: ActionType.SELECT_GENRE,
+const setGenre = (genre) => ({
+  type: ActionType.SET_GENRE,
   payload: genre,
 });
 
@@ -24,5 +24,5 @@ export {
   ActionType,
   loadFilms,
   loadPromo,
-  selectGenre,
+  setGenre,
 };
