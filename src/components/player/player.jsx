@@ -2,7 +2,7 @@ import React from 'react';
 import history from '../../history.js';
 
 
-const Player = () => {
+const Player = (props) => {
   return (
     <div className="player">
       <video src="#" className="player__video" poster="/img/player-poster.jpg"></video>
