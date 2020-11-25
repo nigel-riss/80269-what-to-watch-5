@@ -8,7 +8,7 @@ import {
   Route,
 } from 'react-router-dom';
 import history from '../../history.js';
-import {FilmTab} from '../../const.js';
+import {FilmTabName} from '../../const.js';
 import Main from '../main/main.jsx';
 import Login from '../login/login.jsx';
 import MyList from '../mylist/mylist.jsx';
@@ -49,7 +49,7 @@ const App = (props) => {
         <Route path="/films/:id" exact>
           <WrappedFilm
             alikeFilms={films.slice(2, 6)}
-            defaultTab={FilmTab.OVERVIEW}
+            defaultTab={FilmTabName.OVERVIEW}
             film={films[3]}
           />
         </Route>

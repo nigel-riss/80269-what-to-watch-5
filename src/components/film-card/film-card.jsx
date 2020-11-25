@@ -2,10 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import filmType from '../../types/film.js';
 import history from '../../history.js';
-import {
-  FILM_CARD_HEIGHT,
-  FILM_CARD_WIDTH,
-} from '../../const.js';
+import {FilmCardOption} from '../../const.js';
 
 const FilmCard = (props) => {
   const {
@@ -41,8 +38,8 @@ const FilmCard = (props) => {
         {renderVideo({
           src: preview,
           poster: cover,
-          height: FILM_CARD_HEIGHT,
-          width: FILM_CARD_WIDTH,
+          height: FilmCardOption.HEIGHT,
+          width: FilmCardOption.WIDTH,
           isPlaying: isHovered,
         })}
       </div>
