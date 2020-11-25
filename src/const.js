@@ -1,3 +1,15 @@
+const ApiRoute = {
+
+};
+
+const AppRoute = {
+  LOGIN: `/login`,
+  MY_LIST: `/mylist`,
+  ROOT: `/`,
+  FILMS: `/films`,
+  PLAYER: `/player`
+};
+
 const AuthorizationStatus = {
   AUTH: `AUTH`,
   NO_AUTH: `NO_AUTH`,
@@ -25,6 +37,7 @@ const FilmCardOption = {
 const FILMS_SHOWN_PER_CLICK = 8;
 
 export {
+  AppRoute,
   AuthorizationStatus,
   FilmCardOption,
   FILMS_SHOWN_PER_CLICK,

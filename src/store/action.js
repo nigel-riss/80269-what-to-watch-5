@@ -2,7 +2,7 @@ const ActionType = {
   INCREMENT_ITEMS_SHOWN_COUNT: `INCREMENT_ITEMS_SHOWN_COUNT`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
-  REINCREMENT_ITEMS_SHOWN_COUNT: `REINCREMENT_ITEMS_SHOWN_COUNT`,
+  RESET_ITEMS_SHOWN_COUNT: `RESET_ITEMS_SHOWN_COUNT`,
   REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
   SET_GENRE: `SET_GENRE`,
 };
@@ -23,7 +23,7 @@ const loadPromo = (promoFilm) => ({
 });
 
 const resetItemsShownCount = () => ({
-  type: ActionType.REINCREMENT_ITEMS_SHOWN_COUNT,
+  type: ActionType.RESET_ITEMS_SHOWN_COUNT,
 });
 
 const requireAuthorization = (status) => ({

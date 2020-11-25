@@ -8,7 +8,10 @@ import {
   Route,
 } from 'react-router-dom';
 import history from '../../history.js';
-import {FilmTabName} from '../../const.js';
+import {
+  AppRoute,
+  FilmTabName,
+} from '../../const.js';
 import Main from '../main/main.jsx';
 import Login from '../login/login.jsx';
 import MyList from '../mylist/mylist.jsx';
@@ -32,33 +35,33 @@ const App = (props) => {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/" exact>
+        <Route path={AppRoute.ROOT} exact>
           <Main
             films={films}
             promoFilm={promoFilm}
           />
         </Route>
-        <Route path="/login" exact>
+        <Route path={AppRoute.LOGIN} exact>
           <Login/>
         </Route>
-        <Route path="/mylist" exact>
+        <Route path={AppRoute.MY_LIST} exact>
           <MyList
             films={films.slice(4, 8)}
           />
         </Route>
-        <Route path="/films/:id" exact>
+        <Route path={`${AppRoute.FILMS}/:id/`} exact>
           <WrappedFilm
             alikeFilms={films.slice(2, 6)}
             defaultTab={FilmTabName.OVERVIEW}
             film={films[3]}
           />
         </Route>
-        <Route path="/films/:id/review" exact>
+        <Route path={`${AppRoute.FILMS}/:id/review`} exact>
           <WrappedReview
             film={films[4]}
           />
         </Route>
-        <Route path="/player/:id">
+        <Route path={`${AppRoute.PLAYER}/:id`}>
           <Player/>
         </Route>
       </Switch>

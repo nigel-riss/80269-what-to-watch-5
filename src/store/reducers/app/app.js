@@ -11,7 +11,7 @@ const initialState = {
 
 const app = (state = initialState, action) => {
   switch (action.type) {
-    case ActionType.REINCREMENT_ITEMS_SHOWN_COUNT:
+    case ActionType.RESET_ITEMS_SHOWN_COUNT:
       return extend(state, {
         itemsShownCount: FILMS_SHOWN_PER_CLICK,
       });
