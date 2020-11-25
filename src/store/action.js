@@ -1,10 +1,16 @@
 const ActionType = {
+  INCREMENT_ITEMS_SHOWN_COUNT: `INCREMENT_ITEMS_SHOWN_COUNT`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
   REINCREMENT_ITEMS_SHOWN_COUNT: `REINCREMENT_ITEMS_SHOWN_COUNT`,
+  REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
   SET_GENRE: `SET_GENRE`,
-  INCREMENT_ITEMS_SHOWN_COUNT: `INCREMENT_ITEMS_SHOWN_COUNT`,
 };
+
+const incrementItemsShownCount = (itemsCountShown) => ({
+  type: ActionType.INCREMENT_ITEMS_SHOWN_COUNT,
+  payload: itemsCountShown,
+});
 
 const loadFilms = (films) => ({
   type: ActionType.LOAD_FILMS,
@@ -16,14 +22,13 @@ const loadPromo = (promoFilm) => ({
   payload: promoFilm,
 });
 
-
 const resetItemsShownCount = () => ({
   type: ActionType.REINCREMENT_ITEMS_SHOWN_COUNT,
 });
 
-const incrementItemsShownCount = (itemsCountShown) => ({
-  type: ActionType.INCREMENT_ITEMS_SHOWN_COUNT,
-  payload: itemsCountShown,
+const requireAuthorization = (status) => ({
+  type: ActionType.REQUIRE_AUTHORIZATION,
+  payload: status,
 });
 
 const setGenre = (genre) => ({
@@ -34,9 +39,10 @@ const setGenre = (genre) => ({
 
 export {
   ActionType,
+  incrementItemsShownCount,
   loadFilms,
   loadPromo,
   resetItemsShownCount,
-  incrementItemsShownCount,
+  requireAuthorization,
   setGenre,
 };
