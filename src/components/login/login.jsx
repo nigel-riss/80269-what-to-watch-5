@@ -1,7 +1,7 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
-import {login} from '../../store/api-actions.js';
+import {login} from '../../store/actions/api-actions.js';
 import Footer from '../footer/footer.jsx';
 import Logo from '../logo/logo.jsx';
 

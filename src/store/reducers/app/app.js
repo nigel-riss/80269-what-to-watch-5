@@ -1,4 +1,4 @@
-import {ActionType} from '../../action.js';
+import {ActionType} from '../../actions/actions.js';
 import {extend} from '../../../utils/common.js';
 import {FILMS_SHOWN_PER_CLICK} from '../../../const.js';
 

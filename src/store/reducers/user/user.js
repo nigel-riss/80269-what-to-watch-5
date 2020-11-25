@@ -1,5 +1,5 @@
 import {AuthorizationStatus} from '../../../const.js';
-import {ActionType} from '../../action.js';
+import {ActionType} from '../../actions/actions.js';
 import {extend} from '../../../utils/common.js';
 
 

@@ -10,12 +10,12 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {createApi} from './services/api.js';
 import App from './components/app/app.jsx';
 import rootReducer from './store/reducers/root-reducer.js';
-import {requireAuthorization} from './store/action.js';
+import {requireAuthorization} from './store/actions/actions.js';
 import {
   checkAuth,
   fetchFilms,
   fetchPromo,
-} from './store/api-actions.js';
+} from './store/actions/api-actions.js';
 import {AuthorizationStatus} from './const.js';
 
 

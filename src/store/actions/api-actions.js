@@ -1,16 +1,16 @@
 import {
   ApiRoute,
   AuthorizationStatus,
-} from '../const.js';
+} from '../../const.js';
 import {
   loadFilms,
   loadPromo,
   requireAuthorization,
-} from './action.js';
+} from './actions.js';
 import {
   parseFilm,
   parseFilms,
-} from '../utils/film-adapter.js';
+} from '../../utils/film-adapter.js';
 
 
 const checkAuth = () => (dispatch, _getState, api) => {
