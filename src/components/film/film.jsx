@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {FilmTabName} from '../../const.js';
 import filmType from '../../types/film.js';
+import {AppRoute} from '../../const.js';
 import FilmList from '../film-list/film-list.jsx';
 import Footer from '../footer/footer.jsx';
 import Logo from '../logo/logo.jsx';
@@ -99,7 +100,7 @@ const Film = (props) => {
                   <span>My list</span>
                 </button>
                 <Link
-                  to="/films/1/review"
+                  to={`${AppRoute.FILMS}/1/review`}
                   className="btn movie-card__button"
                 >
                   Add review
