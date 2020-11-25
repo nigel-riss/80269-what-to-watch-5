@@ -12,12 +12,13 @@ import {
   AppRoute,
   FilmTabName,
 } from '../../const.js';
-import Main from '../main/main.jsx';
-import Login from '../login/login.jsx';
-import MyList from '../mylist/mylist.jsx';
 import Film from '../film/film.jsx';
-import Review from '../review/review.jsx';
+import Login from '../login/login.jsx';
+import Main from '../main/main.jsx';
+import MyList from '../mylist/mylist.jsx';
 import Player from '../player/player.jsx';
+import PrivateRoute from '../private-route/private-route.jsx';
+import Review from '../review/review.jsx';
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab.jsx';
 import withReviewForm from '../../hocs/with-review-form/with-review-form.jsx';
 
@@ -44,11 +45,11 @@ const App = (props) => {
         <Route path={AppRoute.LOGIN} exact>
           <Login/>
         </Route>
-        <Route path={AppRoute.MY_LIST} exact>
+        <PrivateRoute path={AppRoute.MY_LIST} exact>
           <MyList
             films={films.slice(4, 8)}
           />
-        </Route>
+        </PrivateRoute>
         <Route path={`${AppRoute.FILMS}/:id/`} exact>
           <WrappedFilm
             alikeFilms={films.slice(2, 6)}
