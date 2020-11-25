@@ -2,7 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import filmType from '../../types/film.js';
 import history from '../../history.js';
-import {FilmCardOption} from '../../const.js';
+import {
+  AppRoute,
+  FilmCardOption
+} from '../../const.js';
 
 const FilmCard = (props) => {
   const {
@@ -31,7 +34,7 @@ const FilmCard = (props) => {
       onMouseLeave={onMouseLeave}
 
       onClick={() => {
-        history.push(`/films/1`);
+        history.push(`${AppRoute.FILMS}/1`);
       }}
     >
       <div className="small-movie-card__image">

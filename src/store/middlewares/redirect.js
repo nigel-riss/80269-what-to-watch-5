@@ -4,7 +4,6 @@ import {ActionType} from '../actions/actions.js';
 
 const redirect = (_store) => (next) => (action) => {
   if (action.type === ActionType.REDIRECT_TO_ROUTE) {
-    console.log(action);
     history.push(action.payload);
   }
 

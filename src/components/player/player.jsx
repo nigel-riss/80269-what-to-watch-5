@@ -1,5 +1,6 @@
 import React from 'react';
 import history from '../../history.js';
+import {AppRoute} from '../../const.js';
 
 
 const Player = () => {
@@ -11,7 +12,7 @@ const Player = () => {
         type="button"
         className="player__exit"
         onClick={() => {
-          history.push(`/films/1`);
+          history.push(`${AppRoute.FILMS}/1`);
         }}
       >
         Exit
