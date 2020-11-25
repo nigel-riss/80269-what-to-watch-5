@@ -67,7 +67,9 @@ const DetailsTab = (props) => {
 };
 
 
-DetailsTab.propTypes = filmType;
+DetailsTab.propTypes = {
+  film: filmType,
+};
 
 
 export default DetailsTab;
