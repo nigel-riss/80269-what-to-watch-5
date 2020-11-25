@@ -68,7 +68,7 @@ class Login extends PureComponent {
                   type="password"
                 />
                 <label
-                  className="sign-in__label visually-hidden" 
+                  className="sign-in__label visually-hidden"
                   htmlFor="user-password"
                 >
                   Password

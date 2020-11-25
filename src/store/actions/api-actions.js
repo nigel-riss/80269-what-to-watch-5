@@ -1,10 +1,12 @@
 import {
   ApiRoute,
+  AppRoute,
   AuthorizationStatus,
 } from '../../const.js';
 import {
   loadFilms,
   loadPromo,
+  redirectToRoute,
   requireAuthorization,
 } from './actions.js';
 import {
@@ -32,6 +34,7 @@ const fetchPromo = () => (dispatch, _getState, api) => {
 const login = ({login: email, password}) => (dispatch, _getState, api) => {
   api.post(ApiRoute.LOGIN, {email, password})
     .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
+    .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
     .catch(() => {});
 };
 
