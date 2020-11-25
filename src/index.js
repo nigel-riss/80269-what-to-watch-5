@@ -1,22 +1,40 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {createStore} from 'redux';
+import {
+  applyMiddleware,
+  createStore,
+} from 'redux';
 import {Provider} from 'react-redux';
+import thunk from 'redux-thunk';
+import {composeWithDevTools} from 'redux-devtools-extension';
+import {createApi} from './services/api.js';
 import App from './components/app/app.jsx';
-import {reducer} from './store/reducer.js';
+import rootReducer from './store/reducers/root-reducer.js';
+import {
+  fetchFilms,
+  fetchPromo,
+} from './store/api-actions.js';
 
+
+const api = createApi(() => {});
 
 const store = createStore(
-    reducer,
-    window.__REDUX_DEVTOOLS_EXTENSION__
-      ? window.__REDUX_DEVTOOLS_EXTENSION__()
-      : (f) => f
+    rootReducer,
+    composeWithDevTools(
+        applyMiddleware(thunk.withExtraArgument(api))
+    )
 );
 
 
-ReactDOM.render(
-    <Provider store={store}>
-      <App/>
-    </Provider>,
-    document.getElementById(`root`)
-);
+Promise.all([
+  store.dispatch(fetchFilms()),
+  store.dispatch(fetchPromo()),
+])
+.then(() => {
+  ReactDOM.render(
+      <Provider store={store}>
+        <App/>
+      </Provider>,
+      document.getElementById(`root`)
+  );
+});

@@ -1,6 +1,6 @@
 import React from 'react';
 import filmType from '../../types/film.js';
-import {convertRatingToText} from '../../utils.js';
+import {convertRatingToText} from '../../utils/common.js';
 
 
 const OverviewTab = (props) => {

@@ -34,6 +34,10 @@ const withDelayedHover = (Component) => {
       });
     }
 
+    componentWillUnmount() {
+      window.clearTimeout(this._hoverTimeoutId);
+    }
+
     render() {
       const {isHovered} = this.state;
 
