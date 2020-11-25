@@ -10,13 +10,18 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import {createApi} from './services/api.js';
 import App from './components/app/app.jsx';
 import rootReducer from './store/reducers/root-reducer.js';
+import {requireAuthorization} from './store/action.js';
 import {
+  checkAuth,
   fetchFilms,
   fetchPromo,
 } from './store/api-actions.js';
+import {AuthorizationStatus} from './const.js';
 
 
-const api = createApi(() => {});
+const api = createApi(() => {
+  store.dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+});
 
 const store = createStore(
     rootReducer,
@@ -27,6 +32,7 @@ const store = createStore(
 
 
 Promise.all([
+  store.dispatch(checkAuth()),
   store.dispatch(fetchFilms()),
   store.dispatch(fetchPromo()),
 ])
