@@ -2,6 +2,8 @@ import React from 'react';
 import filmType from '../../types/film.js';
 import history from '../../history.js';
 import Logo from '../logo/logo.jsx';
+import UserBlock from '../user-block/user-block.jsx';
+
 
 const PromoFilm = (props) => {
   const {
@@ -26,11 +28,7 @@ const PromoFilm = (props) => {
       <header className="page-header movie-card__head">
         <Logo/>
 
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </div>
+        <UserBlock/>
       </header>
 
       <div className="movie-card__wrap">

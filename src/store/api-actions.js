@@ -15,7 +15,7 @@ import {
 
 const checkAuth = () => (dispatch, _getState, api) => {
   api.get(ApiRoute.LOGIN)
-    .then(() => dispatch(requireAuthorization(AuthorizationStatus.Auth)))
+    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => {});
 };
 
@@ -31,7 +31,7 @@ const fetchPromo = () => (dispatch, _getState, api) => {
 
 const login = ({login: email, password}) => (dispatch, _getState, api) => {
   api.post(ApiRoute.LOGIN, {email, password})
-    .then(() => dispatch(requireAuthorization(AuthorizationStatus.Auth)))
+    .then(() => dispatch(requireAuthorization(AuthorizationStatus.AUTH)))
     .catch(() => {});
 };
 
