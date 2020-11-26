@@ -4,6 +4,7 @@ const ActionType = {
   LOAD_CURRENT_FILM: `LOAD_CURRENT_FILM`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
+  LOAD_REVIEWS: `LOAD_REVIEWS`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   RESET_ITEMS_SHOWN_COUNT: `RESET_ITEMS_SHOWN_COUNT`,
   REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
@@ -35,6 +36,11 @@ const loadPromo = (promoFilm) => ({
   payload: promoFilm,
 });
 
+const loadReviews = (reviews) => ({
+  type: ActionType.LOAD_REVIEWS,
+  payload: reviews,
+});
+
 const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
   payload: url,
@@ -62,6 +68,7 @@ export {
   loadCurrentFilm,
   loadFilms,
   loadPromo,
+  loadReviews,
   redirectToRoute,
   resetItemsShownCount,
   requireAuthorization,

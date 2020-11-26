@@ -31,6 +31,11 @@ const filterFilmsByGenre = (films, genre) => {
 };
 
 
+const formatRating = (rating) => {
+  // toFixed
+};
+
+
 const getGenreList = (films) => {
   return films
     .reduce((acc, film) => {
@@ -53,5 +58,6 @@ export {
   convertRatingToText,
   extend,
   filterFilmsByGenre,
+  formatRating,
   getGenreList,
 };

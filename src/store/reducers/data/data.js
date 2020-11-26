@@ -6,6 +6,7 @@ const initialState = {
   currentFilm: null,
   films: [],
   promoFilm: null,
+  reviews: [],
 };
 
 
@@ -24,6 +25,11 @@ const data = (state = initialState, action) => {
     case ActionType.LOAD_PROMO:
       return extend(state, {
         promoFilm: action.payload,
+      });
+
+    case ActionType.LOAD_REVIEWS:
+      return extend(state, {
+        reviews: action.payload,
       });
   }
 

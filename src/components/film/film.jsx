@@ -4,8 +4,12 @@ import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
 import {FilmTabName} from '../../const.js';
 import filmType from '../../types/film.js';
+import reviewType from '../../types/review.js';
 import {AppRoute} from '../../const.js';
-import {fetchCurrentFilm} from '../../store/actions/api-actions.js';
+import {
+  fetchCurrentFilm,
+  fetchReviews,
+} from '../../store/actions/api-actions.js';
 import {filterFilmsByGenre} from '../../utils/common.js';
 import DetailsTab from '../details-tab/details-tab.jsx';
 import FilmList from '../film-list/film-list.jsx';
@@ -15,7 +19,6 @@ import Logo from '../logo/logo.jsx';
 import OverviewTab from '../overview-tab/overview-tab.jsx';
 import ReviewsTab from '../reviews-tab/reviews-tab.jsx';
 import UserBlock from '../user-block/user-block.jsx';
-import reviews from '../../mocks/reviews.js';
 
 
 const _renderTab = (tabName, options) => {
@@ -51,6 +54,7 @@ const Film = (props) => {
     films,
     getFilm,
     onTabClick,
+    reviews,
   } = props;
 
   useEffect(() => {
@@ -171,17 +175,20 @@ Film.propTypes = {
   filmId: PropTypes.number.isRequired,
   getFilm: PropTypes.func.isRequired,
   onTabClick: PropTypes.func.isRequired,
+  reviews: PropTypes.arrayOf(reviewType).isRequired,
 };
 
 
 const mapStateToProps = ({DATA}) => ({
-  films: DATA.films,
   currentFilm: DATA.currentFilm,
+  films: DATA.films,
+  reviews: DATA.reviews,
 });
 
 const mapDispatchToProps = (dispatch) => ({
   getFilm(id) {
     dispatch(fetchCurrentFilm(id));
+    dispatch(fetchReviews(id));
   }
 });
 

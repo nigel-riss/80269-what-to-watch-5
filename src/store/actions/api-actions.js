@@ -8,10 +8,12 @@ import {
   loadCurrentFilm,
   loadFilms,
   loadPromo,
+  loadReviews,
   redirectToRoute,
   requireAuthorization,
 } from './actions.js';
 import {parseAuth} from '../../utils/auth-adapter';
+import {parseComments} from '../../utils/comment-adapter';
 import {
   parseFilm,
   parseFilms,
@@ -30,7 +32,7 @@ const checkAuth = () => (dispatch, _getState, api) => {
 };
 
 const fetchCurrentFilm = (id) => (dispatch, _getState, api) => {
-  api.get(`${AppRoute.FILMS}/${id}`)
+  api.get(`${ApiRoute.FILMS}/${id}`)
     .then(({data}) => {
       dispatch(loadCurrentFilm(parseFilm(data)));
     })
@@ -59,6 +61,16 @@ const fetchPromo = () => (dispatch, _getState, api) => {
     });
 };
 
+const fetchReviews = (id) => (dispatch, _getState, api) => {
+  api.get(`${ApiRoute.REVIEWS}/${id}`)
+    .then(({data}) => {
+      dispatch(loadReviews(parseComments(data)));
+    })
+    .catch((err) => {
+      throw Error(`Reviews load error: ${err.message}`);
+    });
+};
+
 const login = ({login: email, password}) => (dispatch, _getState, api) => {
   api.post(ApiRoute.LOGIN, {email, password})
     .then((response) => {
@@ -77,5 +89,6 @@ export {
   fetchCurrentFilm,
   fetchFilms,
   fetchPromo,
+  fetchReviews,
   login,
 };
