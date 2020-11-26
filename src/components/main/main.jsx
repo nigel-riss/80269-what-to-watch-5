@@ -8,7 +8,7 @@ import {
   incrementItemsShownCount,
   resetItemsShownCount,
   setGenre,
-} from '../../store/action.js';
+} from '../../store/actions/actions.js';
 import {selectFilmsByGenre} from '../../store/selector.js';
 import filmType from '../../types/film.js';
 import FilmList from '../film-list/film-list.jsx';

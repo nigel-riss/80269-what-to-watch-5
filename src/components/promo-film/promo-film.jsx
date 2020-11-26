@@ -2,6 +2,8 @@ import React from 'react';
 import filmType from '../../types/film.js';
 import history from '../../history.js';
 import Logo from '../logo/logo.jsx';
+import UserBlock from '../user-block/user-block.jsx';
+import {AppRoute} from '../../const.js';
 
 const PromoFilm = (props) => {
   const {
@@ -26,11 +28,7 @@ const PromoFilm = (props) => {
       <header className="page-header movie-card__head">
         <Logo/>
 
-        <div className="user-block">
-          <div className="user-block__avatar">
-            <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
-          </div>
-        </div>
+        <UserBlock/>
       </header>
 
       <div className="movie-card__wrap">
@@ -56,7 +54,7 @@ const PromoFilm = (props) => {
                 className="btn btn--play movie-card__button"
                 type="button"
                 onClick={() => {
-                  history.push(`/player/1`);
+                  history.push(`${AppRoute.PLAYER}/1`);
                 }}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">

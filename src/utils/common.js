@@ -1,4 +1,4 @@
-import {RatingLimits} from '../const.js';
+import {RatingLimit} from '../const.js';
 
 
 const isLessThen = (number) => (value) => number < value;
@@ -8,13 +8,13 @@ const convertRatingToText = (rating) => {
   const isLessThanRating = isLessThen(rating);
 
   switch (true) {
-    case isLessThanRating(RatingLimits.BAD):
+    case isLessThanRating(RatingLimit.BAD):
       return `Bad`;
-    case isLessThanRating(RatingLimits.NORMAL):
+    case isLessThanRating(RatingLimit.NORMAL):
       return `Normal`;
-    case isLessThanRating(RatingLimits.GOOD):
+    case isLessThanRating(RatingLimit.GOOD):
       return `Good`;
-    case isLessThanRating(RatingLimits.VERY_GOOD):
+    case isLessThanRating(RatingLimit.VERY_GOOD):
       return `Very Good`;
     default:
       return `Awesome`;

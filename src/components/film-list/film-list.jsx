@@ -4,7 +4,7 @@ import filmType from '../../types/film.js';
 import FilmCard from '../film-card/film-card.jsx';
 import withDelayedHover from '../../hocs/with-delayed-hover/with-delayed-hover.jsx';
 import withVideo from '../../hocs/with-video/with-video.jsx';
-import {HOVER_PLAY_DELAY} from '../../const.js';
+import {FilmCardOption} from '../../const.js';
 
 
 const WrappedFilmCard = withDelayedHover(withVideo(FilmCard));
@@ -19,7 +19,7 @@ const FilmList = (props) => {
         return <WrappedFilmCard
           key={film.name + i}
           film={film}
-          hoverDelay={HOVER_PLAY_DELAY}
+          hoverDelay={FilmCardOption.HOVER_DELAY}
         />;
       })}
     </div>

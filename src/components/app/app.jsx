@@ -8,13 +8,17 @@ import {
   Route,
 } from 'react-router-dom';
 import history from '../../history.js';
-import {FilmTab} from '../../const.js';
-import Main from '../main/main.jsx';
-import Login from '../login/login.jsx';
-import MyList from '../mylist/mylist.jsx';
+import {
+  AppRoute,
+  FilmTabName,
+} from '../../const.js';
 import Film from '../film/film.jsx';
-import Review from '../review/review.jsx';
+import Login from '../login/login.jsx';
+import Main from '../main/main.jsx';
+import MyList from '../mylist/mylist.jsx';
 import Player from '../player/player.jsx';
+import PrivateRoute from '../private-route/private-route.jsx';
+import Review from '../review/review.jsx';
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab.jsx';
 import withReviewForm from '../../hocs/with-review-form/with-review-form.jsx';
 
@@ -32,33 +36,33 @@ const App = (props) => {
   return (
     <Router history={history}>
       <Switch>
-        <Route path="/" exact>
+        <Route path={AppRoute.ROOT} exact>
           <Main
             films={films}
             promoFilm={promoFilm}
           />
         </Route>
-        <Route path="/login" exact>
+        <Route path={AppRoute.LOGIN} exact>
           <Login/>
         </Route>
-        <Route path="/mylist" exact>
+        <PrivateRoute path={AppRoute.MY_LIST} exact>
           <MyList
             films={films.slice(4, 8)}
           />
-        </Route>
-        <Route path="/films/:id" exact>
+        </PrivateRoute>
+        <Route path={`${AppRoute.FILMS}/:id/`} exact>
           <WrappedFilm
             alikeFilms={films.slice(2, 6)}
-            defaultTab={FilmTab.OVERVIEW}
+            defaultTab={FilmTabName.OVERVIEW}
             film={films[3]}
           />
         </Route>
-        <Route path="/films/:id/review" exact>
+        <Route path={`${AppRoute.FILMS}/:id/review`} exact>
           <WrappedReview
             film={films[4]}
           />
         </Route>
-        <Route path="/player/:id">
+        <Route path={`${AppRoute.PLAYER}/:id`}>
           <Player/>
         </Route>
       </Switch>
