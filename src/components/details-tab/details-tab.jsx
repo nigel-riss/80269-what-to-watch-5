@@ -50,11 +50,7 @@ const DetailsTab = (props) => {
         <p className="movie-card__details-item">
           <strong className="movie-card__details-name">Genre</strong>
           <span className="movie-card__details-value">
-            {genre.map((it, i, genres) => {
-              return <React.Fragment key={it + i}>
-                {it}{i + 1 !== genres.length && `, `}<br/>
-              </React.Fragment>;
-            })}
+            {genre}
           </span>
         </p>
         <p className="movie-card__details-item">

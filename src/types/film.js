@@ -5,7 +5,7 @@ export default PropTypes.shape({
   id: PropTypes.number.isRequired,
   cover: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
-  genre: PropTypes.arrayOf(PropTypes.string).isRequired,
+  genre: PropTypes.string.isRequired,
   isFavorite: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
   poster: PropTypes.string.isRequired,

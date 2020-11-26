@@ -8,7 +8,7 @@ const parseFilm = (film) => ({
   backgroundColor: film.background_color,
   cover: film.background_image,
   description: film.description,
-  genre: [film.genre],
+  genre: film.genre,
   isFavorite: film.is_favorite,
   name: film.name,
   poster: film.poster_image,

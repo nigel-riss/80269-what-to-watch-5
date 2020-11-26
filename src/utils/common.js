@@ -27,22 +27,16 @@ const filterFilmsByGenre = (films, genre) => {
     return films;
   }
 
-  return films.filter((film) => {
-    return film.genre.some((filmGenre) => {
-      return filmGenre === genre;
-    });
-  });
+  return films.filter((film) => film.genre === genre);
 };
 
 
 const getGenreList = (films) => {
   return films
     .reduce((acc, film) => {
-      film.genre.forEach((genre) => {
-        if (acc.indexOf(genre) < 0) {
-          acc.push(genre);
-        }
-      });
+      if (acc.indexOf(film.genre) < 0) {
+        acc.push(film.genre);
+      }
 
       return acc;
     }, [])

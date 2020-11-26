@@ -6,6 +6,7 @@ import {FilmTabName} from '../../const.js';
 import filmType from '../../types/film.js';
 import {AppRoute} from '../../const.js';
 import {fetchCurrentFilm} from '../../store/actions/api-actions.js';
+import {filterFilmsByGenre} from '../../utils/common.js';
 import DetailsTab from '../details-tab/details-tab.jsx';
 import FilmList from '../film-list/film-list.jsx';
 import FilmNav from '../film-nav/film-nav.jsx';
@@ -45,9 +46,9 @@ const _renderTab = (tabName, options) => {
 const Film = (props) => {
   const {
     activeTab,
-    alikeFilms,
     currentFilm,
     filmId,
+    films,
     getFilm,
     onTabClick,
   } = props;
@@ -67,6 +68,10 @@ const Film = (props) => {
     year,
     poster,
   } = currentFilm;
+
+  const alikeFilms = filterFilmsByGenre(films, genre)
+    .filter((film) => film.id !== filmId)
+    .slice(0, 4);
 
   return (
     <React.Fragment>
@@ -91,7 +96,7 @@ const Film = (props) => {
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre.join(`, `)}</span>
+                <span className="movie-card__genre">{genre}</span>
                 <span className="movie-card__year">{year}</span>
               </p>
 
@@ -161,8 +166,8 @@ const Film = (props) => {
 
 Film.propTypes = {
   activeTab: PropTypes.string.isRequired,
-  alikeFilms: PropTypes.arrayOf(filmType).isRequired,
   currentFilm: filmType,
+  films: PropTypes.arrayOf(filmType).isRequired,
   filmId: PropTypes.number.isRequired,
   getFilm: PropTypes.func.isRequired,
   onTabClick: PropTypes.func.isRequired,
@@ -170,6 +175,7 @@ Film.propTypes = {
 
 
 const mapStateToProps = ({DATA}) => ({
+  films: DATA.films,
   currentFilm: DATA.currentFilm,
 });
 

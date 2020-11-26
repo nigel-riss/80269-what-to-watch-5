@@ -45,7 +45,7 @@ const PromoFilm = (props) => {
           <div className="movie-card__desc">
             <h2 className="movie-card__title">{filmName}</h2>
             <p className="movie-card__meta">
-              <span className="movie-card__genre">{filmGenre.join(`, `)}</span>
+              <span className="movie-card__genre">{filmGenre}</span>
               <span className="movie-card__year">{filmYear}</span>
             </p>
 

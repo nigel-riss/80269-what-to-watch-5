@@ -56,7 +56,6 @@ const App = (props) => {
           path={`${AppRoute.FILMS}/:id/`}
           render={({match}) => (
             <WrappedFilm
-              alikeFilms={films.slice(2, 6)}
               filmId={+match.params.id}
             />
           )}
