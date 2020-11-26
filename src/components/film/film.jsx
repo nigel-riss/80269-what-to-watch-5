@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
 import {connect} from 'react-redux';
@@ -52,7 +52,9 @@ const Film = (props) => {
     onTabClick,
   } = props;
 
-  getFilm(filmId);
+  useEffect(() => {
+    getFilm(filmId);
+  }, [filmId]);
 
   if (currentFilm === null) {
     return null;

@@ -1,5 +1,5 @@
 const parseAuth = (authInfo) => ({
-  userAvatarUrl: authInfo[`avatar_url`],
+  userAvatarUrl: authInfo.avatar_url,
 });
 
 

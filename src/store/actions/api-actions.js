@@ -34,8 +34,8 @@ const fetchCurrentFilm = (id) => (dispatch, _getState, api) => {
     .then(({data}) => {
       dispatch(loadCurrentFilm(parseFilm(data)));
     })
-    .catch(() => {
-      throw Error(`Film load error`);
+    .catch((err) => {
+      throw Error(`Film load error: ${err.message}`);
     });
 };
 
@@ -44,8 +44,8 @@ const fetchFilms = () => (dispatch, _getState, api) => {
     .then(({data}) => {
       dispatch(loadFilms(parseFilms(data)));
     })
-    .catch(() => {
-      throw Error(`Films load error`);
+    .catch((err) => {
+      throw Error(`Films load error: ${err.message}`);
     });
 };
 
@@ -54,8 +54,8 @@ const fetchPromo = () => (dispatch, _getState, api) => {
     .then(({data}) => {
       dispatch(loadPromo(parseFilm(data)));
     })
-    .catch(() => {
-      throw Error(`Promo film load error`);
+    .catch((err) => {
+      throw Error(`Promo film load error: ${err.message}`);
     });
 };
 
