@@ -22,5 +22,5 @@ export default PropTypes.shape({
       hours: PropTypes.number.isRequired,
       minutes: PropTypes.number.isRequired,
     }).isRequired,
-  }).isRequired,
+  }),
 });

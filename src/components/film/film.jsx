@@ -1,9 +1,11 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {FilmTabName} from '../../const.js';
 import filmType from '../../types/film.js';
 import {AppRoute} from '../../const.js';
+import {fetchCurrentFilm} from '../../store/actions/api-actions.js';
 import DetailsTab from '../details-tab/details-tab.jsx';
 import FilmList from '../film-list/film-list.jsx';
 import FilmNav from '../film-nav/film-nav.jsx';
@@ -44,9 +46,17 @@ const Film = (props) => {
   const {
     activeTab,
     alikeFilms,
-    film,
+    currentFilm,
+    filmId,
+    getFilm,
     onTabClick,
   } = props;
+
+  getFilm(filmId);
+
+  if (currentFilm === null) {
+    return null;
+  }
 
   const {
     cover,
@@ -54,7 +64,7 @@ const Film = (props) => {
     genre,
     year,
     poster,
-  } = film;
+  } = currentFilm;
 
   return (
     <React.Fragment>
@@ -125,7 +135,7 @@ const Film = (props) => {
                 tabNames={Object.values(FilmTabName)}
               />
 
-              {_renderTab(activeTab, {film, userReviews: reviews})}
+              {_renderTab(activeTab, {film: currentFilm, userReviews: reviews})}
             </div>
           </div>
         </div>
@@ -150,9 +160,23 @@ const Film = (props) => {
 Film.propTypes = {
   activeTab: PropTypes.string.isRequired,
   alikeFilms: PropTypes.arrayOf(filmType).isRequired,
-  film: filmType.isRequired,
+  currentFilm: filmType,
+  filmId: PropTypes.number.isRequired,
+  getFilm: PropTypes.func.isRequired,
   onTabClick: PropTypes.func.isRequired,
 };
 
 
-export default Film;
+const mapStateToProps = ({DATA}) => ({
+  currentFilm: DATA.currentFilm,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getFilm(id) {
+    dispatch(fetchCurrentFilm(id));
+  }
+});
+
+
+export {Film};
+export default connect(mapStateToProps, mapDispatchToProps)(Film);

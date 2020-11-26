@@ -8,10 +8,7 @@ import {
   Route,
 } from 'react-router-dom';
 import history from '../../history.js';
-import {
-  AppRoute,
-  FilmTabName,
-} from '../../const.js';
+import {AppRoute} from '../../const.js';
 import Film from '../film/film.jsx';
 import Login from '../login/login.jsx';
 import Main from '../main/main.jsx';
@@ -48,16 +45,22 @@ const App = (props) => {
         <PrivateRoute
           exact
           path={AppRoute.MY_LIST}
-          render={() => <MyList
-            films={films.slice(4, 8)}
-          />}
+          render={() => (
+            <MyList
+              films={films.slice(4, 8)}
+            />
+          )}
         />
-        <Route path={`${AppRoute.FILMS}/:id/`} exact>
-          <WrappedFilm
-            alikeFilms={films.slice(2, 6)}
-            defaultTab={FilmTabName.OVERVIEW}
-            film={films[3]}
-          />
+        <Route
+          exact
+          path={`${AppRoute.FILMS}/:id/`}
+          render={({match}) => (
+            <WrappedFilm
+              alikeFilms={films.slice(2, 6)}
+              filmId={+match.params.id}
+            />
+          )}
+        >
         </Route>
         <Route path={`${AppRoute.FILMS}/:id/review`} exact>
           <WrappedReview

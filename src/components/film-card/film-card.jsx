@@ -17,6 +17,7 @@ const FilmCard = (props) => {
   } = props;
 
   const {
+    id,
     backgroundColor,
     name,
     preview,
@@ -35,7 +36,7 @@ const FilmCard = (props) => {
       onMouseLeave={onMouseLeave}
 
       onClick={() => {
-        history.push(`${AppRoute.FILMS}/1`);
+        history.push(`${AppRoute.FILMS}/${id}`);
       }}
     >
       <div className="small-movie-card__image">
