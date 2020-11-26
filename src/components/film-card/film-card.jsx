@@ -17,16 +17,17 @@ const FilmCard = (props) => {
   } = props;
 
   const {
-    cover,
+    backgroundColor,
     name,
     preview,
+    previewImage,
   } = film;
 
 
   return (
     <article
       className="small-movie-card catalog__movies-card"
-      style={{backgroundColor: `black`}}
+      style={{backgroundColor: `${backgroundColor}`}}
       onMouseEnter={() => {
         onMouseEnter();
       }}
@@ -40,7 +41,7 @@ const FilmCard = (props) => {
       <div className="small-movie-card__image">
         {renderVideo({
           src: preview,
-          poster: cover,
+          poster: previewImage,
           height: FilmCardOption.HEIGHT,
           width: FilmCardOption.WIDTH,
           isPlaying: isHovered,

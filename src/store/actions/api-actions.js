@@ -5,6 +5,7 @@ import {
 } from '../../const.js';
 import {
   loadAuthInfo,
+  loadCurrentFilm,
   loadFilms,
   loadPromo,
   redirectToRoute,
@@ -19,8 +20,8 @@ import {
 
 const checkAuth = () => (dispatch, _getState, api) => {
   api.get(ApiRoute.LOGIN)
-    .then((response) => {
-      dispatch(loadAuthInfo(parseAuth(response.data)));
+    .then(({data}) => {
+      dispatch(loadAuthInfo(parseAuth(data)));
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
     })
     .catch(() => {
@@ -28,14 +29,34 @@ const checkAuth = () => (dispatch, _getState, api) => {
     });
 };
 
+const fetchCurrentFilm = (id) => (dispatch, _getState, api) => {
+  api.get(`${AppRoute.FILMS}/${id}`)
+    .then(({data}) => {
+      dispatch(loadCurrentFilm(parseFilm(data)));
+    })
+    .catch(() => {
+      throw Error(`Film load error`);
+    });
+};
+
 const fetchFilms = () => (dispatch, _getState, api) => {
   api.get(ApiRoute.FILMS)
-    .then(({data}) => dispatch(loadFilms(parseFilms(data))));
+    .then(({data}) => {
+      dispatch(loadFilms(parseFilms(data)));
+    })
+    .catch(() => {
+      throw Error(`Films load error`);
+    });
 };
 
 const fetchPromo = () => (dispatch, _getState, api) => {
   api.get(ApiRoute.PROMO)
-    .then(({data}) => dispatch(loadPromo(parseFilm(data))));
+    .then(({data}) => {
+      dispatch(loadPromo(parseFilm(data)));
+    })
+    .catch(() => {
+      throw Error(`Promo film load error`);
+    });
 };
 
 const login = ({login: email, password}) => (dispatch, _getState, api) => {
@@ -45,12 +66,15 @@ const login = ({login: email, password}) => (dispatch, _getState, api) => {
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
     })
     .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
-    .catch(() => {});
+    .catch(() => {
+      dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+    });
 };
 
 
 export {
   checkAuth,
+  fetchCurrentFilm,
   fetchFilms,
   fetchPromo,
   login,

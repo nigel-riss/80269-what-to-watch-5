@@ -1,6 +1,7 @@
 const ActionType = {
   INCREMENT_ITEMS_SHOWN_COUNT: `INCREMENT_ITEMS_SHOWN_COUNT`,
   LOAD_AUTH_INFO: `LOAD_AUTH_INFO`,
+  LOAD_CURRENT_FILM: `LOAD_CURRENT_FILM`,
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
@@ -17,6 +18,11 @@ const incrementItemsShownCount = (itemsCountShown) => ({
 const loadAuthInfo = (authInfo) => ({
   type: ActionType.LOAD_AUTH_INFO,
   payload: authInfo,
+});
+
+const loadCurrentFilm = (film) => ({
+  type: ActionType.LOAD_CURRENT_FILM,
+  payload: film,
 });
 
 const loadFilms = (films) => ({
@@ -53,6 +59,7 @@ export {
   ActionType,
   incrementItemsShownCount,
   loadAuthInfo,
+  loadCurrentFilm,
   loadFilms,
   loadPromo,
   redirectToRoute,

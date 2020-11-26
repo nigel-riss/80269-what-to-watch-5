@@ -1,12 +1,14 @@
 const parseFilm = (film) => ({
   id: film[`id`],
+  backgroundColor: film[`background_color`],
   cover: film[`background_image`],
   description: film[`description`],
   genre: [film[`genre`]],
+  isFavorite: film[`is_favorite`],
   name: film[`name`],
   poster: film[`poster_image`],
   preview: film[`preview_video_link`],
-  previewImage: film[`preview_image`], // add this
+  previewImage: film[`preview_image`],
   rating: film[`rating`],
   videoLink: film[`video_link`],
   votes: film[`scores_count`],
@@ -19,9 +21,6 @@ const parseFilm = (film) => ({
       minutes: film[`run_time`],
     }
   },
-
-  // 'is_favorite': false,
-  // 'background_color': '#E1DAD7',
 });
 
 const parseFilms = (films) => films.map(parseFilm);
