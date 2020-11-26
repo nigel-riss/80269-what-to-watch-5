@@ -11,8 +11,9 @@ import {redirectToRoute} from '../../store/actions/actions.js';
 
 const UserBlock = (props) => {
   const {
-    onAvatarClick,
     authorizationStatus,
+    onAvatarClick,
+    userAvatarUrl,
   } = props;
 
   return (
@@ -22,7 +23,12 @@ const UserBlock = (props) => {
           className="user-block__avatar"
           onClick={onAvatarClick}
         >
-          <img src="img/avatar.jpg" alt="User avatar" width="63" height="63" />
+          <img
+            src={userAvatarUrl}
+            alt="User avatar"
+            width="63"
+            height="63"
+          />
         </div>
         : <Link to={AppRoute.LOGIN} className="user-block__link">Sign in</Link>
       }
@@ -32,13 +38,15 @@ const UserBlock = (props) => {
 
 
 UserBlock.propTypes = {
-  onAvatarClick: PropTypes.func.isRequired,
   authorizationStatus: PropTypes.string.isRequired,
+  onAvatarClick: PropTypes.func.isRequired,
+  userAvatarUrl: PropTypes.string.isRequired,
 };
 
 
 const mapStateToProps = ({USER}) => ({
   authorizationStatus: USER.authorizationStatus,
+  userAvatarUrl: USER.userAvatarUrl,
 });
 
 const mapDispatchToProps = (dispatch) => ({

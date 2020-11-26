@@ -4,13 +4,14 @@ import {Link} from 'react-router-dom';
 import {FilmTabName} from '../../const.js';
 import filmType from '../../types/film.js';
 import {AppRoute} from '../../const.js';
+import DetailsTab from '../details-tab/details-tab.jsx';
 import FilmList from '../film-list/film-list.jsx';
+import FilmNav from '../film-nav/film-nav.jsx';
 import Footer from '../footer/footer.jsx';
 import Logo from '../logo/logo.jsx';
-import FilmNav from '../film-nav/film-nav.jsx';
 import OverviewTab from '../overview-tab/overview-tab.jsx';
-import DetailsTab from '../details-tab/details-tab.jsx';
 import ReviewsTab from '../reviews-tab/reviews-tab.jsx';
+import UserBlock from '../user-block/user-block.jsx';
 import reviews from '../../mocks/reviews.js';
 
 
@@ -71,11 +72,7 @@ const Film = (props) => {
           <header className="page-header movie-card__head">
             <Logo/>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
+            <UserBlock/>
           </header>
 
           <div className="movie-card__wrap">
