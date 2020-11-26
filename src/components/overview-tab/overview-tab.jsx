@@ -23,7 +23,6 @@ const OverviewTab = (props) => {
   return (
     <React.Fragment>
       <div className="movie-rating">
-        {/* TODO: Нужно ли менять формат отображения? */}
         <div className="movie-rating__score">{rating}</div>
         <p className="movie-rating__meta">
           <span className="movie-rating__level">{convertRatingToText(rating)}</span>
@@ -31,7 +30,6 @@ const OverviewTab = (props) => {
         </p>
       </div>
 
-      {/* TODO: возможно нужно будет поменять, когда будут актуальные данные */}
       <div className="movie-card__text">
         <p>
           {description}
@@ -41,8 +39,7 @@ const OverviewTab = (props) => {
           <strong>Director: {director}</strong>
         </p>
         <p className="movie-card__starring">
-          {/* TODO: возможно поменять форматирование (and for last) */}
-          <strong>Starring: {actors.join(`, `)}</strong>
+          <strong>Starring: {actors.join(`, `)} and other</strong>
         </p>
       </div>
     </React.Fragment>

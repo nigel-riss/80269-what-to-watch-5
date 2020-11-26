@@ -1,3 +1,8 @@
+import {
+  getRunTimeHours,
+  getRunTimeMinutes,
+} from './time.js';
+
 const parseFilm = (film) => ({
   id: film.id,
   backgroundColor: film.background_color,
@@ -17,8 +22,8 @@ const parseFilm = (film) => ({
     director: film.director,
     actors: film.starring,
     length: {
-      hours: film.run_time,
-      minutes: film.run_time,
+      hours: getRunTimeHours(film.run_time),
+      minutes: getRunTimeMinutes(film.run_time),
     }
   },
 });
