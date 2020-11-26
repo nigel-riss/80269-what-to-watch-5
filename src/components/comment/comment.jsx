@@ -1,5 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import {formatRating} from '../../utils/common.js';
+
 
 const Comment = (props) => {
   const {
@@ -24,8 +26,7 @@ const Comment = (props) => {
       </blockquote>
 
       <div className="review__rating">
-        {/* TODO: Нужно ли менять формат отображения? */}
-        {rating}
+        {formatRating(rating)}
       </div>
     </div>
   );

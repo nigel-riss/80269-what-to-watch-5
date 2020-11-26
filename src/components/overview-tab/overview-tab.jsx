@@ -1,6 +1,9 @@
 import React from 'react';
 import filmType from '../../types/film.js';
-import {convertRatingToText} from '../../utils/common.js';
+import {
+  convertRatingToText,
+  formatRating,
+} from '../../utils/common.js';
 
 
 const OverviewTab = (props) => {
@@ -23,7 +26,7 @@ const OverviewTab = (props) => {
   return (
     <React.Fragment>
       <div className="movie-rating">
-        <div className="movie-rating__score">{rating}</div>
+        <div className="movie-rating__score">{formatRating(rating)}</div>
         <p className="movie-rating__meta">
           <span className="movie-rating__level">{convertRatingToText(rating)}</span>
           <span className="movie-rating__count">{votes} ratings</span>

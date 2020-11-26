@@ -32,7 +32,7 @@ const filterFilmsByGenre = (films, genre) => {
 
 
 const formatRating = (rating) => {
-  // toFixed
+  return `${rating.toFixed(1)}`.replace(`.`, `,`);
 };
 
 
