@@ -5,7 +5,10 @@ import {connect} from 'react-redux';
 import {FilmTabName} from '../../const.js';
 import filmType from '../../types/film.js';
 import reviewType from '../../types/review.js';
-import {AppRoute} from '../../const.js';
+import {
+  AppRoute,
+  AuthorizationStatus,
+} from '../../const.js';
 import {
   fetchCurrentFilm,
   fetchReviews,
@@ -49,6 +52,7 @@ const _renderTab = (tabName, options) => {
 const Film = (props) => {
   const {
     activeTab,
+    authorizationStatus,
     currentFilm,
     filmId,
     films,
@@ -117,12 +121,12 @@ const Film = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link
+                {(authorizationStatus === AuthorizationStatus.AUTH) && <Link
                   to={`${AppRoute.FILMS}/${filmId}/review`}
                   className="btn movie-card__button"
                 >
                   Add review
-                </Link>
+                </Link>}
               </div>
             </div>
           </div>
@@ -179,7 +183,8 @@ Film.propTypes = {
 };
 
 
-const mapStateToProps = ({DATA}) => ({
+const mapStateToProps = ({DATA, USER}) => ({
+  authorizationStatus: USER.authorizationStatus,
   currentFilm: DATA.currentFilm,
   films: DATA.films,
   reviews: DATA.reviews,
