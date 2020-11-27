@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {formatRating} from '../../utils/common.js';
+import {formatCommentDate} from '../../utils/time.js';
 
 
 const Comment = (props) => {
@@ -19,8 +20,7 @@ const Comment = (props) => {
         <footer className="review__details">
           <cite className="review__author">{name}</cite>
           <time className="review__date" dateTime={date}>
-            {/* TODO: Форматировать дату, когда будут приходить реальные данные */}
-            {date}
+            {formatCommentDate(date)}
           </time>
         </footer>
       </blockquote>
