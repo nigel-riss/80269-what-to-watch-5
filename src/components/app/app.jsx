@@ -83,11 +83,4 @@ App.propTypes = {
 };
 
 
-const mapStateToProps = ({DATA}) => ({
-  films: DATA.films,
-  promoFilm: DATA.promoFilm,
-});
-
-
-export {App};
-export default connect(mapStateToProps, null)(App);
+export default App;

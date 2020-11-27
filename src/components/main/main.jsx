@@ -76,9 +76,12 @@ Main.propTypes = {
 
 const mapStateToProps = ({APP, DATA}) => ({
   activeGenre: APP.genre,
+  films: DATA.films,
   filmsByGenre: selectFilmsByGenre({APP, DATA}),
+  promoFilm: DATA.promoFilm,
   itemsShownCount: APP.itemsShownCount,
 });
+
 
 const mapDispatchToProps = (dispatch) => ({
   onGenreSelect(genre) {
