@@ -1,21 +1,39 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {
+  fetchCurrentFilm,
+  postReview,
+} from '../../store/actions/api-actions.js';
 import filmType from '../../types/film.js';
+import {AppRoute} from '../../const.js';
 import Logo from '../logo/logo.jsx';
+import UserBlock from '../user-block/user-block.jsx';
 
 
 const Review = (props) => {
   const {
-    film,
+    currentFilm,
+    getFilm,
+    filmId,
+    onFormSubmit,
     renderForm,
   } = props;
+
+  useEffect(() => {
+    getFilm(filmId);
+  }, [filmId]);
+
+  if (currentFilm === null) {
+    return null;
+  }
 
   const {
     cover,
     name,
     poster,
-  } = film;
+  } = currentFilm;
 
   return (
     <section className="movie-card movie-card--full">
@@ -33,7 +51,7 @@ const Review = (props) => {
             <ul className="breadcrumbs__list">
               <li className="breadcrumbs__item">
                 <Link
-                  to="/films/1"
+                  to={`${AppRoute.FILMS}/${filmId}`}
                   className="breadcrumbs__link"
                 >
                   {name}
@@ -45,11 +63,7 @@ const Review = (props) => {
             </ul>
           </nav>
 
-          <div className="user-block">
-            <div className="user-block__avatar">
-              <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-            </div>
-          </div>
+          <UserBlock/>
         </header>
 
         <div className="movie-card__poster movie-card__poster--small">
@@ -63,7 +77,9 @@ const Review = (props) => {
       </div>
 
       <div className="add-review">
-        {renderForm()}
+        {renderForm((rating, comment) => {
+          onFormSubmit(filmId, rating, comment);
+        }, false)}
       </div>
 
     </section>
@@ -72,9 +88,27 @@ const Review = (props) => {
 
 
 Review.propTypes = {
-  film: filmType,
+  currentFilm: filmType.isRequired,
+  filmId: PropTypes.number.isRequired,
+  getFilm: PropTypes.func.isRequired,
+  onFormSubmit: PropTypes.func.isRequired,
   renderForm: PropTypes.func.isRequired,
 };
 
 
-export default Review;
+const mapStateToProps = ({DATA}) => ({
+  currentFilm: DATA.currentFilm,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getFilm(id) {
+    dispatch(fetchCurrentFilm(id));
+  },
+
+  onFormSubmit(id, rating, comment) {
+    dispatch(postReview(id, rating, comment));
+  },
+});
+
+export {Review};
+export default connect(mapStateToProps, mapDispatchToProps)(Review);

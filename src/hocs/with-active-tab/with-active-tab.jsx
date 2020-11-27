@@ -1,5 +1,5 @@
 import React, {PureComponent} from 'react';
-import PropTypes from 'prop-types';
+import {FilmTabName} from '../../const.js';
 
 
 const withActiveTab = (Component) => {
@@ -7,10 +7,8 @@ const withActiveTab = (Component) => {
     constructor(props) {
       super(props);
 
-      const {defaultTab} = this.props;
-
       this.state = {
-        activeTab: defaultTab,
+        activeTab: FilmTabName.OVERVIEW,
       };
 
       this._handleTabClick = this._handleTabClick.bind(this);
@@ -34,11 +32,6 @@ const withActiveTab = (Component) => {
       );
     }
   }
-
-
-  WithActiveTab.propTypes = {
-    defaultTab: PropTypes.string.isRequired,
-  };
 
 
   return WithActiveTab;

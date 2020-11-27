@@ -1,17 +1,27 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom';
+import {connect} from 'react-redux';
 import {FilmTabName} from '../../const.js';
 import filmType from '../../types/film.js';
-import {AppRoute} from '../../const.js';
+import reviewType from '../../types/review.js';
+import {
+  AppRoute,
+  AuthorizationStatus,
+} from '../../const.js';
+import {
+  fetchCurrentFilm,
+  fetchReviews,
+} from '../../store/actions/api-actions.js';
+import {filterFilmsByGenre} from '../../utils/common.js';
+import DetailsTab from '../details-tab/details-tab.jsx';
 import FilmList from '../film-list/film-list.jsx';
+import FilmNav from '../film-nav/film-nav.jsx';
 import Footer from '../footer/footer.jsx';
 import Logo from '../logo/logo.jsx';
-import FilmNav from '../film-nav/film-nav.jsx';
 import OverviewTab from '../overview-tab/overview-tab.jsx';
-import DetailsTab from '../details-tab/details-tab.jsx';
 import ReviewsTab from '../reviews-tab/reviews-tab.jsx';
-import reviews from '../../mocks/reviews.js';
+import UserBlock from '../user-block/user-block.jsx';
 
 
 const _renderTab = (tabName, options) => {
@@ -42,10 +52,22 @@ const _renderTab = (tabName, options) => {
 const Film = (props) => {
   const {
     activeTab,
-    alikeFilms,
-    film,
+    authorizationStatus,
+    currentFilm,
+    filmId,
+    films,
+    getFilm,
     onTabClick,
+    reviews,
   } = props;
+
+  useEffect(() => {
+    getFilm(filmId);
+  }, [filmId]);
+
+  if (currentFilm === null) {
+    return null;
+  }
 
   const {
     cover,
@@ -53,7 +75,11 @@ const Film = (props) => {
     genre,
     year,
     poster,
-  } = film;
+  } = currentFilm;
+
+  const alikeFilms = filterFilmsByGenre(films, genre)
+    .filter((film) => film.id !== filmId)
+    .slice(0, 4);
 
   return (
     <React.Fragment>
@@ -71,18 +97,14 @@ const Film = (props) => {
           <header className="page-header movie-card__head">
             <Logo/>
 
-            <div className="user-block">
-              <div className="user-block__avatar">
-                <img src="/img/avatar.jpg" alt="User avatar" width="63" height="63" />
-              </div>
-            </div>
+            <UserBlock/>
           </header>
 
           <div className="movie-card__wrap">
             <div className="movie-card__desc">
               <h2 className="movie-card__title">{name}</h2>
               <p className="movie-card__meta">
-                <span className="movie-card__genre">{genre.join(`, `)}</span>
+                <span className="movie-card__genre">{genre}</span>
                 <span className="movie-card__year">{year}</span>
               </p>
 
@@ -99,12 +121,12 @@ const Film = (props) => {
                   </svg>
                   <span>My list</span>
                 </button>
-                <Link
-                  to={`${AppRoute.FILMS}/1/review`}
+                {(authorizationStatus === AuthorizationStatus.AUTH) && <Link
+                  to={`${AppRoute.FILMS}/${filmId}/review`}
                   className="btn movie-card__button"
                 >
                   Add review
-                </Link>
+                </Link>}
               </div>
             </div>
           </div>
@@ -128,7 +150,7 @@ const Film = (props) => {
                 tabNames={Object.values(FilmTabName)}
               />
 
-              {_renderTab(activeTab, {film, userReviews: reviews})}
+              {_renderTab(activeTab, {film: currentFilm, userReviews: reviews})}
             </div>
           </div>
         </div>
@@ -151,11 +173,31 @@ const Film = (props) => {
 
 
 Film.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   activeTab: PropTypes.string.isRequired,
-  alikeFilms: PropTypes.arrayOf(filmType).isRequired,
-  film: filmType.isRequired,
+  currentFilm: filmType,
+  films: PropTypes.arrayOf(filmType).isRequired,
+  filmId: PropTypes.number.isRequired,
+  getFilm: PropTypes.func.isRequired,
   onTabClick: PropTypes.func.isRequired,
+  reviews: PropTypes.arrayOf(reviewType).isRequired,
 };
 
 
-export default Film;
+const mapStateToProps = ({DATA, USER}) => ({
+  authorizationStatus: USER.authorizationStatus,
+  currentFilm: DATA.currentFilm,
+  films: DATA.films,
+  reviews: DATA.reviews,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getFilm(id) {
+    dispatch(fetchCurrentFilm(id));
+    dispatch(fetchReviews(id));
+  },
+});
+
+
+export {Film};
+export default connect(mapStateToProps, mapDispatchToProps)(Film);

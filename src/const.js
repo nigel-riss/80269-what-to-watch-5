@@ -1,7 +1,9 @@
 const ApiRoute = {
+  FAVORITE: `/favorite`,
   FILMS: `/films`,
   LOGIN: `/login`,
   PROMO: `/films/promo`,
+  REVIEWS: `/comments`,
 };
 
 const AppRoute = {

@@ -29,7 +29,7 @@ const FilmNavItem = (props) => {
 FilmNavItem.propTypes = {
   isActive: PropTypes.bool.isRequired,
   name: PropTypes.string.isRequired,
-  onClick: PropTypes.string.isRequired,
+  onClick: PropTypes.func.isRequired,
 };
 
 

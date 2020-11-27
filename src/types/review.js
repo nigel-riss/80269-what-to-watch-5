@@ -5,5 +5,5 @@ export default PropTypes.shape({
   date: PropTypes.string.isRequired,
   name: PropTypes.string.isRequired,
   rating: PropTypes.number.isRequired,
-  text: PropTypes.number.isRequired,
+  text: PropTypes.string.isRequired,
 });
