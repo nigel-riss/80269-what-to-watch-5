@@ -173,6 +173,7 @@ const Film = (props) => {
 
 
 Film.propTypes = {
+  authorizationStatus: PropTypes.string.isRequired,
   activeTab: PropTypes.string.isRequired,
   currentFilm: filmType,
   films: PropTypes.arrayOf(filmType).isRequired,
@@ -194,7 +195,7 @@ const mapDispatchToProps = (dispatch) => ({
   getFilm(id) {
     dispatch(fetchCurrentFilm(id));
     dispatch(fetchReviews(id));
-  }
+  },
 });
 
 

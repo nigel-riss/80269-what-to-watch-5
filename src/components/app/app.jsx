@@ -42,15 +42,6 @@ const App = (props) => {
         <Route path={AppRoute.LOGIN} exact>
           <Login/>
         </Route>
-        <PrivateRoute
-          exact
-          path={AppRoute.MY_LIST}
-          render={() => (
-            <MyList
-              films={films.slice(4, 8)}
-            />
-          )}
-        />
         <Route
           exact
           path={`${AppRoute.FILMS}/:id/`}
@@ -68,6 +59,13 @@ const App = (props) => {
             <WrappedReview
               filmId={+match.params.id}
             />
+          )}
+        />
+        <PrivateRoute
+          exact
+          path={AppRoute.MY_LIST}
+          render={() => (
+            <MyList/>
           )}
         />
         <Route path={`${AppRoute.PLAYER}/:id`}>

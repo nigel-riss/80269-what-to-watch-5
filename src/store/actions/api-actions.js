@@ -6,6 +6,7 @@ import {
 import {
   loadAuthInfo,
   loadCurrentFilm,
+  loadFavoriteFilms,
   loadFilms,
   loadPromo,
   loadReviews,
@@ -48,6 +49,16 @@ const fetchCurrentFilm = (id) => (dispatch, _getState, api) => {
     })
     .catch((err) => {
       throw Error(`Film load error: ${err.message}`);
+    });
+};
+
+const fetchFavoriteFilms = () => (dispatch, _getState, api) => {
+  api.get(ApiRoute.FAVORITE)
+    .then(({data}) => {
+      dispatch(loadFavoriteFilms(parseFilms(data)));
+    })
+    .catch((err) => {
+      throw Error(`Favorite Films load error: ${err.message}`);
     });
 };
 
@@ -97,6 +108,7 @@ const login = ({login: email, password}) => (dispatch, _getState, api) => {
 export {
   checkAuth,
   fetchCurrentFilm,
+  fetchFavoriteFilms,
   fetchFilms,
   fetchPromo,
   fetchReviews,

@@ -1,5 +1,7 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
+import {connect} from 'react-redux';
+import {fetchFavoriteFilms} from '../../store/actions/api-actions.js';
 import filmType from '../../types/film.js';
 import FilmList from '../film-list/film-list.jsx';
 import Footer from '../footer/footer.jsx';
@@ -9,8 +11,13 @@ import UserBlock from '../user-block/user-block.jsx';
 
 const MyList = (props) => {
   const {
-    films,
+    favoriteFilms,
+    getFilms,
   } = props;
+
+  useEffect(() => {
+    getFilms();
+  });
 
   return (
     <div className="user-page">
@@ -26,7 +33,7 @@ const MyList = (props) => {
         <h2 className="catalog__title visually-hidden">Catalog</h2>
 
         <FilmList
-          films={films}
+          films={favoriteFilms}
         />
       </section>
 
@@ -37,8 +44,21 @@ const MyList = (props) => {
 
 
 MyList.propTypes = {
-  films: PropTypes.arrayOf(filmType),
+  favoriteFilms: PropTypes.arrayOf(filmType).isRequired,
+  getFilms: PropTypes.func.isRequired,
 };
 
 
-export default MyList;
+const mapStateToProps = ({DATA}) => ({
+  favoriteFilms: DATA.favoriteFilms,
+});
+
+const mapDispatchToProps = (dispatch) => ({
+  getFilms() {
+    dispatch(fetchFavoriteFilms());
+  },
+});
+
+
+export {MyList};
+export default connect(mapStateToProps, mapDispatchToProps)(MyList);
