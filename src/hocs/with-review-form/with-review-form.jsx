@@ -18,10 +18,6 @@ const withReviewForm = (Component) => {
       this._handleTextareaChange = this._handleTextareaChange.bind(this);
     }
 
-    _handleFormSubmit(e) {
-      e.preventDefault();
-    }
-
     _handleRatingChange(rating) {
       this.setState({
         rating,
@@ -43,18 +39,22 @@ const withReviewForm = (Component) => {
 
       return <Component
         {...this.props}
-        renderForm={() => {
+        renderForm={(onFormSubmit, isFormBlocked) => {
           return (
             <form
               action="#"
               className="add-review__form"
-              onSubmit={this._handleFormSubmit}
+              onSubmit={(e) => {
+                e.preventDefault();
+                onFormSubmit(rating, text);
+              }}
             >
               <div className="rating">
                 <div className="rating__stars">
-                  {Array(5).fill({}).map((it, i) => <React.Fragment key={i}>
+                  {Array(5).fill({}).map((_it, i) => <React.Fragment key={i}>
                     <input
                       className="rating__input"
+                      disabled={isFormBlocked}
                       id={`star-${i + 1}`}
                       type="radio"
                       name="rating"
@@ -77,6 +77,7 @@ const withReviewForm = (Component) => {
               <div className="add-review__text">
                 <textarea
                   className="add-review__textarea"
+                  disabled={isFormBlocked}
                   name="review-text"
                   id="review-text"
                   placeholder="Review text"
@@ -84,7 +85,13 @@ const withReviewForm = (Component) => {
                   onChange={this._handleTextareaChange}
                 ></textarea>
                 <div className="add-review__submit">
-                  <button className="add-review__btn" type="submit">Post</button>
+                  <button
+                    className="add-review__btn"
+                    disabled={isFormBlocked}
+                    type="submit"
+                  >
+                    Post
+                  </button>
                 </div>
               </div>
             </form>
@@ -93,7 +100,6 @@ const withReviewForm = (Component) => {
       />;
     }
   }
-
 
   return WithReviewForm;
 };

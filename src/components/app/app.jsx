@@ -61,11 +61,15 @@ const App = (props) => {
           )}
         >
         </Route>
-        <Route path={`${AppRoute.FILMS}/:id/review`} exact>
-          <WrappedReview
-            film={films[4]}
-          />
-        </Route>
+        <PrivateRoute
+          exact
+          path={`${AppRoute.FILMS}/:id/review`}
+          render={({match}) => (
+            <WrappedReview
+              filmId={+match.params.id}
+            />
+          )}
+        />
         <Route path={`${AppRoute.PLAYER}/:id`}>
           <Player/>
         </Route>

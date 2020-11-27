@@ -118,7 +118,7 @@ const Film = (props) => {
                   <span>My list</span>
                 </button>
                 <Link
-                  to={`${AppRoute.FILMS}/1/review`}
+                  to={`${AppRoute.FILMS}/${filmId}/review`}
                   className="btn movie-card__button"
                 >
                   Add review
