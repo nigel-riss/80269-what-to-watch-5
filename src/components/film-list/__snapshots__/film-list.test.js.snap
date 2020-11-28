@@ -1,0 +1,168 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should FilmList render correctly 1`] = `
+<div
+  className="catalog__movies-list"
+>
+  <article
+    className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#ffffff",
+      }
+    }
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <video
+        disabled={true}
+        height={175}
+        muted={true}
+        poster="/url/to/image.png"
+        width={280}
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+      >
+        The Aviator
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#000000",
+      }
+    }
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <video
+        disabled={true}
+        height={175}
+        muted={true}
+        poster="/url/to/image.png"
+        width={280}
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+      >
+        The Grand Budapest Hotel
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#ff00ff",
+      }
+    }
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <video
+        disabled={true}
+        height={175}
+        muted={true}
+        poster="/url/to/image.png"
+        width={280}
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+      >
+        Bohemian Rhapsody
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#ff0000",
+      }
+    }
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <video
+        disabled={true}
+        height={175}
+        muted={true}
+        poster="/url/to/image.png"
+        width={280}
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+      >
+        Fantastic Beasts: The Crimes of Grindelwald
+      </a>
+    </h3>
+  </article>
+  <article
+    className="small-movie-card catalog__movies-card"
+    onClick={[Function]}
+    onMouseEnter={[Function]}
+    onMouseLeave={[Function]}
+    style={
+      Object {
+        "backgroundColor": "#00ff00",
+      }
+    }
+  >
+    <div
+      className="small-movie-card__image"
+    >
+      <video
+        disabled={true}
+        height={175}
+        muted={true}
+        poster="/url/to/another-image.png"
+        width={280}
+      />
+    </div>
+    <h3
+      className="small-movie-card__title"
+    >
+      <a
+        className="small-movie-card__link"
+      >
+        What We Do in the Shadows
+      </a>
+    </h3>
+  </article>
+</div>
+`;

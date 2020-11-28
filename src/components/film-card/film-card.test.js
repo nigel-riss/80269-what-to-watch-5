@@ -6,7 +6,7 @@ import filmsMock from '../../mocks/films.js';
 
 const noop = () => {};
 
-it(`Should render correctly`, () => {
+it(`Should FilmCard render correctly`, () => {
   const tree = renderer
     .create(
         <FilmCard
