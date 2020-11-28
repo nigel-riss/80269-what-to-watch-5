@@ -13,7 +13,6 @@ const GenreList = (props) => {
   return (
     <ul className="catalog__genres-list">
       <GenreListItem
-        id={0}
         isActive={(activeGenre === null)}
         genre={null}
         onClick={onGenreItemClick}

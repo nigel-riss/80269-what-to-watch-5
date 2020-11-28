@@ -1,11 +1,20 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import  from './';
+import GenreListItem from './genre-list-item.jsx';
 
 
-it(`Should render correctly`, () => {
+const noop = () => {};
+
+it(`Should GenreListItem render correctly`, () => {
   const tree = renderer
-    .create()
+    .create(
+        <GenreListItem
+          isActive={true}
+          genre={null}
+          onClick={noop}
+          title={`All genres`}
+        />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();

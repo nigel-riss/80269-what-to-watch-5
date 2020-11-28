@@ -5,7 +5,6 @@ import classNames from 'classnames';
 
 const GenreListItem = (props) => {
   const {
-    id,
     isActive,
     genre,
     onClick,
@@ -18,7 +17,6 @@ const GenreListItem = (props) => {
         'catalog__genres-item': true,
         'catalog__genres-item--active': (isActive),
       })}
-      key={`${genre}-${id}`}
     >
       <a
         href="#"
@@ -36,7 +34,6 @@ const GenreListItem = (props) => {
 
 
 GenreListItem.propTypes = {
-  id: PropTypes.number.isRequired,
   isActive: PropTypes.bool.isRequired,
   genre: PropTypes.string,
   onClick: PropTypes.func.isRequired,
