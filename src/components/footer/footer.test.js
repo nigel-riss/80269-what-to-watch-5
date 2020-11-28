@@ -1,11 +1,16 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import  from './';
+import {MemoryRouter} from 'react-router-dom';
+import Footer from './footer.jsx';
 
 
-it(`Should render correctly`, () => {
+it(`Should Footer render correctly`, () => {
   const tree = renderer
-    .create()
+    .create(
+        <MemoryRouter>
+          <Footer/>
+        </MemoryRouter>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
