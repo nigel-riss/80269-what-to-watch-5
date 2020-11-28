@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should render correctly 1`] = `
+exports[`Should DetailsTab render correctly 1`] = `
 <div
   className="movie-card__text movie-card__row"
 >
@@ -38,13 +38,13 @@ exports[`Should render correctly 1`] = `
         Cate Blanchett
         , 
         <br />
-        Alec Baldwin
-        , 
-        <br />
         Kate Beckinsale
         , 
         <br />
         John C. Reilly
+        , 
+        <br />
+        Alec Baldwin
         , 
         <br />
         Alan Alda
