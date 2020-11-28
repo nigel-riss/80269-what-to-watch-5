@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 
 export default PropTypes.shape({
   id: PropTypes.number.isRequired,
+  backgroundColor: PropTypes.string.isRequired,
   cover: PropTypes.string.isRequired,
   description: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,

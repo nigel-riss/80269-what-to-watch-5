@@ -1,11 +1,38 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
+import {Provider} from 'react-redux';
 import App from './app.jsx';
+import configureStore from 'redux-mock-store';
+import filmsMock from '../../mocks/films';
+import {
+  AuthorizationStatus,
+  FILMS_SHOWN_PER_CLICK,
+} from '../../const.js';
 
 
-it(`Should render correctly`, () => {
+const mockStore = configureStore([]);
+const store = mockStore({
+  APP: {
+    activeGenre: null,
+    itemsShownCount: FILMS_SHOWN_PER_CLICK,
+  },
+  DATA: {
+    films: filmsMock,
+    promoFilm: filmsMock[0],
+  },
+  USER: {
+    authorizationStatus: AuthorizationStatus.NO_AUTH,
+  },
+});
+
+
+it(`Should App render correctly`, () => {
   const tree = renderer
-    .create(<App/>)
+    .create(
+        <Provider store={store}>
+          <App/>
+        </Provider>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
