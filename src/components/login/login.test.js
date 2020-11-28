@@ -4,7 +4,7 @@ import {MemoryRouter} from 'react-router-dom';
 import {Login} from './login.jsx';
 
 
-const noop = () => {}
+const noop = () => {};
 
 it(`Should Login render correctly`, () => {
   const tree = renderer

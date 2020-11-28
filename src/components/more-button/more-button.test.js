@@ -1,11 +1,17 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import  from './';
+import MoreButton from './more-button.jsx';
 
 
-it(`Should render correctly`, () => {
+const noop = () => {};
+
+it(`Should MoreButton render correctly`, () => {
   const tree = renderer
-    .create()
+    .create(
+        <MoreButton
+          onClick={noop}
+        />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
