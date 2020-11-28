@@ -1,6 +1,4 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import filmType from '../../types/film.js';
 import {
   Router,
   Switch,
@@ -23,20 +21,12 @@ const WrappedFilm = withActiveTab(Film);
 const WrappedReview = withReviewForm(Review);
 
 
-const App = (props) => {
-  const {
-    films,
-    promoFilm,
-  } = props;
-
+const App = () => {
   return (
     <Router history={history}>
       <Switch>
         <Route path={AppRoute.ROOT} exact>
-          <Main
-            films={films}
-            promoFilm={promoFilm}
-          />
+          <Main/>
         </Route>
         <Route path={AppRoute.LOGIN} exact>
           <Login/>
@@ -73,12 +63,6 @@ const App = (props) => {
       </Switch>
     </Router>
   );
-};
-
-
-App.propTypes = {
-  films: PropTypes.arrayOf(filmType),
-  promoFilm: filmType,
 };
 
 
