@@ -1,11 +1,20 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import  from './';
+import GenreList from './genre-list.jsx';
+import genresMock from '../../mocks/genre.js';
 
 
-it(`Should render correctly`, () => {
+const noop = () => {};
+
+it(`Should GenreList render correctly`, () => {
   const tree = renderer
-    .create()
+    .create(
+        <GenreList
+          activeGenre={null}
+          genres={genresMock}
+          onGenreItemClick={noop}
+        />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
