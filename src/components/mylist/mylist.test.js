@@ -1,11 +1,33 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import  from './';
+import {Provider} from 'react-redux';
+import {MemoryRouter} from 'react-router-dom';
+import configureMockStore from 'redux-mock-store';
+import {MyList} from './mylist.jsx';
+import filmsMock from '../../mocks/films.js';
+import storeMock from '../../mocks/store';
 
 
-it(`Should render correctly`, () => {
+const mockStore = configureMockStore([]);
+const store = mockStore(storeMock);
+const noop = () => {};
+
+it(`Should MyList render correctly`, () => {
   const tree = renderer
-    .create()
+    .create(
+        <Provider store={store}>
+          <MemoryRouter>
+            <MyList
+              favoriteFilms={filmsMock}
+              getFilms={noop}
+            />
+          </MemoryRouter>
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
