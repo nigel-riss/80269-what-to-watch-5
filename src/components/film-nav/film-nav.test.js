@@ -1,11 +1,19 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import  from './';
+import FilmNav from './film-nav.jsx';
+import {FilmTabName} from '../../const.js';
 
+const noop = () => {};
 
-it(`Should render correctly`, () => {
+it(`Should FilmNav render correctly`, () => {
   const tree = renderer
-    .create()
+    .create(
+        <FilmNav
+          activeTab={FilmTabName.OVERVIEW}
+          onTabClick={noop}
+          tabNames={Object.values(FilmTabName)}
+        />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
