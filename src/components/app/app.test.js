@@ -18,7 +18,11 @@ it(`Should App render correctly`, () => {
           <MemoryRouter>
             <App/>
           </MemoryRouter>
-        </Provider>
+        </Provider>, {
+          createNodeMock: () => {
+            return {};
+          }
+        }
     )
     .toJSON();
 
