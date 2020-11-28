@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import Comment from './comment.jsx';
 
 
-it(`Should render correctly`, () => {
+it(`Should Comment render correctly`, () => {
   const tree = renderer
     .create(
         <Comment
