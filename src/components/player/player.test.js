@@ -1,11 +1,13 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import  from './';
+import Player from './Player';
 
 
-it(`Should render correctly`, () => {
+it(`Should Player render correctly`, () => {
   const tree = renderer
-    .create()
+    .create(
+        <Player/>
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
