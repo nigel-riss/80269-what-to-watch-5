@@ -9,7 +9,7 @@ import {AppRoute} from '../../const.js';
 import Film from '../film/film.jsx';
 import Login from '../login/login.jsx';
 import Main from '../main/main.jsx';
-import MyList from '../mylist/mylist.jsx';
+import MyList from '../my-list/my-list.jsx';
 import Player from '../player/player.jsx';
 import PrivateRoute from '../private-route/private-route.jsx';
 import Review from '../review/review.jsx';

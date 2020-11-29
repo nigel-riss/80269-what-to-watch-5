@@ -3,7 +3,7 @@ import renderer from 'react-test-renderer';
 import {Provider} from 'react-redux';
 import {MemoryRouter} from 'react-router-dom';
 import configureMockStore from 'redux-mock-store';
-import PromoFilm from './promo-film.jsx';
+import {PromoFilm} from './promo-film.jsx';
 import filmsMock from '../../mocks/films.js';
 import storeMock from '../../mocks/store';
 

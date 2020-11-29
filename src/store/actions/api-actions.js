@@ -104,6 +104,17 @@ const login = ({login: email, password}) => (dispatch, _getState, api) => {
     });
 };
 
+const switchFavorite = (id, isFavorite) => (dispatch, _getState, api) => {
+  api.post(`${ApiRoute.FAVORITE}/${id}/${isFavorite ? 0 : 1}`)
+    .then(({data}) => {
+      dispatch(loadCurrentFilm(parseFilm(data)));
+    })
+    .then(() => dispatch(fetchPromo()))
+    .catch((err) => {
+      throw Error(`Switch favorite error: ${err.message}`);
+    });
+};
+
 
 export {
   checkAuth,
@@ -114,4 +125,5 @@ export {
   fetchReviews,
   login,
   postReview,
+  switchFavorite,
 };

@@ -13,6 +13,7 @@ import {
 import {
   fetchCurrentFilm,
   fetchReviews,
+  switchFavorite,
 } from '../../store/actions/api-actions.js';
 import {filterFilmsByGenre} from '../../utils/common.js';
 import DetailsTab from '../details-tab/details-tab.jsx';
@@ -20,6 +21,7 @@ import FilmList from '../film-list/film-list.jsx';
 import FilmNav from '../film-nav/film-nav.jsx';
 import Footer from '../footer/footer.jsx';
 import Logo from '../logo/logo.jsx';
+import MyListButton from '../my-list-button/my-list-button.jsx';
 import OverviewTab from '../overview-tab/overview-tab.jsx';
 import ReviewsTab from '../reviews-tab/reviews-tab.jsx';
 import UserBlock from '../user-block/user-block.jsx';
@@ -58,6 +60,7 @@ const Film = (props) => {
     filmId,
     films,
     getFilm,
+    onMyListButtonClick,
     onTabClick,
     reviews,
   } = props;
@@ -72,10 +75,11 @@ const Film = (props) => {
 
   const {
     cover,
-    name,
+    isFavorite,
     genre,
-    year,
+    name,
     poster,
+    year,
   } = currentFilm;
 
   const alikeFilms = filterFilmsByGenre(films, genre)
@@ -122,12 +126,14 @@ const Film = (props) => {
                   </svg>
                   <span>Play</span>
                 </button>
-                <button className="btn btn--list movie-card__button" type="button">
-                  <svg viewBox="0 0 19 20" width="19" height="20">
-                    <use xlinkHref="#add"></use>
-                  </svg>
-                  <span>My list</span>
-                </button>
+
+                <MyListButton
+                  isFavorite={isFavorite}
+                  onClick={() => {
+                    onMyListButtonClick(filmId, isFavorite);
+                  }}
+                />
+
                 {(authorizationStatus === AuthorizationStatus.AUTH) && <Link
                   to={`${AppRoute.FILMS}/${filmId}/review`}
                   className="btn movie-card__button"
@@ -180,12 +186,13 @@ const Film = (props) => {
 
 
 Film.propTypes = {
-  authorizationStatus: PropTypes.string.isRequired,
   activeTab: PropTypes.string.isRequired,
+  authorizationStatus: PropTypes.string.isRequired,
   currentFilm: filmType,
-  films: PropTypes.arrayOf(filmType).isRequired,
   filmId: PropTypes.number.isRequired,
+  films: PropTypes.arrayOf(filmType).isRequired,
   getFilm: PropTypes.func.isRequired,
+  onMyListButtonClick: PropTypes.func.isRequired,
   onTabClick: PropTypes.func.isRequired,
   reviews: PropTypes.arrayOf(reviewType).isRequired,
 };
@@ -202,6 +209,10 @@ const mapDispatchToProps = (dispatch) => ({
   getFilm(id) {
     dispatch(fetchCurrentFilm(id));
     dispatch(fetchReviews(id));
+  },
+
+  onMyListButtonClick(id, isFavorite) {
+    dispatch(switchFavorite(id, isFavorite));
   },
 });
 
