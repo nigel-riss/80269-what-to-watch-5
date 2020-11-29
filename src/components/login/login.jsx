@@ -49,6 +49,7 @@ class Login extends PureComponent {
                   name="user-email"
                   placeholder="Email address"
                   ref={this.loginRef}
+                  required={true}
                   type="email"
                 />
                 <label
@@ -65,6 +66,7 @@ class Login extends PureComponent {
                   name="user-password"
                   placeholder="Password"
                   ref={this.passwordRef}
+                  required={true}
                   type="password"
                 />
                 <label
