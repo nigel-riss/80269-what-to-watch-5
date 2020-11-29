@@ -1,9 +1,10 @@
-import React, {useEffect, useRef, useState} from 'react';
+import React, {useEffect} from 'react';
 import PropTypes from 'prop-types';
 import history from '../../history.js';
 import {connect} from 'react-redux';
 import {fetchCurrentFilm} from '../../store/actions/api-actions.js';
 import {AppRoute} from '../../const.js';
+import {formatElapsedTime} from '../../utils/time.js';
 import filmType from '../../types/film.js';
 
 
@@ -16,18 +17,16 @@ const Player = (props) => {
     isPlaying,
     onFullScreenClick,
     onPlayPauseClick,
+    progress,
+    progressRef,
     videoRef,
+    timeElapsed,
   } = props;
 
   useEffect(() => {
     getFilm(filmId);
   }, [filmId]);
 
-  // const {
-  //   cover,
-  //   name,
-  //   videoLink,
-  // } = props.currentFilm;
 
   return (
     <div className="player">
@@ -54,17 +53,20 @@ const Player = (props) => {
           <div className="player__time">
             <progress
               className="player__progress"
-              value="30"
+              ref={progressRef}
+              value={progress}
               max="100"
             />
             <div
               className="player__toggler"
-              style={{left: `30%`}}
+              style={{left: `${progress}%`}}
             >
               Toggler
             </div>
           </div>
-          <div className="player__time-value">1:30:29</div>
+          <div className="player__time-value">
+            {formatElapsedTime(timeElapsed)}
+          </div>
         </div>
 
         <div className="player__controls-row">
@@ -105,6 +107,18 @@ Player.propTypes = {
   currentFilm: filmType,
   filmId: PropTypes.number.isRequired,
   getFilm: PropTypes.func.isRequired,
+  isLoading: PropTypes.bool.isRequired,
+  isPlaying: PropTypes.bool.isRequired,
+  onFullScreenClick: PropTypes.func.isRequired,
+  onPlayPauseClick: PropTypes.func.isRequired,
+  progress: PropTypes.number.isRequired,
+  progressRef: PropTypes.shape({
+    current: PropTypes.instanceOf(Element)
+  }).isRequired,
+  videoRef: PropTypes.shape({
+    current: PropTypes.instanceOf(Element)
+  }).isRequired,
+  timeElapsed: PropTypes.number.isRequired,
 };
 
 

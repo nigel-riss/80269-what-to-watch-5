@@ -12,6 +12,8 @@ const withPlayer = (Component) => {
       this.state = {
         isLoading: true,
         isPlaying: false,
+        progress: 0,
+        timeElapsed: 0,
       };
 
       this._handleFullScreenClick = this._handleFullScreenClick.bind(this);
@@ -25,6 +27,14 @@ const withPlayer = (Component) => {
         video.oncanplay = () => {
           this.setState({
             isLoading: false,
+            timeElapsed: video.duration,
+          });
+        };
+
+        video.ontimeupdate = () => {
+          this.setState({
+            progress: video.currentTime / video.duration * 100,
+            timeElapsed: video.duration - video.currentTime,
           });
         };
       }
@@ -34,6 +44,7 @@ const withPlayer = (Component) => {
       const video = this._videoRef.current;
       if (video) {
         video.oncanplay = null;
+        video.ontimeupdate = null;
       }
       this._handleFullScreenClick = null;
       this._handlePlayPauseClick = null;
@@ -73,6 +84,8 @@ const withPlayer = (Component) => {
       const {
         isPlaying,
         isLoading,
+        progress,
+        timeElapsed,
       } = this.state;
 
       return (
@@ -80,16 +93,19 @@ const withPlayer = (Component) => {
           {...this.props}
           isLoading={isLoading}
           isPlaying={isPlaying}
-          videoRef={this._videoRef}
           onPlayPauseClick={this._handlePlayPauseClick}
           onFullScreenClick={this._handleFullScreenClick}
+          progress={progress}
+          progressRef={this._progressRef}
+          videoRef={this._videoRef}
+          timeElapsed={timeElapsed}
         />
       );
     }
   }
 
   return WithPlayer;
-}
+};
 
 
 export default withPlayer;
