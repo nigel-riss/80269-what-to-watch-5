@@ -30,6 +30,7 @@ it(`Should Film render correctly`, () => {
               filmId={1}
               films={filmsMock}
               getFilm={noop}
+              onMyListButtonClick={noop}
               onTabClick={noop}
               reviews={reviewsMock}
             />

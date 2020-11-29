@@ -22,17 +22,6 @@ import {
 } from '../../utils/film-adapter.js';
 
 
-const postReview = (id, rating, comment) => (dispatch, _getState, api) => {
-  api.post(`${ApiRoute.REVIEWS}/${id}`, {rating, comment})
-    .then(() => {
-      dispatch(redirectToRoute(`${AppRoute.FILMS}/${id}`));
-      dispatch(unlockReviewInput());
-    })
-    .catch((err) => {
-      throw Error(`Failed to add a review: ${err.message}`);
-    });
-};
-
 const checkAuth = () => (dispatch, _getState, api) => {
   api.get(ApiRoute.LOGIN)
     .then(({data}) => {
@@ -103,6 +92,17 @@ const login = ({login: email, password}) => (dispatch, _getState, api) => {
     .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
     .catch(() => {
       dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
+    });
+};
+
+const postReview = (id, rating, comment) => (dispatch, _getState, api) => {
+  api.post(`${ApiRoute.REVIEWS}/${id}`, {rating, comment})
+    .then(() => {
+      dispatch(redirectToRoute(`${AppRoute.FILMS}/${id}`));
+      dispatch(unlockReviewInput());
+    })
+    .catch((err) => {
+      throw Error(`Failed to add a review: ${err.message}`);
     });
 };
 

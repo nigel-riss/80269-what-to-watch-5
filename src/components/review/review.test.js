@@ -19,6 +19,7 @@ it(`Should Review render correctly`, () => {
           <MemoryRouter>
             <Review
               currentFilm={filmsMock[0]}
+              isReviewInputLocked={false}
               getFilm={noop}
               filmId={1}
               onFormSubmit={noop}

@@ -25,9 +25,9 @@ exports[`Should ReviewTabColumn render correctly 1`] = `
         </cite>
         <time
           className="review__date"
-          dateTime="December 24, 2016"
+          dateTime="2020-10-09T13:38:44.769Z"
         >
-          December 24, 2016
+          October 09, 2020
         </time>
       </footer>
     </blockquote>
@@ -58,9 +58,9 @@ exports[`Should ReviewTabColumn render correctly 1`] = `
         </cite>
         <time
           className="review__date"
-          dateTime="December 20, 2016"
+          dateTime="2020-11-15T19:41:58.577Z"
         >
-          December 20, 2016
+          November 15, 2020
         </time>
       </footer>
     </blockquote>
@@ -91,9 +91,9 @@ exports[`Should ReviewTabColumn render correctly 1`] = `
         </cite>
         <time
           className="review__date"
-          dateTime="November 18, 2015"
+          dateTime="2020-11-27T10:35:43.147Z"
         >
-          November 18, 2015
+          November 27, 2020
         </time>
       </footer>
     </blockquote>
@@ -124,9 +124,9 @@ exports[`Should ReviewTabColumn render correctly 1`] = `
         </cite>
         <time
           className="review__date"
-          dateTime="December 20, 2016"
+          dateTime="2020-11-27T11:35:43.147Z"
         >
-          December 20, 2016
+          November 27, 2020
         </time>
       </footer>
     </blockquote>
@@ -157,9 +157,9 @@ exports[`Should ReviewTabColumn render correctly 1`] = `
         </cite>
         <time
           className="review__date"
-          dateTime="November 18, 2015"
+          dateTime="2020-11-27T12:35:43.147Z"
         >
-          November 18, 2015
+          November 27, 2020
         </time>
       </footer>
     </blockquote>

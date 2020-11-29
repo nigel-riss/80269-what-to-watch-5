@@ -34,7 +34,9 @@ const MockComponentWrapped = withReviewForm(MockComponent);
 it(`Should withReviewForm render correctly`, () => {
   const tree = renderer
     .create((
-      <MockComponentWrapped/>
+      <MockComponentWrapped>
+        <React.Fragment/>
+      </MockComponentWrapped>
     ), {
       createNodeMock() {
         return {};

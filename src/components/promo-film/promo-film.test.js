@@ -10,6 +10,7 @@ import storeMock from '../../mocks/store';
 
 const mockStore = configureMockStore([]);
 const store = mockStore(storeMock);
+const noop = () => {};
 
 it(`Should PromoFilm render correctly`, () => {
   const tree = renderer
@@ -18,6 +19,7 @@ it(`Should PromoFilm render correctly`, () => {
           <MemoryRouter>
             <PromoFilm
               film={filmsMock[0]}
+              onMyListButtonClick={noop}
             />
           </MemoryRouter>
         </Provider>
