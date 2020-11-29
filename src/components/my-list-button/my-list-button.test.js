@@ -10,7 +10,7 @@ it(`Should MyListButton render correctly`, () => {
     .create(
         <MyListButton
           isFavorite={true}
-          onClicl={noop}
+          onClick={noop}
         />
     )
     .toJSON();
