@@ -1,0 +1,106 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should Review render correctly 1`] = `
+<section
+  className="movie-card movie-card--full"
+>
+  <div
+    className="movie-card__header"
+  >
+    <div
+      className="movie-card__bg"
+    >
+      <img
+        alt="The Aviator"
+        src="/img/aviator.jpg"
+      />
+    </div>
+    <h1
+      className="visually-hidden"
+    >
+      WTW
+    </h1>
+    <header
+      className="page-header"
+    >
+      <div
+        className="logo"
+      >
+        <a
+          className="logo__link"
+          href="/"
+          onClick={[Function]}
+        >
+          <span
+            className="logo__letter logo__letter--1"
+          >
+            W
+          </span>
+          <span
+            className="logo__letter logo__letter--2"
+          >
+            T
+          </span>
+          <span
+            className="logo__letter logo__letter--3"
+          >
+            W
+          </span>
+        </a>
+      </div>
+      <nav
+        className="breadcrumbs"
+      >
+        <ul
+          className="breadcrumbs__list"
+        >
+          <li
+            className="breadcrumbs__item"
+          >
+            <a
+              className="breadcrumbs__link"
+              href="/films/1"
+              onClick={[Function]}
+            >
+              The Aviator
+            </a>
+          </li>
+          <li
+            className="breadcrumbs__item"
+          >
+            <a
+              className="breadcrumbs__link"
+            >
+              Add review
+            </a>
+          </li>
+        </ul>
+      </nav>
+      <div
+        className="user-block"
+      >
+        <a
+          className="user-block__link"
+          href="/login"
+          onClick={[Function]}
+        >
+          Sign in
+        </a>
+      </div>
+    </header>
+    <div
+      className="movie-card__poster movie-card__poster--small"
+    >
+      <img
+        alt="The Aviator poster"
+        height="327"
+        src="/img/aviator-poster.png"
+        width="218"
+      />
+    </div>
+  </div>
+  <div
+    className="add-review"
+  />
+</section>
+`;
