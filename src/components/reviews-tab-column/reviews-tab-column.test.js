@@ -1,11 +1,16 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import  from './';
+import ReviewsTabColumn from './reviews-tab-column.jsx';
+import reviewsMock from '../../mocks/reviews.js';
 
 
-it(`Should render correctly`, () => {
+it(`Should ReviewTabColumn render correctly`, () => {
   const tree = renderer
-    .create()
+    .create(
+        <ReviewsTabColumn
+          reviews={reviewsMock}
+        />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
