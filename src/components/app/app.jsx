@@ -14,10 +14,12 @@ import Player from '../player/player.jsx';
 import PrivateRoute from '../private-route/private-route.jsx';
 import Review from '../review/review.jsx';
 import withActiveTab from '../../hocs/with-active-tab/with-active-tab.jsx';
+import withPlayer from '../../hocs/with-player/with-player.jsx';
 import withReviewForm from '../../hocs/with-review-form/with-review-form.jsx';
 
 
 const WrappedFilm = withActiveTab(Film);
+const WrappedPlayer = withPlayer(Player);
 const WrappedReview = withReviewForm(Review);
 
 
@@ -61,7 +63,7 @@ const App = () => {
           exact
           path={`${AppRoute.PLAYER}/:id`}
           render={({match}) => (
-            <Player
+            <WrappedPlayer
               filmId={+match.params.id}
             />
           )}

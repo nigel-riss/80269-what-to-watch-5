@@ -10,51 +10,33 @@ import filmType from '../../types/film.js';
 const Player = (props) => {
   const {
     currentFilm,
-    getFilm,
     filmId,
+    getFilm,
+    isLoading,
+    isPlaying,
+    onFullScreenClick,
+    onPlayPauseClick,
+    videoRef,
   } = props;
-
-  const [isPlaying, setPlayingState] = useState(false);
-
-  const _videoRef = useRef();
 
   useEffect(() => {
     getFilm(filmId);
   }, [filmId]);
 
-  if (currentFilm === null) {
-    return null;
-  }
-
-
-  const _handlePlayPauseClick = () => {
-    setPlayingState(!isPlaying);
-    switch (isPlaying) {
-      case true:
-        _videoRef.current.pause();
-        break;
-      case false:
-        _videoRef.current.play();
-    }
-  };
-
-  const _handleFullScreenClick = () => {
-    _videoRef.current.requestFullscreen();
-  };
-
-  const {
-    cover,
-    name,
-    videoLink,
-  } = props.currentFilm;
+  // const {
+  //   cover,
+  //   name,
+  //   videoLink,
+  // } = props.currentFilm;
 
   return (
     <div className="player">
       <video
         className="player__video"
-        poster={cover}
-        ref={_videoRef}
-        src={videoLink}
+        onClick={onPlayPauseClick}
+        poster={currentFilm && currentFilm.cover}
+        ref={videoRef}
+        src={currentFilm && currentFilm.videoLink}
       />
 
       <button
@@ -88,7 +70,7 @@ const Player = (props) => {
         <div className="player__controls-row">
           <button
             className="player__play"
-            onClick={_handlePlayPauseClick}
+            onClick={onPlayPauseClick}
             type="button"
           >
             <svg viewBox="0 0 19 19" width="19" height="19">
@@ -96,11 +78,15 @@ const Player = (props) => {
             </svg>
             <span>Play</span>
           </button>
-          <div className="player__name">{name}</div>
+          <div className="player__name">
+            {(currentFilm && !isLoading)
+              ? currentFilm.name
+              : `Loading...`}
+          </div>
 
           <button
             className="player__full-screen"
-            onClick={_handleFullScreenClick}
+            onClick={onFullScreenClick}
             type="button"
           >
             <svg viewBox="0 0 27 27" width="27" height="27">
