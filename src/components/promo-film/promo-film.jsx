@@ -7,6 +7,7 @@ import {AppRoute} from '../../const.js';
 
 const PromoFilm = (props) => {
   const {
+    id,
     cover: coverUrl,
     poster: posterUrl,
     name: filmName,
@@ -54,7 +55,7 @@ const PromoFilm = (props) => {
                 className="btn btn--play movie-card__button"
                 type="button"
                 onClick={() => {
-                  history.push(`${AppRoute.PLAYER}/1`);
+                  history.push(`${AppRoute.PLAYER}/${id}`);
                 }}
               >
                 <svg viewBox="0 0 19 19" width="19" height="19">

@@ -57,9 +57,15 @@ const App = () => {
             <MyList/>
           )}
         />
-        <Route path={`${AppRoute.PLAYER}/:id`}>
-          <Player/>
-        </Route>
+        <Route
+          exact
+          path={`${AppRoute.PLAYER}/:id`}
+          render={({match}) => (
+            <Player
+              filmId={+match.params.id}
+            />
+          )}
+        />
       </Switch>
     </Router>
   );
