@@ -8,6 +8,7 @@ import filmsMock from '../../mocks/films.js';
 import storeMock from '../../mocks/store';
 import {FILMS_SHOWN_PER_CLICK} from '../../const.js';
 
+
 const mockStore = configureMockStore([]);
 const store = mockStore(storeMock);
 const noop = () => {};
