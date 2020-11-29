@@ -1,11 +1,16 @@
 import React from 'react';
 import renderer from 'react-test-renderer';
-import  from './';
+import ReviewsTab from './reviews-tab.jsx';
+import reviewsMock from '../../mocks/reviews.js';
 
 
 it(`Should render correctly`, () => {
   const tree = renderer
-    .create()
+    .create(
+        <ReviewsTab
+          reviews={reviewsMock}
+        />
+    )
     .toJSON();
 
   expect(tree).toMatchSnapshot();
