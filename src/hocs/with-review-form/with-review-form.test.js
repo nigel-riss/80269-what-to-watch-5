@@ -1,25 +1,21 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import renderer from 'react-test-renderer';
-import withVideo from './with-video.jsx';
+import withReviewForm from './with-review-form.jsx';
 
+
+const noop = () => {};
 
 const MockComponent = (props) => {
   const {
     children,
-    renderVideo,
+    renderForm,
   } = props;
 
   return (
     <React.Fragment>
       {children}
-      {renderVideo({
-        src: ``,
-        poster: ``,
-        height: 100,
-        width: 200,
-        isPlaying: false,
-      })}
+      {renderForm(noop)}
     </React.Fragment>
   );
 };
@@ -29,13 +25,13 @@ MockComponent.propTypes = {
     PropTypes.arrayOf(PropTypes.node),
     PropTypes.node
   ]),
-  renderVideo: PropTypes.func.isRequired,
+  renderForm: PropTypes.func.isRequired,
 };
 
-const MockComponentWrapped = withVideo(MockComponent);
+const MockComponentWrapped = withReviewForm(MockComponent);
 
 
-it(`Should withVideo render correctly`, () => {
+it(`Should withReviewForm render correctly`, () => {
   const tree = renderer
     .create((
       <MockComponentWrapped/>

@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Should  is rendered correctly 1`] = `
+exports[`Should withVideo render correctly 1`] = `
 <video
   disabled={true}
   height={100}
