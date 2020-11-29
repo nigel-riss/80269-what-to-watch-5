@@ -1,0 +1,11 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Should  is rendered correctly 1`] = `
+<video
+  disabled={true}
+  height={100}
+  muted={true}
+  poster=""
+  width={200}
+/>
+`;
