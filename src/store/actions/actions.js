@@ -6,10 +6,12 @@ const ActionType = {
   LOAD_FILMS: `LOAD_FILMS`,
   LOAD_PROMO: `LOAD_PROMO`,
   LOAD_REVIEWS: `LOAD_REVIEWS`,
+  LOCK_REVIEW_INPUT: `LOCK_REVIEW_INPUT`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   RESET_ITEMS_SHOWN_COUNT: `RESET_ITEMS_SHOWN_COUNT`,
   REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
   SET_GENRE: `SET_GENRE`,
+  UNLOCK_REVIEW_INPUT: `UNLOCK_REVIEW_INPUT`,
 };
 
 const incrementItemsShownCount = (itemsCountShown) => ({
@@ -47,6 +49,10 @@ const loadReviews = (reviews) => ({
   payload: reviews,
 });
 
+const lockReviewInput = () => ({
+  type: ActionType.LOCK_REVIEW_INPUT,
+});
+
 const redirectToRoute = (url) => ({
   type: ActionType.REDIRECT_TO_ROUTE,
   payload: url,
@@ -66,6 +72,10 @@ const setGenre = (genre) => ({
   payload: genre,
 });
 
+const unlockReviewInput = () => ({
+  type: ActionType.UNLOCK_REVIEW_INPUT,
+});
+
 
 export {
   ActionType,
@@ -76,8 +86,10 @@ export {
   loadFilms,
   loadPromo,
   loadReviews,
+  lockReviewInput,
   redirectToRoute,
   resetItemsShownCount,
   requireAuthorization,
   setGenre,
+  unlockReviewInput,
 };

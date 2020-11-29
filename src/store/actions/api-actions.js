@@ -12,6 +12,7 @@ import {
   loadReviews,
   redirectToRoute,
   requireAuthorization,
+  unlockReviewInput,
 } from './actions.js';
 import {parseAuth} from '../../utils/auth-adapter';
 import {parseComments} from '../../utils/comment-adapter';
@@ -25,6 +26,7 @@ const postReview = (id, rating, comment) => (dispatch, _getState, api) => {
   api.post(`${ApiRoute.REVIEWS}/${id}`, {rating, comment})
     .then(() => {
       dispatch(redirectToRoute(`${AppRoute.FILMS}/${id}`));
+      dispatch(unlockReviewInput());
     })
     .catch((err) => {
       throw Error(`Failed to add a review: ${err.message}`);

@@ -6,6 +6,7 @@ import {
   fetchCurrentFilm,
   postReview,
 } from '../../store/actions/api-actions.js';
+import {lockReviewInput} from '../../store/actions/actions.js';
 import filmType from '../../types/film.js';
 import {AppRoute} from '../../const.js';
 import Logo from '../logo/logo.jsx';
@@ -15,8 +16,9 @@ import UserBlock from '../user-block/user-block.jsx';
 const Review = (props) => {
   const {
     currentFilm,
-    getFilm,
     filmId,
+    isReviewInputLocked,
+    getFilm,
     onFormSubmit,
     renderForm,
   } = props;
@@ -77,9 +79,12 @@ const Review = (props) => {
       </div>
 
       <div className="add-review">
-        {renderForm((rating, comment) => {
-          onFormSubmit(filmId, rating, comment);
-        }, false)}
+        {renderForm(
+            (rating, comment) => {
+              onFormSubmit(filmId, rating, comment);
+            },
+            isReviewInputLocked
+        )}
       </div>
 
     </section>
@@ -91,12 +96,14 @@ Review.propTypes = {
   currentFilm: filmType.isRequired,
   filmId: PropTypes.number.isRequired,
   getFilm: PropTypes.func.isRequired,
+  isReviewInputLocked: PropTypes.bool.isRequired,
   onFormSubmit: PropTypes.func.isRequired,
   renderForm: PropTypes.func.isRequired,
 };
 
 
-const mapStateToProps = ({DATA}) => ({
+const mapStateToProps = ({APP, DATA}) => ({
+  isReviewInputLocked: APP.isReviewInputLocked,
   currentFilm: DATA.currentFilm,
 });
 
@@ -106,6 +113,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onFormSubmit(id, rating, comment) {
+    dispatch(lockReviewInput());
     dispatch(postReview(id, rating, comment));
   },
 });

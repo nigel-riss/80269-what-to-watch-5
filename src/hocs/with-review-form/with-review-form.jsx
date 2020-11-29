@@ -2,6 +2,8 @@ import React, {PureComponent} from 'react';
 
 
 const DEFAULT_RATING = 3;
+const MAX_TEXT_LENGHT = 400;
+const MIN_TEXT_LENGTH = 50;
 
 
 const withReviewForm = (Component) => {
@@ -10,6 +12,7 @@ const withReviewForm = (Component) => {
       super(props);
 
       this.state = {
+        isPostLocked: true,
         rating: DEFAULT_RATING,
         text: ``,
       };
@@ -25,14 +28,19 @@ const withReviewForm = (Component) => {
     }
 
     _handleTextareaChange(e) {
+      const text = e.target.value;
+      const isPostLocked = !((text.length >= MIN_TEXT_LENGTH) && (text.length <= MAX_TEXT_LENGHT));
+
       this.setState({
-        text: e.target.value,
+        isPostLocked,
+        text,
       });
     }
 
 
     render() {
       const {
+        isPostLocked,
         rating,
         text,
       } = this.state;
@@ -87,10 +95,13 @@ const withReviewForm = (Component) => {
                 <div className="add-review__submit">
                   <button
                     className="add-review__btn"
-                    disabled={isFormBlocked}
+                    disabled={isFormBlocked || isPostLocked}
                     type="submit"
                   >
-                    Post
+                    {isFormBlocked
+                      ? `Sending...`
+                      : `Post`
+                    }
                   </button>
                 </div>
               </div>

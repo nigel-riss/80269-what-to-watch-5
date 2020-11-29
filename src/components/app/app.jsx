@@ -33,21 +33,20 @@ const App = () => {
         <Route path={AppRoute.LOGIN} exact>
           <Login/>
         </Route>
-        <Route
-          exact
-          path={`${AppRoute.FILMS}/:id/`}
-          render={({match}) => (
-            <WrappedFilm
-              filmId={+match.params.id}
-            />
-          )}
-        >
-        </Route>
         <PrivateRoute
           exact
           path={`${AppRoute.FILMS}/:id/review`}
           render={({match}) => (
             <WrappedReview
+              filmId={+match.params.id}
+            />
+          )}
+        />
+        <Route
+          exact
+          path={`${AppRoute.FILMS}/:id/`}
+          render={({match}) => (
+            <WrappedFilm
               filmId={+match.params.id}
             />
           )}
