@@ -30,22 +30,6 @@ const withVideo = (Component) => {
       video.oncanplay = null;
     }
 
-    componentDidUpdate() {
-      const video = this._videoRef.current;
-
-      if (video) {
-        if (this.isPlaying && !this.state.isLoading) {
-          video.play();
-          video.currentTime = 0;
-        } else {
-          this.setState({
-            isLoading: true,
-          });
-          video.load();
-        }
-      }
-    }
-
     render() {
       const {isLoading} = this.state;
 
@@ -54,7 +38,16 @@ const withVideo = (Component) => {
 
         renderVideo={({src, poster, width, height, isPlaying}) => {
           this.src = src;
-          this.isPlaying = isPlaying;
+
+          const video = this._videoRef.current;
+          if (video) {
+            if (isPlaying && !isLoading) {
+              video.play();
+              video.currentTime = 0;
+            } else {
+              video.load();
+            }
+          }
 
           return (
             <video
