@@ -38,8 +38,7 @@ const LoginErrorMessage = {
   and password combination. Please try again.`,
   BAD_EMAIL: `Please provide a valid email address.`,
   NO_PASSWORD: `Please enter a password`,
-
-}
+};
 
 const RatingLimit = {
   BAD: 3,
