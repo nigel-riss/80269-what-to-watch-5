@@ -13,8 +13,10 @@ it(`Should Login render correctly`, () => {
         <MemoryRouter>
           <Login
             authorizationStatus={AuthorizationStatus.NO_AUTH}
-            onSubmit={noop}
+            loginErrorMessage={`Error message`}
             onAuthorized={noop}
+            onInputError={noop}
+            onSubmit={noop}
           />
         </MemoryRouter>
     )
