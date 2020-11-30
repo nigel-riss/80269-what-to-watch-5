@@ -10,8 +10,10 @@ import {
   lockReviewInput,
   redirectToRoute,
   resetItemsShownCount,
+  resetLoginErrorMessage,
   requireAuthorization,
   setGenre,
+  setLoginErrorMessage,
   unlockReviewInput,
 } from './actions.js';
 import filmsMock from '../../mocks/films.js';
@@ -95,6 +97,13 @@ describe(`Action creators work correctly`, () => {
     });
   });
 
+
+  it(`Action creator for resetting error message returns correct action`, () => {
+    expect(resetLoginErrorMessage()).toEqual({
+      type: ActionType.RESET_LOGIN_ERROR,
+    });
+  });
+
   it(`Action creator for requiring authorization status returns correct action`, () => {
     expect(requireAuthorization(AuthorizationStatus.AUTH)).toEqual({
       type: ActionType.REQUIRE_AUTHORIZATION,
@@ -106,6 +115,13 @@ describe(`Action creators work correctly`, () => {
     expect(setGenre(`Action`)).toEqual({
       type: ActionType.SET_GENRE,
       payload: `Action`,
+    });
+  });
+
+  it(`Action creator for setting error message returns correct action`, () => {
+    expect(setLoginErrorMessage(`Error message`)).toEqual({
+      type: ActionType.SET_LOGIN_ERROR,
+      payload: `Error message`,
     });
   });
 

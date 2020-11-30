@@ -7,6 +7,7 @@ const initialState = {
   isReviewInputLocked: false,
   itemsShownCount: FILMS_SHOWN_PER_CLICK,
   genre: null,
+  loginErrorMessage: ``,
 };
 
 
@@ -27,9 +28,19 @@ const app = (state = initialState, action) => {
         itemsShownCount: FILMS_SHOWN_PER_CLICK,
       });
 
+    case ActionType.RESET_LOGIN_ERROR:
+      return extend(state, {
+        loginErrorMessage: ``,
+      });
+
     case ActionType.SET_GENRE:
       return extend(state, {
         genre: action.payload,
+      });
+
+    case ActionType.SET_LOGIN_ERROR:
+      return extend(state, {
+        loginErrorMessage: action.payload,
       });
 
     case ActionType.UNLOCK_REVIEW_INPUT:

@@ -9,8 +9,10 @@ const ActionType = {
   LOCK_REVIEW_INPUT: `LOCK_REVIEW_INPUT`,
   REDIRECT_TO_ROUTE: `REDIRECT_TO_ROUTE`,
   RESET_ITEMS_SHOWN_COUNT: `RESET_ITEMS_SHOWN_COUNT`,
+  RESET_LOGIN_ERROR: `RESET_LOGIN_ERROR`,
   REQUIRE_AUTHORIZATION: `REQUIRE_AUTHORIZATION`,
   SET_GENRE: `SET_GENRE`,
+  SET_LOGIN_ERROR: `SET_LOGIN_ERROR`,
   UNLOCK_REVIEW_INPUT: `UNLOCK_REVIEW_INPUT`,
 };
 
@@ -62,6 +64,10 @@ const resetItemsShownCount = () => ({
   type: ActionType.RESET_ITEMS_SHOWN_COUNT,
 });
 
+const resetLoginErrorMessage = () => ({
+  type: ActionType.RESET_LOGIN_ERROR,
+});
+
 const requireAuthorization = (status) => ({
   type: ActionType.REQUIRE_AUTHORIZATION,
   payload: status,
@@ -70,6 +76,11 @@ const requireAuthorization = (status) => ({
 const setGenre = (genre) => ({
   type: ActionType.SET_GENRE,
   payload: genre,
+});
+
+const setLoginErrorMessage = (message) => ({
+  type: ActionType.SET_LOGIN_ERROR,
+  payload: message,
 });
 
 const unlockReviewInput = () => ({
@@ -89,7 +100,9 @@ export {
   lockReviewInput,
   redirectToRoute,
   resetItemsShownCount,
+  resetLoginErrorMessage,
   requireAuthorization,
   setGenre,
+  setLoginErrorMessage,
   unlockReviewInput,
 };

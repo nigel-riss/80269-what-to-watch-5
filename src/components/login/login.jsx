@@ -1,9 +1,21 @@
 import React, {PureComponent, createRef} from 'react';
 import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
+import {
+  redirectToRoute,
+  setLoginErrorMessage,
+} from '../../store/actions/actions.js';
 import {login} from '../../store/actions/api-actions.js';
 import Footer from '../footer/footer.jsx';
 import Logo from '../logo/logo.jsx';
+import {
+  AppRoute,
+  AuthorizationStatus,
+  LoginErrorMessage,
+} from '../../const.js';
+
+
+const EMAIL_REGEX = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
 
 class Login extends PureComponent {
@@ -17,16 +29,60 @@ class Login extends PureComponent {
   }
 
   _handleSubmit(e) {
-    const {onSubmit} = this.props;
-
     e.preventDefault();
-    onSubmit({
-      login: this.loginRef.current.value,
-      password: this.passwordRef.current.value,
-    });
+
+    const {
+      onInputError,
+      onSubmit,
+    } = this.props;
+
+    const email = this.loginRef.current.value;
+    const password = this.passwordRef.current.value;
+    const inputError = this._getInputError(email, password);
+
+    if (inputError === ``) {
+      onSubmit({
+        login: email,
+        password,
+      });
+    } else {
+      onInputError(inputError);
+    }
   }
 
+  _getInputError(email, password) {
+    if (!this._isValidEmail(email)) {
+      return LoginErrorMessage.BAD_EMAIL;
+    }
+
+    if (password.length === 0) {
+      return LoginErrorMessage.NO_PASSWORD;
+    }
+
+    return ``;
+  }
+
+  _isValidEmail(email) {
+    return EMAIL_REGEX.test(email.toLowerCase());
+  }
+
+  // componentDidMount() {
+  //   const {
+  //     authorizationStatus,
+  //     onAuthorized,
+  //   } = this.props;
+
+  //   console.log(authorizationStatus);
+
+  //   if (authorizationStatus === AuthorizationStatus.AUTH) {
+  //     console.log(`wtf`);
+  //     onAuthorized();
+  //   }
+  // }
+
   render() {
+    const {loginErrorMessage} = this.props;
+
     return (
       <div className="user-page">
         <header className="page-header user-page__head">
@@ -36,6 +92,9 @@ class Login extends PureComponent {
         </header>
 
         <div className="sign-in user-page__content">
+          <div className="sign-in__message">
+            <p>{loginErrorMessage}</p>
+          </div>
           <form
             action="#"
             className="sign-in__form"
@@ -49,7 +108,6 @@ class Login extends PureComponent {
                   name="user-email"
                   placeholder="Email address"
                   ref={this.loginRef}
-                  required={true}
                   type="email"
                 />
                 <label
@@ -66,7 +124,6 @@ class Login extends PureComponent {
                   name="user-password"
                   placeholder="Password"
                   ref={this.passwordRef}
-                  required={true}
                   type="password"
                 />
                 <label
@@ -91,11 +148,28 @@ class Login extends PureComponent {
 
 
 Login.propTypes = {
+  authorizationStatus: PropTypes.oneOf(Object.values(AuthorizationStatus)).isRequired,
+  loginErrorMessage: PropTypes.string.isRequired,
+  onAuthorized: PropTypes.func.isRequired,
+  onInputError: PropTypes.func.isRequired,
   onSubmit: PropTypes.func.isRequired,
 };
 
 
+const mapStateToProps = ({APP, USER}) => ({
+  authorizationStatus: USER.authorizationStatus,
+  loginErrorMessage: APP.loginErrorMessage,
+});
+
 const mapDispatchToProps = (dispatch) => ({
+  onAuthorized() {
+    dispatch(redirectToRoute(AppRoute.ROOT));
+  },
+
+  onInputError(errorMessage) {
+    dispatch(setLoginErrorMessage(errorMessage));
+  },
+
   onSubmit(authData) {
     dispatch(login(authData));
   },
@@ -103,4 +177,4 @@ const mapDispatchToProps = (dispatch) => ({
 
 
 export {Login};
-export default connect(null, mapDispatchToProps)(Login);
+export default connect(mapStateToProps, mapDispatchToProps)(Login);

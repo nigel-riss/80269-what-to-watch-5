@@ -2,6 +2,7 @@ import {
   ApiRoute,
   AppRoute,
   AuthorizationStatus,
+  LoginErrorMessage,
 } from '../../const.js';
 import {
   loadAuthInfo,
@@ -11,7 +12,9 @@ import {
   loadPromo,
   loadReviews,
   redirectToRoute,
+  resetLoginErrorMessage,
   requireAuthorization,
+  setLoginErrorMessage,
   unlockReviewInput,
 } from './actions.js';
 import {parseAuth} from '../../utils/auth-adapter';
@@ -25,8 +28,8 @@ import {
 const checkAuth = () => (dispatch, _getState, api) => {
   api.get(ApiRoute.LOGIN)
     .then(({data}) => {
-      dispatch(loadAuthInfo(parseAuth(data)));
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(loadAuthInfo(parseAuth(data)));
     })
     .catch(() => {
       dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -86,11 +89,15 @@ const fetchReviews = (id) => (dispatch, _getState, api) => {
 const login = ({login: email, password}) => (dispatch, _getState, api) => {
   api.post(ApiRoute.LOGIN, {email, password})
     .then((response) => {
-      dispatch(loadAuthInfo(parseAuth(response.data)));
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
+      dispatch(loadAuthInfo(parseAuth(response.data)));
     })
-    .then(() => dispatch(redirectToRoute(AppRoute.ROOT)))
+    .then(() => {
+      dispatch(resetLoginErrorMessage());
+      dispatch(redirectToRoute(AppRoute.ROOT));
+    })
     .catch(() => {
+      dispatch(setLoginErrorMessage(LoginErrorMessage.BAD_AUTH));
       dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
     });
 };

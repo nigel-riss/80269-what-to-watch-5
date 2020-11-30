@@ -25,13 +25,6 @@ const FilmTabName = {
   REVIEWS: `Reviews`,
 };
 
-const RatingLimit = {
-  BAD: 3,
-  NORMAL: 5,
-  GOOD: 8,
-  VERY_GOOD: 10,
-};
-
 const FilmCardOption = {
   HEIGHT: 175,
   WIDTH: 280,
@@ -40,6 +33,22 @@ const FilmCardOption = {
 
 const FILMS_SHOWN_PER_CLICK = 8;
 
+const LoginErrorMessage = {
+  BAD_AUTH: `We can’t recognize this email
+  and password combination. Please try again.`,
+  BAD_EMAIL: `Please provide a valid email address.`,
+  NO_PASSWORD: `Please enter a password`,
+
+}
+
+const RatingLimit = {
+  BAD: 3,
+  NORMAL: 5,
+  GOOD: 8,
+  VERY_GOOD: 10,
+};
+
+
 export {
   ApiRoute,
   AppRoute,
@@ -47,5 +56,6 @@ export {
   FilmCardOption,
   FILMS_SHOWN_PER_CLICK,
   FilmTabName,
+  LoginErrorMessage,
   RatingLimit,
 };

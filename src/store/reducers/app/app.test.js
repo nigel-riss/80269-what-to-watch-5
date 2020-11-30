@@ -9,6 +9,7 @@ describe(`App reducer work correctly`, () => {
       isReviewInputLocked: false,
       itemsShownCount: FILMS_SHOWN_PER_CLICK,
       genre: null,
+      loginErrorMessage: ``,
     });
   });
 
@@ -42,6 +43,17 @@ describe(`App reducer work correctly`, () => {
     });
   });
 
+  it(`Reducer should reset login error message`, () => {
+    expect(app({
+      loginErrorMessage: `Error message`,
+    }, {
+      type: ActionType.RESET_LOGIN_ERROR,
+      payload: `Action`,
+    })).toEqual({
+      loginErrorMessage: ``,
+    });
+  });
+
   it(`Reducer should set genre to a given value`, () => {
     expect(app({
       genre: `Comedy`,
@@ -50,6 +62,17 @@ describe(`App reducer work correctly`, () => {
       payload: `Action`,
     })).toEqual({
       genre: `Action`,
+    });
+  });
+
+  it(`Reducer should set login error message to a given value`, () => {
+    expect(app({
+      loginErrorMessage: ``,
+    }, {
+      type: ActionType.SET_LOGIN_ERROR,
+      payload: `Error message`,
+    })).toEqual({
+      loginErrorMessage: `Error message`,
     });
   });
 
