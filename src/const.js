@@ -33,10 +33,11 @@ const FilmCardOption = {
 
 const FILMS_SHOWN_PER_CLICK = 8;
 
-const LoginErrorMessage = {
+const ErrorMessage = {
   BAD_AUTH: `We can’t recognize this email
   and password combination. Please try again.`,
   BAD_EMAIL: `Please provide a valid email address.`,
+  BAD_REQUEST: `Opps. Something went wrong. Please try again later.`,
   NO_PASSWORD: `Please enter a password`,
 };
 
@@ -55,6 +56,6 @@ export {
   FilmCardOption,
   FILMS_SHOWN_PER_CLICK,
   FilmTabName,
-  LoginErrorMessage,
+  ErrorMessage,
   RatingLimit,
 };

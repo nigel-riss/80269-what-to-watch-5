@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 import {connect} from 'react-redux';
 import {
   redirectToRoute,
-  setLoginErrorMessage,
+  setErrorMessage,
 } from '../../store/actions/actions.js';
 import {login} from '../../store/actions/api-actions.js';
 import Footer from '../footer/footer.jsx';
@@ -11,7 +11,7 @@ import Logo from '../logo/logo.jsx';
 import {
   AppRoute,
   AuthorizationStatus,
-  LoginErrorMessage,
+  ErrorMessage,
 } from '../../const.js';
 
 
@@ -52,11 +52,11 @@ class Login extends PureComponent {
 
   _getInputError(email, password) {
     if (!this._isValidEmail(email)) {
-      return LoginErrorMessage.BAD_EMAIL;
+      return ErrorMessage.BAD_EMAIL;
     }
 
     if (password.length === 0) {
-      return LoginErrorMessage.NO_PASSWORD;
+      return ErrorMessage.NO_PASSWORD;
     }
 
     return ``;
@@ -66,19 +66,17 @@ class Login extends PureComponent {
     return EMAIL_REGEX.test(email.toLowerCase());
   }
 
-  // componentDidMount() {
-  //   const {
-  //     authorizationStatus,
-  //     onAuthorized,
-  //   } = this.props;
+  componentDidMount() {
+    const {
+      authorizationStatus,
+      onAuthorized,
+    } = this.props;
 
-  //   console.log(authorizationStatus);
 
-  //   if (authorizationStatus === AuthorizationStatus.AUTH) {
-  //     console.log(`wtf`);
-  //     onAuthorized();
-  //   }
-  // }
+    if (authorizationStatus === AuthorizationStatus.AUTH) {
+      onAuthorized();
+    }
+  }
 
   render() {
     const {loginErrorMessage} = this.props;
@@ -158,7 +156,7 @@ Login.propTypes = {
 
 const mapStateToProps = ({APP, USER}) => ({
   authorizationStatus: USER.authorizationStatus,
-  loginErrorMessage: APP.loginErrorMessage,
+  loginErrorMessage: APP.errorMessage,
 });
 
 const mapDispatchToProps = (dispatch) => ({
@@ -167,7 +165,7 @@ const mapDispatchToProps = (dispatch) => ({
   },
 
   onInputError(errorMessage) {
-    dispatch(setLoginErrorMessage(errorMessage));
+    dispatch(setErrorMessage(errorMessage));
   },
 
   onSubmit(authData) {

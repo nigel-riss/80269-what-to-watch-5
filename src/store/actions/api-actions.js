@@ -2,7 +2,7 @@ import {
   ApiRoute,
   AppRoute,
   AuthorizationStatus,
-  LoginErrorMessage,
+  ErrorMessage,
 } from '../../const.js';
 import {
   loadAuthInfo,
@@ -12,9 +12,9 @@ import {
   loadPromo,
   loadReviews,
   redirectToRoute,
-  resetLoginErrorMessage,
+  resetErrorMessage,
   requireAuthorization,
-  setLoginErrorMessage,
+  setErrorMessage,
   unlockReviewInput,
 } from './actions.js';
 import {parseAuth} from '../../utils/auth-adapter';
@@ -26,10 +26,10 @@ import {
 
 
 const checkAuth = () => (dispatch, _getState, api) => {
-  api.get(ApiRoute.LOGIN)
+  return api.get(ApiRoute.LOGIN)
     .then(({data}) => {
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
-      dispatch(loadAuthInfo(parseAuth(data)));
+      return dispatch(loadAuthInfo(parseAuth(data)));
     })
     .catch(() => {
       dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
@@ -37,7 +37,7 @@ const checkAuth = () => (dispatch, _getState, api) => {
 };
 
 const fetchCurrentFilm = (id) => (dispatch, _getState, api) => {
-  api.get(`${ApiRoute.FILMS}/${id}`)
+  return api.get(`${ApiRoute.FILMS}/${id}`)
     .then(({data}) => {
       dispatch(loadCurrentFilm(parseFilm(data)));
     })
@@ -47,7 +47,7 @@ const fetchCurrentFilm = (id) => (dispatch, _getState, api) => {
 };
 
 const fetchFavoriteFilms = () => (dispatch, _getState, api) => {
-  api.get(ApiRoute.FAVORITE)
+  return api.get(ApiRoute.FAVORITE)
     .then(({data}) => {
       dispatch(loadFavoriteFilms(parseFilms(data)));
     })
@@ -57,7 +57,7 @@ const fetchFavoriteFilms = () => (dispatch, _getState, api) => {
 };
 
 const fetchFilms = () => (dispatch, _getState, api) => {
-  api.get(ApiRoute.FILMS)
+  return api.get(ApiRoute.FILMS)
     .then(({data}) => {
       dispatch(loadFilms(parseFilms(data)));
     })
@@ -67,7 +67,7 @@ const fetchFilms = () => (dispatch, _getState, api) => {
 };
 
 const fetchPromo = () => (dispatch, _getState, api) => {
-  api.get(ApiRoute.PROMO)
+  return api.get(ApiRoute.PROMO)
     .then(({data}) => {
       dispatch(loadPromo(parseFilm(data)));
     })
@@ -77,7 +77,7 @@ const fetchPromo = () => (dispatch, _getState, api) => {
 };
 
 const fetchReviews = (id) => (dispatch, _getState, api) => {
-  api.get(`${ApiRoute.REVIEWS}/${id}`)
+  return api.get(`${ApiRoute.REVIEWS}/${id}`)
     .then(({data}) => {
       dispatch(loadReviews(parseComments(data)));
     })
@@ -87,34 +87,37 @@ const fetchReviews = (id) => (dispatch, _getState, api) => {
 };
 
 const login = ({login: email, password}) => (dispatch, _getState, api) => {
-  api.post(ApiRoute.LOGIN, {email, password})
+  return api.post(ApiRoute.LOGIN, {email, password})
     .then((response) => {
       dispatch(requireAuthorization(AuthorizationStatus.AUTH));
       dispatch(loadAuthInfo(parseAuth(response.data)));
     })
     .then(() => {
-      dispatch(resetLoginErrorMessage());
+      dispatch(resetErrorMessage());
       dispatch(redirectToRoute(AppRoute.ROOT));
     })
     .catch(() => {
-      dispatch(setLoginErrorMessage(LoginErrorMessage.BAD_AUTH));
+      dispatch(setErrorMessage(ErrorMessage.BAD_AUTH));
       dispatch(requireAuthorization(AuthorizationStatus.NO_AUTH));
     });
 };
 
 const postReview = (id, rating, comment) => (dispatch, _getState, api) => {
-  api.post(`${ApiRoute.REVIEWS}/${id}`, {rating, comment})
+  return api.post(`${ApiRoute.REVIEWS}/${id}`, {rating, comment})
     .then(() => {
       dispatch(redirectToRoute(`${AppRoute.FILMS}/${id}`));
+      dispatch(resetErrorMessage());
       dispatch(unlockReviewInput());
     })
     .catch((err) => {
+      dispatch(unlockReviewInput());
+      dispatch(setErrorMessage(ErrorMessage.BAD_REQUEST));
       throw Error(`Failed to add a review: ${err.message}`);
     });
 };
 
 const switchFavorite = (id, isFavorite) => (dispatch, _getState, api) => {
-  api.post(`${ApiRoute.FAVORITE}/${id}/${isFavorite ? 0 : 1}`)
+  return api.post(`${ApiRoute.FAVORITE}/${id}/${isFavorite ? 0 : 1}`)
     .then(({data}) => {
       dispatch(loadCurrentFilm(parseFilm(data)));
     })

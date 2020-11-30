@@ -8,7 +8,9 @@ import {
 } from '../../store/actions/api-actions.js';
 import {lockReviewInput} from '../../store/actions/actions.js';
 import filmType from '../../types/film.js';
-import {AppRoute} from '../../const.js';
+import {
+  AppRoute,
+} from '../../const.js';
 import Logo from '../logo/logo.jsx';
 import UserBlock from '../user-block/user-block.jsx';
 
@@ -16,6 +18,7 @@ import UserBlock from '../user-block/user-block.jsx';
 const Review = (props) => {
   const {
     currentFilm,
+    errorMessage,
     filmId,
     isReviewInputLocked,
     getFilm,
@@ -79,6 +82,16 @@ const Review = (props) => {
       </div>
 
       <div className="add-review">
+        {errorMessage && <div
+          className="review__message"
+          style={{
+            color: `#252525`,
+            textAlign: `center`,
+          }}
+        >
+          <p>{errorMessage}</p>
+        </div>}
+
         {renderForm(
             (rating, comment) => {
               onFormSubmit(filmId, rating, comment);
@@ -94,6 +107,7 @@ const Review = (props) => {
 
 Review.propTypes = {
   currentFilm: filmType.isRequired,
+  errorMessage: PropTypes.string,
   filmId: PropTypes.number.isRequired,
   getFilm: PropTypes.func.isRequired,
   isReviewInputLocked: PropTypes.bool.isRequired,
@@ -103,8 +117,9 @@ Review.propTypes = {
 
 
 const mapStateToProps = ({APP, DATA}) => ({
-  isReviewInputLocked: APP.isReviewInputLocked,
   currentFilm: DATA.currentFilm,
+  errorMessage: APP.errorMessage,
+  isReviewInputLocked: APP.isReviewInputLocked,
 });
 
 const mapDispatchToProps = (dispatch) => ({

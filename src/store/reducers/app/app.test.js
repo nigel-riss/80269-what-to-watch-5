@@ -9,7 +9,7 @@ describe(`App reducer work correctly`, () => {
       isReviewInputLocked: false,
       itemsShownCount: FILMS_SHOWN_PER_CLICK,
       genre: null,
-      loginErrorMessage: ``,
+      errorMessage: ``,
     });
   });
 
@@ -45,12 +45,12 @@ describe(`App reducer work correctly`, () => {
 
   it(`Reducer should reset login error message`, () => {
     expect(app({
-      loginErrorMessage: `Error message`,
+      errorMessage: `Error message`,
     }, {
-      type: ActionType.RESET_LOGIN_ERROR,
+      type: ActionType.RESET_ERROR_MESSAGE,
       payload: `Action`,
     })).toEqual({
-      loginErrorMessage: ``,
+      errorMessage: ``,
     });
   });
 
@@ -67,12 +67,12 @@ describe(`App reducer work correctly`, () => {
 
   it(`Reducer should set login error message to a given value`, () => {
     expect(app({
-      loginErrorMessage: ``,
+      errorMessage: ``,
     }, {
-      type: ActionType.SET_LOGIN_ERROR,
+      type: ActionType.SET_ERROR_MESSAGE,
       payload: `Error message`,
     })).toEqual({
-      loginErrorMessage: `Error message`,
+      errorMessage: `Error message`,
     });
   });
 
